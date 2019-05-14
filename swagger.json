@@ -1,0 +1,669 @@
+{
+  "x-generator": "NSwag v12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v12.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "Microsum api.mstiDFE",
+    "description": "API para geração de Documentos Fiscais Eletrônicos (DF-e) do projeto SPED",
+    "termsOfService": "None",
+    "contact": {
+      "name": "Microsum Tecnologia da Informação Ltda",
+      "url": "https://microsum.com.br",
+      "email": "suporte@microsum.com.br"
+    },
+    "license": {
+      "name": "Use under LICX",
+      "url": "https://example.com/license"
+    },
+    "version": "v1"
+  },
+  "host": "localhost:44342",
+  "schemes": [
+    "https"
+  ],
+  "produces": [
+    "text/plain",
+    "application/json",
+    "text/json"
+  ],
+  "paths": {
+    "/api/revenda": {
+      "get": {
+        "tags": [
+          "Revenda"
+        ],
+        "operationId": "Revenda_GetRevendas",
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Revenda"
+        ],
+        "operationId": "Revenda_Post",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "RevendaView",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RevendaViewModel"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Revenda"
+        ],
+        "operationId": "Revenda_Put",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "RevendaView",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RevendaViewModel"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/revenda/{Id}": {
+      "get": {
+        "tags": [
+          "Revenda"
+        ],
+        "operationId": "Revenda_GetRevenda",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IEntidade"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Revenda"
+        ],
+        "operationId": "Revenda_Delete",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/revenda/{RevendaId}/cliente": {
+      "get": {
+        "tags": [
+          "RevendaCliente"
+        ],
+        "operationId": "RevendaCliente_GetClientes",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "RevendaCliente"
+        ],
+        "operationId": "RevendaCliente_AdicionarRevendaCliente",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "name": "RevendaCliente",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RevendaClienteViewModel"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "RevendaCliente"
+        ],
+        "operationId": "RevendaCliente_AtualizarRevendaCliente",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "name": "RevendaCliente",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RevendaClienteViewModel"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}": {
+      "get": {
+        "tags": [
+          "RevendaCliente"
+        ],
+        "operationId": "RevendaCliente_GetCliente",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "ClienteCodigo",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IEntidade"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "RevendaCliente"
+        ],
+        "operationId": "RevendaCliente_DeletarRevendaCliente",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "ClienteCodigo",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "RevendaClienteToken"
+        ],
+        "operationId": "RevendaClienteToken_AdicionarRevendaClienteToken",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "ClienteCodigo",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}/Token": {
+      "get": {
+        "tags": [
+          "RevendaClienteToken"
+        ],
+        "operationId": "RevendaClienteToken_GetClientes",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "ClienteCodigo",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}/token/{Token}": {
+      "get": {
+        "tags": [
+          "RevendaClienteToken"
+        ],
+        "operationId": "RevendaClienteToken_GetCliente",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "ClienteCodigo",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "Token",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IEntidade"
+            }
+          }
+        }
+      }
+    },
+    "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}/{Token}": {
+      "put": {
+        "tags": [
+          "RevendaClienteToken"
+        ],
+        "operationId": "RevendaClienteToken_RevogarRevendaClienteToken",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "ClienteCodigo",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "Token",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "IEntidade": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false
+    },
+    "IResultViewModel": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "required": [
+        "httpStatusCode"
+      ],
+      "properties": {
+        "httpStatusCode": {
+          "$ref": "#/definitions/EHttpStatusCode"
+        },
+        "messages": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IViewModel"
+          }
+        }
+      }
+    },
+    "EHttpStatusCode": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "OK",
+        "BadGateway",
+        "NotFound",
+        "MethodNotAllowed"
+      ],
+      "enum": [
+        200,
+        400,
+        404,
+        405
+      ]
+    },
+    "IViewModel": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false
+    },
+    "RevendaViewModel": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Notificavel"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "codigo"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "codigo": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+            },
+            "cnpj": {
+              "type": "string"
+            },
+            "clientes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RevendaClienteViewModel"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "RevendaClienteViewModel": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Notificavel"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "codigo": {
+              "type": "string"
+            },
+            "nome": {
+              "type": "string"
+            },
+            "cpf": {
+              "type": "string"
+            },
+            "cnpj": {
+              "type": "string"
+            },
+            "tokens": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RevendaClienteTokenViewModel"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "RevendaClienteTokenViewModel": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Notificavel"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "geracao",
+            "revogacao"
+          ],
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "geracao": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "revogacao": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      ]
+    },
+    "Notificavel": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Notifiable"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "invalid",
+            "valid"
+          ],
+          "properties": {
+            "invalid": {
+              "type": "boolean"
+            },
+            "valid": {
+              "type": "boolean"
+            },
+            "notifications": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Notification"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "Notification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "property": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "Notifiable": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false
+    }
+  }
+}
