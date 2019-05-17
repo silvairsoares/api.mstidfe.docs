@@ -31,7 +31,17 @@
         "tags": [
           "Revenda"
         ],
+        "summary": "Pesquisa todas as revendas",
         "operationId": "Revenda_GetRevendas",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
+          }
+        ],
         "responses": {
           "200": {
             "x-nullable": true,
@@ -47,6 +57,7 @@
         "tags": [
           "Revenda"
         ],
+        "summary": "Inclui uma nova revenda",
         "operationId": "Revenda_Post",
         "consumes": [
           "application/json-patch+json",
@@ -63,6 +74,13 @@
               "$ref": "#/definitions/RevendaViewModel"
             },
             "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -79,6 +97,7 @@
         "tags": [
           "Revenda"
         ],
+        "summary": "Atualiza uma revenda específica",
         "operationId": "Revenda_Put",
         "consumes": [
           "application/json-patch+json",
@@ -95,6 +114,13 @@
               "$ref": "#/definitions/RevendaViewModel"
             },
             "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -113,6 +139,7 @@
         "tags": [
           "Revenda"
         ],
+        "summary": "Pesquisa uma revenda específica",
         "operationId": "Revenda_GetRevenda",
         "parameters": [
           {
@@ -121,6 +148,13 @@
             "in": "path",
             "required": true,
             "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -137,6 +171,7 @@
         "tags": [
           "Revenda"
         ],
+        "summary": "Apaga uma revenda específica",
         "operationId": "Revenda_Delete",
         "parameters": [
           {
@@ -145,6 +180,13 @@
             "in": "path",
             "required": true,
             "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -163,6 +205,7 @@
         "tags": [
           "RevendaCliente"
         ],
+        "summary": "Pesquisa clientes pelo id da revenda",
         "operationId": "RevendaCliente_GetClientes",
         "parameters": [
           {
@@ -171,6 +214,13 @@
             "in": "path",
             "required": true,
             "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -188,6 +238,7 @@
         "tags": [
           "RevendaCliente"
         ],
+        "summary": "Inclui um novo cliente na carteria de uma revenda específica",
         "operationId": "RevendaCliente_AdicionarRevendaCliente",
         "consumes": [
           "application/json-patch+json",
@@ -211,6 +262,13 @@
               "$ref": "#/definitions/RevendaClienteViewModel"
             },
             "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -227,6 +285,7 @@
         "tags": [
           "RevendaCliente"
         ],
+        "summary": "Atualiza um cliente específico de uma revenda",
         "operationId": "RevendaCliente_AtualizarRevendaCliente",
         "consumes": [
           "application/json-patch+json",
@@ -250,6 +309,13 @@
               "$ref": "#/definitions/RevendaClienteViewModel"
             },
             "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -268,6 +334,7 @@
         "tags": [
           "RevendaCliente"
         ],
+        "summary": "Localiza um cliente específico de uma revenda",
         "operationId": "RevendaCliente_GetCliente",
         "parameters": [
           {
@@ -283,6 +350,13 @@
             "in": "path",
             "required": true,
             "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -299,6 +373,7 @@
         "tags": [
           "RevendaCliente"
         ],
+        "summary": "Apaga um cliente específico de uma revenda",
         "operationId": "RevendaCliente_DeletarRevendaCliente",
         "parameters": [
           {
@@ -314,6 +389,13 @@
             "in": "path",
             "required": true,
             "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -330,6 +412,7 @@
         "tags": [
           "RevendaClienteToken"
         ],
+        "summary": "Inclui um novo token no cadastro de um cliente",
         "operationId": "RevendaClienteToken_AdicionarRevendaClienteToken",
         "parameters": [
           {
@@ -345,6 +428,13 @@
             "in": "path",
             "required": true,
             "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -363,6 +453,7 @@
         "tags": [
           "RevendaClienteToken"
         ],
+        "summary": "Pesquisa tokens pelo id do cliente e da revenda",
         "operationId": "RevendaClienteToken_GetClientes",
         "parameters": [
           {
@@ -378,6 +469,13 @@
             "in": "path",
             "required": true,
             "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -397,6 +495,7 @@
         "tags": [
           "RevendaClienteToken"
         ],
+        "summary": "Localiza um token específico de um cliente",
         "operationId": "RevendaClienteToken_GetCliente",
         "parameters": [
           {
@@ -419,6 +518,13 @@
             "in": "path",
             "required": true,
             "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -437,6 +543,7 @@
         "tags": [
           "RevendaClienteToken"
         ],
+        "summary": "Revoga um token específico de um cliente",
         "operationId": "RevendaClienteToken_RevogarRevendaClienteToken",
         "parameters": [
           {
@@ -459,6 +566,13 @@
             "in": "path",
             "required": true,
             "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
           }
         ],
         "responses": {
@@ -575,10 +689,22 @@
             "nome": {
               "type": "string"
             },
+            "razaoSocial": {
+              "type": "string"
+            },
+            "endereco": {
+              "$ref": "#/definitions/EnderecoViewModel"
+            },
             "cpf": {
               "type": "string"
             },
             "cnpj": {
+              "type": "string"
+            },
+            "ie": {
+              "type": "string"
+            },
+            "eMail": {
               "type": "string"
             },
             "tokens": {
@@ -590,6 +716,45 @@
           }
         }
       ]
+    },
+    "EnderecoViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "logradouro": {
+          "type": "string"
+        },
+        "numero": {
+          "type": "string"
+        },
+        "complemento": {
+          "type": "string"
+        },
+        "bairro": {
+          "type": "string"
+        },
+        "codigoIBGEMunicipio": {
+          "type": "string"
+        },
+        "municipio": {
+          "type": "string"
+        },
+        "uf": {
+          "type": "string"
+        },
+        "cep": {
+          "type": "string"
+        },
+        "codigoPais": {
+          "type": "string"
+        },
+        "pais": {
+          "type": "string"
+        },
+        "telefone": {
+          "type": "string"
+        }
+      }
     },
     "RevendaClienteTokenViewModel": {
       "allOf": [
@@ -626,39 +791,9 @@
         },
         {
           "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "invalid",
-            "valid"
-          ],
-          "properties": {
-            "invalid": {
-              "type": "boolean"
-            },
-            "valid": {
-              "type": "boolean"
-            },
-            "notifications": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Notification"
-              }
-            }
-          }
+          "additionalProperties": false
         }
       ]
-    },
-    "Notification": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "property": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
     },
     "Notifiable": {
       "type": "object",
