@@ -833,31 +833,31 @@
       "additionalProperties": false,
       "properties": {
         "infNFe": {
-          "$ref": "#/definitions/TNFeInfNFe"
+          "$ref": "#/definitions/InfNFe"
         },
         "infNFeSupl": {
-          "$ref": "#/definitions/TNFeInfNFeSupl"
+          "$ref": "#/definitions/InfNFeSupl"
         },
         "signature": {
-          "$ref": "#/definitions/SignatureType"
+          "$ref": "#/definitions/Signature"
         }
       }
     },
-    "TNFeInfNFe": {
+    "InfNFe": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "ide": {
-          "$ref": "#/definitions/TNFeInfNFeIde"
+          "$ref": "#/definitions/Ide"
         },
         "emit": {
-          "$ref": "#/definitions/TNFeInfNFeEmit"
+          "$ref": "#/definitions/Emit"
         },
         "avulsa": {
-          "$ref": "#/definitions/TNFeInfNFeAvulsa"
+          "$ref": "#/definitions/Avulsa"
         },
         "dest": {
-          "$ref": "#/definitions/TNFeInfNFeDest"
+          "$ref": "#/definitions/Dest"
         },
         "retirada": {
           "$ref": "#/definitions/TLocal"
@@ -868,41 +868,41 @@
         "autXML": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TNFeInfNFeAutXML"
+            "$ref": "#/definitions/AutXML"
           }
         },
         "det": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TNFeInfNFeDet"
+            "$ref": "#/definitions/Det"
           }
         },
         "total": {
-          "$ref": "#/definitions/TNFeInfNFeTotal"
+          "$ref": "#/definitions/Total"
         },
         "transp": {
-          "$ref": "#/definitions/TNFeInfNFeTransp"
+          "$ref": "#/definitions/Transp"
         },
         "cobr": {
-          "$ref": "#/definitions/TNFeInfNFeCobr"
+          "$ref": "#/definitions/Cobr"
         },
         "pag": {
-          "$ref": "#/definitions/TNFeInfNFePag"
+          "$ref": "#/definitions/Pag"
         },
         "infAdic": {
-          "$ref": "#/definitions/TNFeInfNFeInfAdic"
+          "$ref": "#/definitions/InfAdic"
         },
         "exporta": {
-          "$ref": "#/definitions/TNFeInfNFeExporta"
+          "$ref": "#/definitions/Exporta"
         },
         "compra": {
-          "$ref": "#/definitions/TNFeInfNFeCompra"
+          "$ref": "#/definitions/Compra"
         },
         "cana": {
-          "$ref": "#/definitions/TNFeInfNFeCana"
+          "$ref": "#/definitions/Cana"
         },
         "infRespTec": {
-          "$ref": "#/definitions/TInfRespTec"
+          "$ref": "#/definitions/InfRespTec"
         },
         "versao": {
           "type": "string"
@@ -912,7 +912,7 @@
         }
       }
     },
-    "TNFeInfNFeIde": {
+    "Ide": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -930,7 +930,7 @@
       ],
       "properties": {
         "cUF": {
-          "$ref": "#/definitions/TCodUfIBGE"
+          "$ref": "#/definitions/CUF"
         },
         "cNF": {
           "type": "string"
@@ -939,7 +939,7 @@
           "type": "string"
         },
         "mod": {
-          "$ref": "#/definitions/TMod"
+          "$ref": "#/definitions/Mod"
         },
         "serie": {
           "type": "string"
@@ -954,37 +954,37 @@
           "type": "string"
         },
         "tpNF": {
-          "$ref": "#/definitions/TNFeInfNFeIdeTpNF"
+          "$ref": "#/definitions/TpNF"
         },
         "idDest": {
-          "$ref": "#/definitions/TNFeInfNFeIdeIdDest"
+          "$ref": "#/definitions/IdDest"
         },
         "cMunFG": {
           "type": "string"
         },
         "tpImp": {
-          "$ref": "#/definitions/TNFeInfNFeIdeTpImp"
+          "$ref": "#/definitions/TpImp"
         },
         "tpEmis": {
-          "$ref": "#/definitions/TNFeInfNFeIdeTpEmis"
+          "$ref": "#/definitions/TpEmis"
         },
         "cDV": {
           "type": "string"
         },
         "tpAmb": {
-          "$ref": "#/definitions/TAmb"
+          "$ref": "#/definitions/TpAmb"
         },
         "finNFe": {
-          "$ref": "#/definitions/TFinNFe"
+          "$ref": "#/definitions/FinNFe"
         },
         "indFinal": {
-          "$ref": "#/definitions/TNFeInfNFeIdeIndFinal"
+          "$ref": "#/definitions/IndFinal"
         },
         "indPres": {
-          "$ref": "#/definitions/TNFeInfNFeIdeIndPres"
+          "$ref": "#/definitions/IndPres"
         },
         "procEmi": {
-          "$ref": "#/definitions/TProcEmi"
+          "$ref": "#/definitions/ProcEmi"
         },
         "verProc": {
           "type": "string"
@@ -1003,7 +1003,7 @@
         }
       }
     },
-    "TCodUfIBGE": {
+    "CUF": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1065,7 +1065,7 @@
         26
       ]
     },
-    "TMod": {
+    "Mod": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1077,7 +1077,7 @@
         1
       ]
     },
-    "TNFeInfNFeIdeTpNF": {
+    "TpNF": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1089,7 +1089,7 @@
         1
       ]
     },
-    "TNFeInfNFeIdeIdDest": {
+    "IdDest": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1103,7 +1103,7 @@
         2
       ]
     },
-    "TNFeInfNFeIdeTpImp": {
+    "TpImp": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1123,7 +1123,7 @@
         5
       ]
     },
-    "TNFeInfNFeIdeTpEmis": {
+    "TpEmis": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1147,7 +1147,7 @@
         7
       ]
     },
-    "TAmb": {
+    "TpAmb": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1159,7 +1159,7 @@
         1
       ]
     },
-    "TFinNFe": {
+    "FinNFe": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1175,7 +1175,7 @@
         3
       ]
     },
-    "TNFeInfNFeIdeIndFinal": {
+    "IndFinal": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1187,7 +1187,7 @@
         1
       ]
     },
-    "TNFeInfNFeIdeIndPres": {
+    "IndPres": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1209,7 +1209,7 @@
         6
       ]
     },
-    "TProcEmi": {
+    "ProcEmi": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1256,7 +1256,7 @@
         4
       ]
     },
-    "TNFeInfNFeEmit": {
+    "Emit": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -1277,7 +1277,7 @@
           "type": "string"
         },
         "enderEmit": {
-          "$ref": "#/definitions/TEnderEmi"
+          "$ref": "#/definitions/EnderEmit"
         },
         "ie": {
           "type": "string"
@@ -1292,7 +1292,7 @@
           "type": "string"
         },
         "crt": {
-          "$ref": "#/definitions/TNFeInfNFeEmitCRT"
+          "$ref": "#/definitions/CRT"
         }
       }
     },
@@ -1308,7 +1308,7 @@
         1
       ]
     },
-    "TEnderEmi": {
+    "EnderEmit": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -1338,7 +1338,7 @@
           "type": "string"
         },
         "uf": {
-          "$ref": "#/definitions/TUfEmi"
+          "$ref": "#/definitions/UF"
         },
         "cep": {
           "type": "string"
@@ -1360,7 +1360,7 @@
         }
       }
     },
-    "TUfEmi": {
+    "UF": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1444,7 +1444,7 @@
         1
       ]
     },
-    "TNFeInfNFeEmitCRT": {
+    "CRT": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1458,7 +1458,7 @@
         2
       ]
     },
-    "TNFeInfNFeAvulsa": {
+    "Avulsa": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -1481,7 +1481,7 @@
           "type": "string"
         },
         "uf": {
-          "$ref": "#/definitions/TUfEmi"
+          "$ref": "#/definitions/UF"
         },
         "nDAR": {
           "type": "string"
@@ -1500,7 +1500,7 @@
         }
       }
     },
-    "TNFeInfNFeDest": {
+    "Dest": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -1518,10 +1518,10 @@
           "type": "string"
         },
         "enderDest": {
-          "$ref": "#/definitions/TEndereco"
+          "$ref": "#/definitions/EnderDest"
         },
         "indIEDest": {
-          "$ref": "#/definitions/TNFeInfNFeDestIndIEDest"
+          "$ref": "#/definitions/IndIEDest"
         },
         "ie": {
           "type": "string"
@@ -1551,7 +1551,7 @@
         2
       ]
     },
-    "TEndereco": {
+    "EnderDest": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -1657,7 +1657,7 @@
         27
       ]
     },
-    "TNFeInfNFeDestIndIEDest": {
+    "IndIEDest": {
       "type": "integer",
       "description": "",
       "x-enumNames": [
@@ -1741,7 +1741,7 @@
         1
       ]
     },
-    "TNFeInfNFeAutXML": {
+    "AutXML": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -1768,15 +1768,15 @@
         1
       ]
     },
-    "TNFeInfNFeDet": {
+    "Det": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "prod": {
-          "$ref": "#/definitions/TNFeInfNFeDetProd"
+          "$ref": "#/definitions/Prod"
         },
         "imposto": {
-          "$ref": "#/definitions/TNFeInfNFeDetImposto"
+          "$ref": "#/definitions/Imposto"
         },
         "impostoDevol": {
           "$ref": "#/definitions/TNFeInfNFeDetImpostoDevol"
@@ -1789,7 +1789,7 @@
         }
       }
     },
-    "TNFeInfNFeDetProd": {
+    "Prod": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -1954,7 +1954,7 @@
           "type": "string"
         },
         "ufDesemb": {
-          "$ref": "#/definitions/TUfEmi"
+          "$ref": "#/definitions/UF"
         },
         "dDesemb": {
           "type": "string"
@@ -1972,7 +1972,7 @@
           "type": "string"
         },
         "ufTerceiro": {
-          "$ref": "#/definitions/TUfEmi"
+          "$ref": "#/definitions/UF"
         },
         "ufTerceiroSpecified": {
           "type": "boolean"
@@ -2103,7 +2103,7 @@
         }
       }
     },
-    "TNFeInfNFeDetImposto": {
+    "Imposto": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2290,22 +2290,22 @@
         }
       }
     },
-    "TNFeInfNFeTotal": {
+    "Total": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "icmsTot": {
-          "$ref": "#/definitions/TNFeInfNFeTotalICMSTot"
+          "$ref": "#/definitions/ICMSTot"
         },
         "issqNtot": {
-          "$ref": "#/definitions/TNFeInfNFeTotalISSQNtot"
+          "$ref": "#/definitions/ISSQNtot"
         },
         "retTrib": {
-          "$ref": "#/definitions/TNFeInfNFeTotalRetTrib"
+          "$ref": "#/definitions/RetTrib"
         }
       }
     },
-    "TNFeInfNFeTotalICMSTot": {
+    "ICMSTot": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2380,7 +2380,7 @@
         }
       }
     },
-    "TNFeInfNFeTotalISSQNtot": {
+    "ISSQNtot": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -2449,7 +2449,7 @@
         5
       ]
     },
-    "TNFeInfNFeTotalRetTrib": {
+    "RetTrib": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2476,7 +2476,7 @@
         }
       }
     },
-    "TNFeInfNFeTransp": {
+    "Transp": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -2656,22 +2656,22 @@
         }
       }
     },
-    "TNFeInfNFeCobr": {
+    "Cobr": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "fat": {
-          "$ref": "#/definitions/TNFeInfNFeCobrFat"
+          "$ref": "#/definitions/Fat"
         },
         "dup": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TNFeInfNFeCobrDup"
+            "$ref": "#/definitions/Dup"
           }
         }
       }
     },
-    "TNFeInfNFeCobrFat": {
+    "Fat": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2689,7 +2689,7 @@
         }
       }
     },
-    "TNFeInfNFeCobrDup": {
+    "Dup": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2704,7 +2704,7 @@
         }
       }
     },
-    "TNFeInfNFePag": {
+    "Pag": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2857,7 +2857,7 @@
         9
       ]
     },
-    "TNFeInfNFeInfAdic": {
+    "InfAdic": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2944,7 +2944,7 @@
         4
       ]
     },
-    "TNFeInfNFeExporta": {
+    "Exporta": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -2952,7 +2952,7 @@
       ],
       "properties": {
         "ufSaidaPais": {
-          "$ref": "#/definitions/TUfEmi"
+          "$ref": "#/definitions/UF"
         },
         "xLocExporta": {
           "type": "string"
@@ -2962,7 +2962,7 @@
         }
       }
     },
-    "TNFeInfNFeCompra": {
+    "Compra": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2977,7 +2977,7 @@
         }
       }
     },
-    "TNFeInfNFeCana": {
+    "Cana": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2990,7 +2990,7 @@
         "forDia": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TNFeInfNFeCanaForDia"
+            "$ref": "#/definitions/ForDia"
           }
         },
         "qTotMes": {
@@ -3005,7 +3005,7 @@
         "deduc": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TNFeInfNFeCanaDeduc"
+            "$ref": "#/definitions/Deduc"
           }
         },
         "vFor": {
@@ -3019,7 +3019,7 @@
         }
       }
     },
-    "TNFeInfNFeCanaForDia": {
+    "ForDia": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -3031,7 +3031,7 @@
         }
       }
     },
-    "TNFeInfNFeCanaDeduc": {
+    "Deduc": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -3043,7 +3043,7 @@
         }
       }
     },
-    "TInfRespTec": {
+    "InfRespTec": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -3068,7 +3068,7 @@
         }
       }
     },
-    "TNFeInfNFeSupl": {
+    "InfNFeSupl": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -3080,7 +3080,7 @@
         }
       }
     },
-    "SignatureType": {
+    "Signature": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
