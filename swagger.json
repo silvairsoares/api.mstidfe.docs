@@ -829,6 +829,7 @@
     },
     "TNFe": {
       "type": "object",
+      "description": "Tag raiz da NF-e",
       "additionalProperties": false,
       "properties": {
         "infNFe": {
