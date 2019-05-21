@@ -16,10 +16,9 @@
     },
     "version": "v1"
   },
-  "host": "192.168.1.162:7070",
-  "basePath": "/api.mstiDFE",
+  "host": "localhost:5001",
   "schemes": [
-    "http"
+    "https"
   ],
   "produces": [
     "text/plain",
@@ -196,6 +195,33 @@
             "description": "",
             "schema": {
               "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/nfe": {
+      "get": {
+        "tags": [
+          "NFe"
+        ],
+        "summary": "Pesquisa todas as revendas",
+        "operationId": "NFe_GetNFEs",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "default": "msti"
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TNFe"
             }
           }
         }
@@ -800,6 +826,2414 @@
       "type": "object",
       "x-abstract": true,
       "additionalProperties": false
+    },
+    "TNFe": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "infNFe": {
+          "$ref": "#/definitions/TNFeInfNFe"
+        },
+        "infNFeSupl": {
+          "$ref": "#/definitions/TNFeInfNFeSupl"
+        },
+        "signature": {
+          "$ref": "#/definitions/SignatureType"
+        }
+      }
+    },
+    "TNFeInfNFe": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ide": {
+          "$ref": "#/definitions/TNFeInfNFeIde"
+        },
+        "emit": {
+          "$ref": "#/definitions/TNFeInfNFeEmit"
+        },
+        "avulsa": {
+          "$ref": "#/definitions/TNFeInfNFeAvulsa"
+        },
+        "dest": {
+          "$ref": "#/definitions/TNFeInfNFeDest"
+        },
+        "retirada": {
+          "$ref": "#/definitions/TLocal"
+        },
+        "entrega": {
+          "$ref": "#/definitions/TLocal"
+        },
+        "autXML": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeAutXML"
+          }
+        },
+        "det": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeDet"
+          }
+        },
+        "total": {
+          "$ref": "#/definitions/TNFeInfNFeTotal"
+        },
+        "transp": {
+          "$ref": "#/definitions/TNFeInfNFeTransp"
+        },
+        "cobr": {
+          "$ref": "#/definitions/TNFeInfNFeCobr"
+        },
+        "pag": {
+          "$ref": "#/definitions/TNFeInfNFePag"
+        },
+        "infAdic": {
+          "$ref": "#/definitions/TNFeInfNFeInfAdic"
+        },
+        "exporta": {
+          "$ref": "#/definitions/TNFeInfNFeExporta"
+        },
+        "compra": {
+          "$ref": "#/definitions/TNFeInfNFeCompra"
+        },
+        "cana": {
+          "$ref": "#/definitions/TNFeInfNFeCana"
+        },
+        "infRespTec": {
+          "$ref": "#/definitions/TInfRespTec"
+        },
+        "versao": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeIde": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cUF",
+        "mod",
+        "tpNF",
+        "idDest",
+        "tpImp",
+        "tpEmis",
+        "tpAmb",
+        "finNFe",
+        "indFinal",
+        "indPres",
+        "procEmi"
+      ],
+      "properties": {
+        "cUF": {
+          "$ref": "#/definitions/TCodUfIBGE"
+        },
+        "cNF": {
+          "type": "string"
+        },
+        "natOp": {
+          "type": "string"
+        },
+        "mod": {
+          "$ref": "#/definitions/TMod"
+        },
+        "serie": {
+          "type": "string"
+        },
+        "nNF": {
+          "type": "string"
+        },
+        "dhEmi": {
+          "type": "string"
+        },
+        "dhSaiEnt": {
+          "type": "string"
+        },
+        "tpNF": {
+          "$ref": "#/definitions/TNFeInfNFeIdeTpNF"
+        },
+        "idDest": {
+          "$ref": "#/definitions/TNFeInfNFeIdeIdDest"
+        },
+        "cMunFG": {
+          "type": "string"
+        },
+        "tpImp": {
+          "$ref": "#/definitions/TNFeInfNFeIdeTpImp"
+        },
+        "tpEmis": {
+          "$ref": "#/definitions/TNFeInfNFeIdeTpEmis"
+        },
+        "cDV": {
+          "type": "string"
+        },
+        "tpAmb": {
+          "$ref": "#/definitions/TAmb"
+        },
+        "finNFe": {
+          "$ref": "#/definitions/TFinNFe"
+        },
+        "indFinal": {
+          "$ref": "#/definitions/TNFeInfNFeIdeIndFinal"
+        },
+        "indPres": {
+          "$ref": "#/definitions/TNFeInfNFeIdeIndPres"
+        },
+        "procEmi": {
+          "$ref": "#/definitions/TProcEmi"
+        },
+        "verProc": {
+          "type": "string"
+        },
+        "dhCont": {
+          "type": "string"
+        },
+        "xJust": {
+          "type": "string"
+        },
+        "nFref": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeIdeNFref"
+          }
+        }
+      }
+    },
+    "TCodUfIBGE": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item11",
+        "Item12",
+        "Item13",
+        "Item14",
+        "Item15",
+        "Item16",
+        "Item17",
+        "Item21",
+        "Item22",
+        "Item23",
+        "Item24",
+        "Item25",
+        "Item26",
+        "Item27",
+        "Item28",
+        "Item29",
+        "Item31",
+        "Item32",
+        "Item33",
+        "Item35",
+        "Item41",
+        "Item42",
+        "Item43",
+        "Item50",
+        "Item51",
+        "Item52",
+        "Item53"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    "TMod": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item55",
+        "Item65"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFeIdeTpNF": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item0",
+        "Item1"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFeIdeIdDest": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2",
+        "Item3"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "TNFeInfNFeIdeTpImp": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item0",
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item5"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "TNFeInfNFeIdeTpEmis": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item6",
+        "Item7",
+        "Item9"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "TAmb": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TFinNFe": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "TNFeInfNFeIdeIndFinal": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item0",
+        "Item1"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFeIdeIndPres": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item0",
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item9"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "TProcEmi": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item0",
+        "Item1",
+        "Item2",
+        "Item3"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "TNFeInfNFeIdeNFref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemElementName"
+      ],
+      "properties": {
+        "item": {},
+        "itemElementName": {
+          "$ref": "#/definitions/ItemChoiceType1"
+        }
+      }
+    },
+    "ItemChoiceType1": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "refCTe",
+        "refECF",
+        "refNF",
+        "refNFP",
+        "refNFe"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "TNFeInfNFeEmit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemElementName",
+        "crt"
+      ],
+      "properties": {
+        "item": {
+          "type": "string"
+        },
+        "itemElementName": {
+          "$ref": "#/definitions/ItemChoiceType2"
+        },
+        "xNome": {
+          "type": "string"
+        },
+        "xFant": {
+          "type": "string"
+        },
+        "enderEmit": {
+          "$ref": "#/definitions/TEnderEmi"
+        },
+        "ie": {
+          "type": "string"
+        },
+        "iest": {
+          "type": "string"
+        },
+        "im": {
+          "type": "string"
+        },
+        "cnae": {
+          "type": "string"
+        },
+        "crt": {
+          "$ref": "#/definitions/TNFeInfNFeEmitCRT"
+        }
+      }
+    },
+    "ItemChoiceType2": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "CNPJ",
+        "CPF"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TEnderEmi": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uf",
+        "cPais",
+        "cPaisSpecified",
+        "xPais",
+        "xPaisSpecified"
+      ],
+      "properties": {
+        "xLgr": {
+          "type": "string"
+        },
+        "nro": {
+          "type": "string"
+        },
+        "xCpl": {
+          "type": "string"
+        },
+        "xBairro": {
+          "type": "string"
+        },
+        "cMun": {
+          "type": "string"
+        },
+        "xMun": {
+          "type": "string"
+        },
+        "uf": {
+          "$ref": "#/definitions/TUfEmi"
+        },
+        "cep": {
+          "type": "string"
+        },
+        "cPais": {
+          "$ref": "#/definitions/TEnderEmiCPais"
+        },
+        "cPaisSpecified": {
+          "type": "boolean"
+        },
+        "xPais": {
+          "$ref": "#/definitions/TEnderEmiXPais"
+        },
+        "xPaisSpecified": {
+          "type": "boolean"
+        },
+        "fone": {
+          "type": "string"
+        }
+      }
+    },
+    "TUfEmi": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "AC",
+        "AL",
+        "AM",
+        "AP",
+        "BA",
+        "CE",
+        "DF",
+        "ES",
+        "GO",
+        "MA",
+        "MG",
+        "MS",
+        "MT",
+        "PA",
+        "PB",
+        "PE",
+        "PI",
+        "PR",
+        "RJ",
+        "RN",
+        "RO",
+        "RR",
+        "RS",
+        "SC",
+        "SE",
+        "SP",
+        "TO"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ]
+    },
+    "TEnderEmiCPais": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1058"
+      ],
+      "enum": [
+        0
+      ]
+    },
+    "TEnderEmiXPais": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Brasil",
+        "BRASIL"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFeEmitCRT": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2",
+        "Item3"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "TNFeInfNFeAvulsa": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uf"
+      ],
+      "properties": {
+        "cnpj": {
+          "type": "string"
+        },
+        "xOrgao": {
+          "type": "string"
+        },
+        "matr": {
+          "type": "string"
+        },
+        "xAgente": {
+          "type": "string"
+        },
+        "fone": {
+          "type": "string"
+        },
+        "uf": {
+          "$ref": "#/definitions/TUfEmi"
+        },
+        "nDAR": {
+          "type": "string"
+        },
+        "dEmi": {
+          "type": "string"
+        },
+        "vDAR": {
+          "type": "string"
+        },
+        "repEmi": {
+          "type": "string"
+        },
+        "dPag": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemElementName",
+        "indIEDest"
+      ],
+      "properties": {
+        "item": {
+          "type": "string"
+        },
+        "itemElementName": {
+          "$ref": "#/definitions/ItemChoiceType3"
+        },
+        "xNome": {
+          "type": "string"
+        },
+        "enderDest": {
+          "$ref": "#/definitions/TEndereco"
+        },
+        "indIEDest": {
+          "$ref": "#/definitions/TNFeInfNFeDestIndIEDest"
+        },
+        "ie": {
+          "type": "string"
+        },
+        "isuf": {
+          "type": "string"
+        },
+        "im": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "ItemChoiceType3": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "CNPJ",
+        "CPF",
+        "idEstrangeiro"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "TEndereco": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uf"
+      ],
+      "properties": {
+        "xLgr": {
+          "type": "string"
+        },
+        "nro": {
+          "type": "string"
+        },
+        "xCpl": {
+          "type": "string"
+        },
+        "xBairro": {
+          "type": "string"
+        },
+        "cMun": {
+          "type": "string"
+        },
+        "xMun": {
+          "type": "string"
+        },
+        "uf": {
+          "$ref": "#/definitions/TUf"
+        },
+        "cep": {
+          "type": "string"
+        },
+        "cPais": {
+          "type": "string"
+        },
+        "xPais": {
+          "type": "string"
+        },
+        "fone": {
+          "type": "string"
+        }
+      }
+    },
+    "TUf": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "AC",
+        "AL",
+        "AM",
+        "AP",
+        "BA",
+        "CE",
+        "DF",
+        "ES",
+        "GO",
+        "MA",
+        "MG",
+        "MS",
+        "MT",
+        "PA",
+        "PB",
+        "PE",
+        "PI",
+        "PR",
+        "RJ",
+        "RN",
+        "RO",
+        "RR",
+        "RS",
+        "SC",
+        "SE",
+        "SP",
+        "TO",
+        "EX"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ]
+    },
+    "TNFeInfNFeDestIndIEDest": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2",
+        "Item9"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "TLocal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemElementName",
+        "uf"
+      ],
+      "properties": {
+        "item": {
+          "type": "string"
+        },
+        "itemElementName": {
+          "$ref": "#/definitions/ItemChoiceType4"
+        },
+        "xNome": {
+          "type": "string"
+        },
+        "xLgr": {
+          "type": "string"
+        },
+        "nro": {
+          "type": "string"
+        },
+        "xCpl": {
+          "type": "string"
+        },
+        "xBairro": {
+          "type": "string"
+        },
+        "cMun": {
+          "type": "string"
+        },
+        "xMun": {
+          "type": "string"
+        },
+        "uf": {
+          "$ref": "#/definitions/TUf"
+        },
+        "cep": {
+          "type": "string"
+        },
+        "cPais": {
+          "type": "string"
+        },
+        "xPais": {
+          "type": "string"
+        },
+        "fone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "ie": {
+          "type": "string"
+        }
+      }
+    },
+    "ItemChoiceType4": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "CNPJ",
+        "CPF"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFeAutXML": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemElementName"
+      ],
+      "properties": {
+        "item": {
+          "type": "string"
+        },
+        "itemElementName": {
+          "$ref": "#/definitions/ItemChoiceType5"
+        }
+      }
+    },
+    "ItemChoiceType5": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "CNPJ",
+        "CPF"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFeDet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prod": {
+          "$ref": "#/definitions/TNFeInfNFeDetProd"
+        },
+        "imposto": {
+          "$ref": "#/definitions/TNFeInfNFeDetImposto"
+        },
+        "impostoDevol": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoDevol"
+        },
+        "infAdProd": {
+          "type": "string"
+        },
+        "nItem": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetProd": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "indEscala",
+        "indEscalaSpecified",
+        "indTot"
+      ],
+      "properties": {
+        "cProd": {
+          "type": "string"
+        },
+        "cEAN": {
+          "type": "string"
+        },
+        "xProd": {
+          "type": "string"
+        },
+        "ncm": {
+          "type": "string"
+        },
+        "nve": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cest": {
+          "type": "string"
+        },
+        "indEscala": {
+          "$ref": "#/definitions/TNFeInfNFeDetProdIndEscala"
+        },
+        "indEscalaSpecified": {
+          "type": "boolean"
+        },
+        "cnpjFab": {
+          "type": "string"
+        },
+        "cBenef": {
+          "type": "string"
+        },
+        "extipi": {
+          "type": "string"
+        },
+        "cfop": {
+          "type": "string"
+        },
+        "uCom": {
+          "type": "string"
+        },
+        "qCom": {
+          "type": "string"
+        },
+        "vUnCom": {
+          "type": "string"
+        },
+        "vProd": {
+          "type": "string"
+        },
+        "cEANTrib": {
+          "type": "string"
+        },
+        "uTrib": {
+          "type": "string"
+        },
+        "qTrib": {
+          "type": "string"
+        },
+        "vUnTrib": {
+          "type": "string"
+        },
+        "vFrete": {
+          "type": "string"
+        },
+        "vSeg": {
+          "type": "string"
+        },
+        "vDesc": {
+          "type": "string"
+        },
+        "vOutro": {
+          "type": "string"
+        },
+        "indTot": {
+          "$ref": "#/definitions/TNFeInfNFeDetProdIndTot"
+        },
+        "di": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeDetProdDI"
+          }
+        },
+        "detExport": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeDetProdDetExport"
+          }
+        },
+        "xPed": {
+          "type": "string"
+        },
+        "nItemPed": {
+          "type": "string"
+        },
+        "nFCI": {
+          "type": "string"
+        },
+        "rastro": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeDetProdRastro"
+          }
+        },
+        "items": {
+          "type": "array",
+          "items": {}
+        }
+      }
+    },
+    "TNFeInfNFeDetProdIndEscala": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "S",
+        "N"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFeDetProdIndTot": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item0",
+        "Item1"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFeDetProdDI": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ufDesemb",
+        "tpViaTransp",
+        "tpIntermedio",
+        "ufTerceiro",
+        "ufTerceiroSpecified"
+      ],
+      "properties": {
+        "nDI": {
+          "type": "string"
+        },
+        "dDI": {
+          "type": "string"
+        },
+        "xLocDesemb": {
+          "type": "string"
+        },
+        "ufDesemb": {
+          "$ref": "#/definitions/TUfEmi"
+        },
+        "dDesemb": {
+          "type": "string"
+        },
+        "tpViaTransp": {
+          "$ref": "#/definitions/TNFeInfNFeDetProdDITpViaTransp"
+        },
+        "vAFRMM": {
+          "type": "string"
+        },
+        "tpIntermedio": {
+          "$ref": "#/definitions/TNFeInfNFeDetProdDITpIntermedio"
+        },
+        "cnpj": {
+          "type": "string"
+        },
+        "ufTerceiro": {
+          "$ref": "#/definitions/TUfEmi"
+        },
+        "ufTerceiroSpecified": {
+          "type": "boolean"
+        },
+        "cExportador": {
+          "type": "string"
+        },
+        "adi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeDetProdDIAdi"
+          }
+        }
+      }
+    },
+    "TNFeInfNFeDetProdDITpViaTransp": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item6",
+        "Item7",
+        "Item8",
+        "Item9",
+        "Item10",
+        "Item11",
+        "Item12"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "TNFeInfNFeDetProdDITpIntermedio": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2",
+        "Item3"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "TNFeInfNFeDetProdDIAdi": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nAdicao": {
+          "type": "string"
+        },
+        "nSeqAdic": {
+          "type": "string"
+        },
+        "cFabricante": {
+          "type": "string"
+        },
+        "vDescDI": {
+          "type": "string"
+        },
+        "nDraw": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetProdDetExport": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nDraw": {
+          "type": "string"
+        },
+        "exportInd": {
+          "$ref": "#/definitions/TNFeInfNFeDetProdDetExportExportInd"
+        }
+      }
+    },
+    "TNFeInfNFeDetProdDetExportExportInd": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nRE": {
+          "type": "string"
+        },
+        "chNFe": {
+          "type": "string"
+        },
+        "qExport": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetProdRastro": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nLote": {
+          "type": "string"
+        },
+        "qLote": {
+          "type": "string"
+        },
+        "dFab": {
+          "type": "string"
+        },
+        "dVal": {
+          "type": "string"
+        },
+        "cAgreg": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetImposto": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vTotTrib": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {}
+        },
+        "pis": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoPIS"
+        },
+        "pisst": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoPISST"
+        },
+        "cofins": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINS"
+        },
+        "cofinsst": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINSST"
+        },
+        "icmsufDest": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSUFDest"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoPIS": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "item": {}
+      }
+    },
+    "TNFeInfNFeDetImpostoPISST": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "itemsElementName": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemsChoiceType2"
+          }
+        },
+        "vPIS": {
+          "type": "string"
+        }
+      }
+    },
+    "ItemsChoiceType2": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "pPIS",
+        "qBCProd",
+        "vAliqProd",
+        "vBC"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "TNFeInfNFeDetImpostoCOFINS": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "item": {}
+      }
+    },
+    "TNFeInfNFeDetImpostoCOFINSST": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "itemsElementName": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemsChoiceType4"
+          }
+        },
+        "vCOFINS": {
+          "type": "string"
+        }
+      }
+    },
+    "ItemsChoiceType4": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "pCOFINS",
+        "qBCProd",
+        "vAliqProd",
+        "vBC"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSUFDest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pICMSInter"
+      ],
+      "properties": {
+        "vBCUFDest": {
+          "type": "string"
+        },
+        "vBCFCPUFDest": {
+          "type": "string"
+        },
+        "pFCPUFDest": {
+          "type": "string"
+        },
+        "pICMSUFDest": {
+          "type": "string"
+        },
+        "pICMSInter": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSUFDestPICMSInter"
+        },
+        "pICMSInterPart": {
+          "type": "string"
+        },
+        "vFCPUFDest": {
+          "type": "string"
+        },
+        "vICMSUFDest": {
+          "type": "string"
+        },
+        "vICMSUFRemet": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoICMSUFDestPICMSInter": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item400",
+        "Item700",
+        "Item1200"
+      ],
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "TNFeInfNFeDetImpostoDevol": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pDevol": {
+          "type": "string"
+        },
+        "ipi": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoDevolIPI"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoDevolIPI": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vIPIDevol": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeTotal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "icmsTot": {
+          "$ref": "#/definitions/TNFeInfNFeTotalICMSTot"
+        },
+        "issqNtot": {
+          "$ref": "#/definitions/TNFeInfNFeTotalISSQNtot"
+        },
+        "retTrib": {
+          "$ref": "#/definitions/TNFeInfNFeTotalRetTrib"
+        }
+      }
+    },
+    "TNFeInfNFeTotalICMSTot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vBC": {
+          "type": "string"
+        },
+        "vICMS": {
+          "type": "string"
+        },
+        "vICMSDeson": {
+          "type": "string"
+        },
+        "vFCPUFDest": {
+          "type": "string"
+        },
+        "vICMSUFDest": {
+          "type": "string"
+        },
+        "vICMSUFRemet": {
+          "type": "string"
+        },
+        "vFCP": {
+          "type": "string"
+        },
+        "vBCST": {
+          "type": "string"
+        },
+        "vST": {
+          "type": "string"
+        },
+        "vFCPST": {
+          "type": "string"
+        },
+        "vFCPSTRet": {
+          "type": "string"
+        },
+        "vProd": {
+          "type": "string"
+        },
+        "vFrete": {
+          "type": "string"
+        },
+        "vSeg": {
+          "type": "string"
+        },
+        "vDesc": {
+          "type": "string"
+        },
+        "vII": {
+          "type": "string"
+        },
+        "vIPI": {
+          "type": "string"
+        },
+        "vIPIDevol": {
+          "type": "string"
+        },
+        "vPIS": {
+          "type": "string"
+        },
+        "vCOFINS": {
+          "type": "string"
+        },
+        "vOutro": {
+          "type": "string"
+        },
+        "vNF": {
+          "type": "string"
+        },
+        "vTotTrib": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeTotalISSQNtot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cRegTrib",
+        "cRegTribSpecified"
+      ],
+      "properties": {
+        "vServ": {
+          "type": "string"
+        },
+        "vBC": {
+          "type": "string"
+        },
+        "vISS": {
+          "type": "string"
+        },
+        "vPIS": {
+          "type": "string"
+        },
+        "vCOFINS": {
+          "type": "string"
+        },
+        "dCompet": {
+          "type": "string"
+        },
+        "vDeducao": {
+          "type": "string"
+        },
+        "vOutro": {
+          "type": "string"
+        },
+        "vDescIncond": {
+          "type": "string"
+        },
+        "vDescCond": {
+          "type": "string"
+        },
+        "vISSRet": {
+          "type": "string"
+        },
+        "cRegTrib": {
+          "$ref": "#/definitions/TNFeInfNFeTotalISSQNtotCRegTrib"
+        },
+        "cRegTribSpecified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "TNFeInfNFeTotalISSQNtotCRegTrib": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item6"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "TNFeInfNFeTotalRetTrib": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vRetPIS": {
+          "type": "string"
+        },
+        "vRetCOFINS": {
+          "type": "string"
+        },
+        "vRetCSLL": {
+          "type": "string"
+        },
+        "vBCIRRF": {
+          "type": "string"
+        },
+        "vIRRF": {
+          "type": "string"
+        },
+        "vBCRetPrev": {
+          "type": "string"
+        },
+        "vRetPrev": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeTransp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "modFrete"
+      ],
+      "properties": {
+        "modFrete": {
+          "$ref": "#/definitions/TNFeInfNFeTranspModFrete"
+        },
+        "transporta": {
+          "$ref": "#/definitions/TNFeInfNFeTranspTransporta"
+        },
+        "retTransp": {
+          "$ref": "#/definitions/TNFeInfNFeTranspRetTransp"
+        },
+        "items": {
+          "type": "array",
+          "items": {}
+        },
+        "itemsElementName": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ItemsChoiceType5"
+          }
+        },
+        "vol": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeTranspVol"
+          }
+        }
+      }
+    },
+    "TNFeInfNFeTranspModFrete": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item0",
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item9"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "TNFeInfNFeTranspTransporta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "itemElementName",
+        "uf",
+        "ufSpecified"
+      ],
+      "properties": {
+        "item": {
+          "type": "string"
+        },
+        "itemElementName": {
+          "$ref": "#/definitions/ItemChoiceType6"
+        },
+        "xNome": {
+          "type": "string"
+        },
+        "ie": {
+          "type": "string"
+        },
+        "xEnder": {
+          "type": "string"
+        },
+        "xMun": {
+          "type": "string"
+        },
+        "uf": {
+          "$ref": "#/definitions/TUf"
+        },
+        "ufSpecified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ItemChoiceType6": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "CNPJ",
+        "CPF"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFeTranspRetTransp": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vServ": {
+          "type": "string"
+        },
+        "vBCRet": {
+          "type": "string"
+        },
+        "pICMSRet": {
+          "type": "string"
+        },
+        "vICMSRet": {
+          "type": "string"
+        },
+        "cfop": {
+          "type": "string"
+        },
+        "cMunFG": {
+          "type": "string"
+        }
+      }
+    },
+    "ItemsChoiceType5": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "balsa",
+        "reboque",
+        "vagao",
+        "veicTransp"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "TNFeInfNFeTranspVol": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "qVol": {
+          "type": "string"
+        },
+        "esp": {
+          "type": "string"
+        },
+        "marca": {
+          "type": "string"
+        },
+        "nVol": {
+          "type": "string"
+        },
+        "pesoL": {
+          "type": "string"
+        },
+        "pesoB": {
+          "type": "string"
+        },
+        "lacres": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeTranspVolLacres"
+          }
+        }
+      }
+    },
+    "TNFeInfNFeTranspVolLacres": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nLacre": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeCobr": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fat": {
+          "$ref": "#/definitions/TNFeInfNFeCobrFat"
+        },
+        "dup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeCobrDup"
+          }
+        }
+      }
+    },
+    "TNFeInfNFeCobrFat": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nFat": {
+          "type": "string"
+        },
+        "vOrig": {
+          "type": "string"
+        },
+        "vDesc": {
+          "type": "string"
+        },
+        "vLiq": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeCobrDup": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nDup": {
+          "type": "string"
+        },
+        "dVenc": {
+          "type": "string"
+        },
+        "vDup": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFePag": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "detPag": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFePagDetPag"
+          }
+        },
+        "vTroco": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFePagDetPag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "indPag",
+        "indPagSpecified",
+        "tPag"
+      ],
+      "properties": {
+        "indPag": {
+          "$ref": "#/definitions/TNFeInfNFePagDetPagIndPag"
+        },
+        "indPagSpecified": {
+          "type": "boolean"
+        },
+        "tPag": {
+          "$ref": "#/definitions/TNFeInfNFePagDetPagTPag"
+        },
+        "vPag": {
+          "type": "string"
+        },
+        "card": {
+          "$ref": "#/definitions/TNFeInfNFePagDetPagCard"
+        }
+      }
+    },
+    "TNFeInfNFePagDetPagIndPag": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item0",
+        "Item1"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFePagDetPagTPag": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item01",
+        "Item02",
+        "Item03",
+        "Item04",
+        "Item05",
+        "Item10",
+        "Item11",
+        "Item12",
+        "Item13",
+        "Item14",
+        "Item15",
+        "Item90",
+        "Item99"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    "TNFeInfNFePagDetPagCard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tpIntegra",
+        "tBand",
+        "tBandSpecified"
+      ],
+      "properties": {
+        "tpIntegra": {
+          "$ref": "#/definitions/TNFeInfNFePagDetPagCardTpIntegra"
+        },
+        "cnpj": {
+          "type": "string"
+        },
+        "tBand": {
+          "$ref": "#/definitions/TNFeInfNFePagDetPagCardTBand"
+        },
+        "tBandSpecified": {
+          "type": "boolean"
+        },
+        "cAut": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFePagDetPagCardTpIntegra": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "TNFeInfNFePagDetPagCardTBand": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item01",
+        "Item02",
+        "Item03",
+        "Item04",
+        "Item05",
+        "Item06",
+        "Item07",
+        "Item08",
+        "Item09",
+        "Item99"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "TNFeInfNFeInfAdic": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "infAdFisco": {
+          "type": "string"
+        },
+        "infCpl": {
+          "type": "string"
+        },
+        "obsCont": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeInfAdicObsCont"
+          }
+        },
+        "obsFisco": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeInfAdicObsFisco"
+          }
+        },
+        "procRef": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeInfAdicProcRef"
+          }
+        }
+      }
+    },
+    "TNFeInfNFeInfAdicObsCont": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "xTexto": {
+          "type": "string"
+        },
+        "xCampo": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeInfAdicObsFisco": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "xTexto": {
+          "type": "string"
+        },
+        "xCampo": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeInfAdicProcRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "indProc"
+      ],
+      "properties": {
+        "nProc": {
+          "type": "string"
+        },
+        "indProc": {
+          "$ref": "#/definitions/TNFeInfNFeInfAdicProcRefIndProc"
+        }
+      }
+    },
+    "TNFeInfNFeInfAdicProcRefIndProc": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Item0",
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item9"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "TNFeInfNFeExporta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ufSaidaPais"
+      ],
+      "properties": {
+        "ufSaidaPais": {
+          "$ref": "#/definitions/TUfEmi"
+        },
+        "xLocExporta": {
+          "type": "string"
+        },
+        "xLocDespacho": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeCompra": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "xNEmp": {
+          "type": "string"
+        },
+        "xPed": {
+          "type": "string"
+        },
+        "xCont": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeCana": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "safra": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "forDia": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeCanaForDia"
+          }
+        },
+        "qTotMes": {
+          "type": "string"
+        },
+        "qTotAnt": {
+          "type": "string"
+        },
+        "qTotGer": {
+          "type": "string"
+        },
+        "deduc": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TNFeInfNFeCanaDeduc"
+          }
+        },
+        "vFor": {
+          "type": "string"
+        },
+        "vTotDed": {
+          "type": "string"
+        },
+        "vLiqFor": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeCanaForDia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "qtde": {
+          "type": "string"
+        },
+        "dia": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeCanaDeduc": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "xDed": {
+          "type": "string"
+        },
+        "vDed": {
+          "type": "string"
+        }
+      }
+    },
+    "TInfRespTec": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cnpj": {
+          "type": "string"
+        },
+        "xContato": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "fone": {
+          "type": "string"
+        },
+        "idCSRT": {
+          "type": "string"
+        },
+        "hashCSRT": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "TNFeInfNFeSupl": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "qrCode": {
+          "type": "string"
+        },
+        "urlChave": {
+          "type": "string"
+        }
+      }
+    },
+    "SignatureType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "signedInfo": {
+          "$ref": "#/definitions/SignedInfoType"
+        },
+        "signatureValue": {
+          "$ref": "#/definitions/SignatureValueType"
+        },
+        "keyInfo": {
+          "$ref": "#/definitions/KeyInfoType"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "SignedInfoType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "canonicalizationMethod": {
+          "$ref": "#/definitions/SignedInfoTypeCanonicalizationMethod"
+        },
+        "signatureMethod": {
+          "$ref": "#/definitions/SignedInfoTypeSignatureMethod"
+        },
+        "reference": {
+          "$ref": "#/definitions/ReferenceType"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "SignedInfoTypeCanonicalizationMethod": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "algorithmLocal": {
+          "type": "string"
+        }
+      }
+    },
+    "SignedInfoTypeSignatureMethod": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "algorithmLocal": {
+          "type": "string"
+        }
+      }
+    },
+    "ReferenceType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "transforms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransformType"
+          }
+        },
+        "digestMethod": {
+          "$ref": "#/definitions/ReferenceTypeDigestMethod"
+        },
+        "digestValue": {
+          "type": "string",
+          "format": "byte"
+        },
+        "id": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "TransformType": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm"
+      ],
+      "properties": {
+        "xPath": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "algorithm": {
+          "$ref": "#/definitions/TTransformURI"
+        }
+      }
+    },
+    "TTransformURI": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "httpwwww3org200009xmldsigenvelopedsignature",
+        "httpwwww3orgTR2001RECxmlc14n20010315"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "ReferenceTypeDigestMethod": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "algorithmLocal": {
+          "type": "string"
+        }
+      }
+    },
+    "SignatureValueType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "KeyInfoType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "x509Data": {
+          "$ref": "#/definitions/X509DataType"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "X509DataType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "x509Certificate": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
     }
   }
 }
