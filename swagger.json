@@ -1,6 +1,6 @@
 {
   "x-generator": "NSwag v12.2.5.0 (NJsonSchema v9.13.37.0 (Newtonsoft.Json v12.0.0.0))",
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "Microsum api.mstiDFE",
     "description": "API para geração de Documentos Fiscais Eletrônicos (DF-e) do projeto SPED",
@@ -16,14 +16,10 @@
     },
     "version": "v1"
   },
-  "host": "localhost:5001",
-  "schemes": [
-    "https"
-  ],
-  "produces": [
-    "text/plain",
-    "application/json",
-    "text/json"
+  "servers": [
+    {
+      "url": "https://localhost:5001"
+    }
   ],
   "paths": {
     "/api/revenda": {
@@ -35,20 +31,26 @@
         "operationId": "Revenda_GetRevendas",
         "parameters": [
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "type": "array",
-              "items": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "nullable": true,
+                  "items": {}
+                }
+              }
             }
           }
         }
@@ -59,36 +61,43 @@
         ],
         "summary": "Inclui uma nova revenda",
         "operationId": "Revenda_Post",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "parameters": [
           {
-            "name": "RevendaView",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/RevendaViewModel"
-            },
-            "x-nullable": false
-          },
-          {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
+        "requestBody": {
+          "x-name": "RevendaView",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevendaViewModel"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IResultViewModel"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -99,36 +108,43 @@
         ],
         "summary": "Atualiza uma revenda específica",
         "operationId": "Revenda_Put",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "parameters": [
           {
-            "name": "RevendaView",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/RevendaViewModel"
-            },
-            "x-nullable": false
-          },
-          {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
+        "requestBody": {
+          "x-name": "RevendaView",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevendaViewModel"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IResultViewModel"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -143,26 +159,39 @@
         "operationId": "Revenda_GetRevenda",
         "parameters": [
           {
-            "type": "string",
             "name": "Id",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IEntidade"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IEntidade"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -175,26 +204,39 @@
         "operationId": "Revenda_Delete",
         "parameters": [
           {
-            "type": "string",
             "name": "Id",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IResultViewModel"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -209,19 +251,29 @@
         "operationId": "NFe_GetNFEs",
         "parameters": [
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/TNFe"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/TNFe"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -236,27 +288,36 @@
         "operationId": "RevendaCliente_GetClientes",
         "parameters": [
           {
-            "type": "string",
             "name": "RevendaId",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "type": "array",
-              "items": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "nullable": true,
+                  "items": {}
+                }
+              }
             }
           }
         }
@@ -267,43 +328,53 @@
         ],
         "summary": "Inclui um novo cliente na carteria de uma revenda específica",
         "operationId": "RevendaCliente_AdicionarRevendaCliente",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "parameters": [
           {
-            "type": "string",
             "name": "RevendaId",
             "in": "path",
             "required": true,
-            "x-nullable": true
-          },
-          {
-            "name": "RevendaCliente",
-            "in": "body",
-            "required": true,
             "schema": {
-              "$ref": "#/definitions/RevendaClienteViewModel"
+              "type": "string",
+              "nullable": true
             },
-            "x-nullable": false
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
+        "requestBody": {
+          "x-name": "RevendaCliente",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevendaClienteViewModel"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IResultViewModel"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -314,43 +385,53 @@
         ],
         "summary": "Atualiza um cliente específico de uma revenda",
         "operationId": "RevendaCliente_AtualizarRevendaCliente",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "parameters": [
           {
-            "type": "string",
             "name": "RevendaId",
             "in": "path",
             "required": true,
-            "x-nullable": true
-          },
-          {
-            "name": "RevendaCliente",
-            "in": "body",
-            "required": true,
             "schema": {
-              "$ref": "#/definitions/RevendaClienteViewModel"
+              "type": "string",
+              "nullable": true
             },
-            "x-nullable": false
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
+        "requestBody": {
+          "x-name": "RevendaCliente",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RevendaClienteViewModel"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 2
+        },
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IResultViewModel"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -365,33 +446,49 @@
         "operationId": "RevendaCliente_GetCliente",
         "parameters": [
           {
-            "type": "string",
             "name": "RevendaId",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IEntidade"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IEntidade"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -404,33 +501,49 @@
         "operationId": "RevendaCliente_DeletarRevendaCliente",
         "parameters": [
           {
-            "type": "string",
             "name": "RevendaId",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IResultViewModel"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -443,33 +556,49 @@
         "operationId": "RevendaClienteToken_AdicionarRevendaClienteToken",
         "parameters": [
           {
-            "type": "string",
             "name": "RevendaId",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IResultViewModel"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -484,34 +613,46 @@
         "operationId": "RevendaClienteToken_GetClientes",
         "parameters": [
           {
-            "type": "string",
             "name": "RevendaId",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "type": "array",
-              "items": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "nullable": true,
+                  "items": {}
+                }
+              }
             }
           }
         }
@@ -526,40 +667,59 @@
         "operationId": "RevendaClienteToken_GetCliente",
         "parameters": [
           {
-            "type": "string",
             "name": "RevendaId",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
           },
           {
-            "type": "string",
             "name": "Token",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IEntidade"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IEntidade"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
@@ -574,2543 +734,2998 @@
         "operationId": "RevendaClienteToken_RevogarRevendaClienteToken",
         "parameters": [
           {
-            "type": "string",
             "name": "RevendaId",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 1
           },
           {
-            "type": "string",
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 2
           },
           {
-            "type": "string",
             "name": "Token",
             "in": "path",
             "required": true,
-            "x-nullable": true
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "x-position": 3
           },
           {
-            "type": "string",
             "name": "token",
             "in": "header",
             "description": "Chave de acesso à API, fornecida pela Revenda",
+            "schema": {
+              "type": "string"
+            },
             "default": "msti"
           }
         ],
         "responses": {
           "200": {
-            "x-nullable": true,
             "description": "",
-            "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "nullable": true,
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IResultViewModel"
+                    }
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "definitions": {
-    "IEntidade": {
-      "type": "object",
-      "x-abstract": true,
-      "additionalProperties": false
-    },
-    "IResultViewModel": {
-      "type": "object",
-      "x-abstract": true,
-      "additionalProperties": false,
-      "required": [
-        "httpStatusCode"
-      ],
-      "properties": {
-        "httpStatusCode": {
-          "$ref": "#/definitions/EHttpStatusCode"
-        },
-        "messages": {
-          "type": "string"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/IViewModel"
+  "components": {
+    "schemas": {
+      "IEntidade": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "IResultViewModel": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false,
+        "properties": {
+          "httpStatusCode": {
+            "$ref": "#/components/schemas/EHttpStatusCode"
+          },
+          "messages": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/IViewModel"
+            }
           }
         }
-      }
-    },
-    "EHttpStatusCode": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "OK",
-        "BadGateway",
-        "NotFound",
-        "MethodNotAllowed"
-      ],
-      "enum": [
-        200,
-        400,
-        404,
-        405
-      ]
-    },
-    "IViewModel": {
-      "type": "object",
-      "x-abstract": true,
-      "additionalProperties": false
-    },
-    "RevendaViewModel": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/Notificavel"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "codigo"
-          ],
-          "properties": {
-            "id": {
-              "type": "string"
-            },
-            "codigo": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "nome": {
-              "type": "string"
-            },
-            "cpf": {
-              "type": "string"
-            },
-            "cnpj": {
-              "type": "string"
-            },
-            "clientes": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/RevendaClienteViewModel"
+      },
+      "EHttpStatusCode": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "OK",
+          "BadGateway",
+          "NotFound",
+          "MethodNotAllowed"
+        ],
+        "enum": [
+          200,
+          400,
+          404,
+          405
+        ]
+      },
+      "IViewModel": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "RevendaViewModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Notificavel"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": true
+              },
+              "codigo": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "nome": {
+                "type": "string",
+                "nullable": true
+              },
+              "cpf": {
+                "type": "string",
+                "nullable": true
+              },
+              "cnpj": {
+                "type": "string",
+                "nullable": true
+              },
+              "clientes": {
+                "type": "array",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/RevendaClienteViewModel"
+                }
               }
             }
           }
-        }
-      ]
-    },
-    "RevendaClienteViewModel": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/Notificavel"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "codigo": {
-              "type": "string"
-            },
-            "nome": {
-              "type": "string"
-            },
-            "razaoSocial": {
-              "type": "string"
-            },
-            "endereco": {
-              "$ref": "#/definitions/EnderecoViewModel"
-            },
-            "cpf": {
-              "type": "string"
-            },
-            "cnpj": {
-              "type": "string"
-            },
-            "ie": {
-              "type": "string"
-            },
-            "eMail": {
-              "type": "string"
-            },
-            "tokens": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/RevendaClienteTokenViewModel"
+        ]
+      },
+      "RevendaClienteViewModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Notificavel"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "codigo": {
+                "type": "string",
+                "nullable": true
+              },
+              "nome": {
+                "type": "string",
+                "nullable": true
+              },
+              "razaoSocial": {
+                "type": "string",
+                "nullable": true
+              },
+              "endereco": {
+                "nullable": true,
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/EnderecoViewModel"
+                  }
+                ]
+              },
+              "cpf": {
+                "type": "string",
+                "nullable": true
+              },
+              "cnpj": {
+                "type": "string",
+                "nullable": true
+              },
+              "ie": {
+                "type": "string",
+                "nullable": true
+              },
+              "eMail": {
+                "type": "string",
+                "nullable": true
+              },
+              "tokens": {
+                "type": "array",
+                "nullable": true,
+                "items": {
+                  "$ref": "#/components/schemas/RevendaClienteTokenViewModel"
+                }
               }
             }
           }
+        ]
+      },
+      "EnderecoViewModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "logradouro": {
+            "type": "string",
+            "nullable": true
+          },
+          "numero": {
+            "type": "string",
+            "nullable": true
+          },
+          "complemento": {
+            "type": "string",
+            "nullable": true
+          },
+          "bairro": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoIBGEMunicipio": {
+            "type": "string",
+            "nullable": true
+          },
+          "municipio": {
+            "type": "string",
+            "nullable": true
+          },
+          "uf": {
+            "type": "string",
+            "nullable": true
+          },
+          "cep": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoPais": {
+            "type": "string",
+            "nullable": true
+          },
+          "pais": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefone": {
+            "type": "string",
+            "nullable": true
+          }
         }
-      ]
-    },
-    "EnderecoViewModel": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "logradouro": {
-          "type": "string"
-        },
-        "numero": {
-          "type": "string"
-        },
-        "complemento": {
-          "type": "string"
-        },
-        "bairro": {
-          "type": "string"
-        },
-        "codigoIBGEMunicipio": {
-          "type": "string"
-        },
-        "municipio": {
-          "type": "string"
-        },
-        "uf": {
-          "type": "string"
-        },
-        "cep": {
-          "type": "string"
-        },
-        "codigoPais": {
-          "type": "string"
-        },
-        "pais": {
-          "type": "string"
-        },
-        "telefone": {
-          "type": "string"
+      },
+      "RevendaClienteTokenViewModel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Notificavel"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "token": {
+                "type": "string",
+                "nullable": true
+              },
+              "geracao": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "revogacao": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        ]
+      },
+      "Notificavel": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Notifiable"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false
+          }
+        ]
+      },
+      "Notifiable": {
+        "type": "object",
+        "x-abstract": true,
+        "additionalProperties": false
+      },
+      "TNFe": {
+        "type": "object",
+        "description": "Tag raiz da NF-e",
+        "additionalProperties": false,
+        "properties": {
+          "infNFe": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/InfNFe"
+              }
+            ]
+          },
+          "infNFeSupl": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/InfNFeSupl"
+              }
+            ]
+          },
+          "signature": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Signature"
+              }
+            ]
+          }
         }
-      }
-    },
-    "RevendaClienteTokenViewModel": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/Notificavel"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "geracao",
-            "revogacao"
-          ],
-          "properties": {
-            "token": {
-              "type": "string"
-            },
-            "geracao": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "revogacao": {
-              "type": "string",
-              "format": "date-time"
+      },
+      "InfNFe": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ide": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Ide"
+              }
+            ]
+          },
+          "emit": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Emit"
+              }
+            ]
+          },
+          "avulsa": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Avulsa"
+              }
+            ]
+          },
+          "dest": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Dest"
+              }
+            ]
+          },
+          "retirada": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TLocal"
+              }
+            ]
+          },
+          "entrega": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TLocal"
+              }
+            ]
+          },
+          "autXML": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/AutXML"
+            }
+          },
+          "det": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Det"
+            }
+          },
+          "total": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Total"
+              }
+            ]
+          },
+          "transp": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Transp"
+              }
+            ]
+          },
+          "cobr": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Cobr"
+              }
+            ]
+          },
+          "pag": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Pag"
+              }
+            ]
+          },
+          "infAdic": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/InfAdic"
+              }
+            ]
+          },
+          "exporta": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Exporta"
+              }
+            ]
+          },
+          "compra": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Compra"
+              }
+            ]
+          },
+          "cana": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Cana"
+              }
+            ]
+          },
+          "infRespTec": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/InfRespTec"
+              }
+            ]
+          },
+          "versao": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Ide": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "cUF": {
+            "$ref": "#/components/schemas/UF"
+          },
+          "cNF": {
+            "type": "string",
+            "nullable": true
+          },
+          "natOp": {
+            "type": "string",
+            "nullable": true
+          },
+          "mod": {
+            "$ref": "#/components/schemas/Mod"
+          },
+          "serie": {
+            "type": "string",
+            "nullable": true
+          },
+          "nNF": {
+            "type": "string",
+            "nullable": true
+          },
+          "dhEmi": {
+            "type": "string",
+            "nullable": true
+          },
+          "dhSaiEnt": {
+            "type": "string",
+            "nullable": true
+          },
+          "tpNF": {
+            "$ref": "#/components/schemas/TpNF"
+          },
+          "idDest": {
+            "$ref": "#/components/schemas/IdDest"
+          },
+          "cMunFG": {
+            "type": "string",
+            "nullable": true
+          },
+          "tpImp": {
+            "$ref": "#/components/schemas/TpImp"
+          },
+          "tpEmis": {
+            "$ref": "#/components/schemas/TpEmis"
+          },
+          "cDV": {
+            "type": "string",
+            "nullable": true
+          },
+          "tpAmb": {
+            "$ref": "#/components/schemas/TpAmb"
+          },
+          "finNFe": {
+            "$ref": "#/components/schemas/FinNFe"
+          },
+          "indFinal": {
+            "$ref": "#/components/schemas/IndFinal"
+          },
+          "indPres": {
+            "$ref": "#/components/schemas/IndPres"
+          },
+          "procEmi": {
+            "$ref": "#/components/schemas/ProcEmi"
+          },
+          "verProc": {
+            "type": "string",
+            "nullable": true
+          },
+          "dhCont": {
+            "type": "string",
+            "nullable": true
+          },
+          "xJust": {
+            "type": "string",
+            "nullable": true
+          },
+          "nFref": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/TNFeInfNFeIdeNFref"
             }
           }
         }
-      ]
-    },
-    "Notificavel": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/Notifiable"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false
-        }
-      ]
-    },
-    "Notifiable": {
-      "type": "object",
-      "x-abstract": true,
-      "additionalProperties": false
-    },
-    "TNFe": {
-      "type": "object",
-      "description": "Tag raiz da NF-e",
-      "additionalProperties": false,
-      "properties": {
-        "infNFe": {
-          "$ref": "#/definitions/InfNFe"
-        },
-        "infNFeSupl": {
-          "$ref": "#/definitions/InfNFeSupl"
-        },
-        "signature": {
-          "$ref": "#/definitions/Signature"
-        }
-      }
-    },
-    "InfNFe": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "ide": {
-          "$ref": "#/definitions/Ide"
-        },
-        "emit": {
-          "$ref": "#/definitions/Emit"
-        },
-        "avulsa": {
-          "$ref": "#/definitions/Avulsa"
-        },
-        "dest": {
-          "$ref": "#/definitions/Dest"
-        },
-        "retirada": {
-          "$ref": "#/definitions/TLocal"
-        },
-        "entrega": {
-          "$ref": "#/definitions/TLocal"
-        },
-        "autXML": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AutXML"
-          }
-        },
-        "det": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Det"
-          }
-        },
-        "total": {
-          "$ref": "#/definitions/Total"
-        },
-        "transp": {
-          "$ref": "#/definitions/Transp"
-        },
-        "cobr": {
-          "$ref": "#/definitions/Cobr"
-        },
-        "pag": {
-          "$ref": "#/definitions/Pag"
-        },
-        "infAdic": {
-          "$ref": "#/definitions/InfAdic"
-        },
-        "exporta": {
-          "$ref": "#/definitions/Exporta"
-        },
-        "compra": {
-          "$ref": "#/definitions/Compra"
-        },
-        "cana": {
-          "$ref": "#/definitions/Cana"
-        },
-        "infRespTec": {
-          "$ref": "#/definitions/InfRespTec"
-        },
-        "versao": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        }
-      }
-    },
-    "Ide": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "cUF",
-        "mod",
-        "tpNF",
-        "idDest",
-        "tpImp",
-        "tpEmis",
-        "tpAmb",
-        "finNFe",
-        "indFinal",
-        "indPres",
-        "procEmi"
-      ],
-      "properties": {
-        "cUF": {
-          "$ref": "#/definitions/UF"
-        },
-        "cNF": {
-          "type": "string"
-        },
-        "natOp": {
-          "type": "string"
-        },
-        "mod": {
-          "$ref": "#/definitions/Mod"
-        },
-        "serie": {
-          "type": "string"
-        },
-        "nNF": {
-          "type": "string"
-        },
-        "dhEmi": {
-          "type": "string"
-        },
-        "dhSaiEnt": {
-          "type": "string"
-        },
-        "tpNF": {
-          "$ref": "#/definitions/TpNF"
-        },
-        "idDest": {
-          "$ref": "#/definitions/IdDest"
-        },
-        "cMunFG": {
-          "type": "string"
-        },
-        "tpImp": {
-          "$ref": "#/definitions/TpImp"
-        },
-        "tpEmis": {
-          "$ref": "#/definitions/TpEmis"
-        },
-        "cDV": {
-          "type": "string"
-        },
-        "tpAmb": {
-          "$ref": "#/definitions/TpAmb"
-        },
-        "finNFe": {
-          "$ref": "#/definitions/FinNFe"
-        },
-        "indFinal": {
-          "$ref": "#/definitions/IndFinal"
-        },
-        "indPres": {
-          "$ref": "#/definitions/IndPres"
-        },
-        "procEmi": {
-          "$ref": "#/definitions/ProcEmi"
-        },
-        "verProc": {
-          "type": "string"
-        },
-        "dhCont": {
-          "type": "string"
-        },
-        "xJust": {
-          "type": "string"
-        },
-        "nFref": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TNFeInfNFeIdeNFref"
-          }
-        }
-      }
-    },
-    "UF": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "RO",
-        "AC",
-        "AM",
-        "RR",
-        "PA",
-        "AP",
-        "TO",
-        "MA",
-        "PI",
-        "CE",
-        "RN",
-        "PB",
-        "PE",
-        "AL",
-        "SE",
-        "BA",
-        "MG",
-        "ES",
-        "RJ",
-        "SP",
-        "PR",
-        "SC",
-        "RS",
-        "MS",
-        "MT",
-        "GO",
-        "DF",
-        "AN",
-        "EX"
-      ],
-      "enum": [
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        31,
-        32,
-        33,
-        35,
-        41,
-        42,
-        43,
-        50,
-        51,
-        52,
-        53,
-        91,
-        99
-      ]
-    },
-    "Mod": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item55",
-        "Item65"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "TpNF": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item0",
-        "Item1"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "IdDest": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3"
-      ],
-      "enum": [
-        0,
-        1,
-        2
-      ]
-    },
-    "TpImp": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item0",
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4",
-        "Item5"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ]
-    },
-    "TpEmis": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4",
-        "Item5",
-        "Item6",
-        "Item7",
-        "Item9"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ]
-    },
-    "TpAmb": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "FinNFe": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3
-      ]
-    },
-    "IndFinal": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item0",
-        "Item1"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "IndPres": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item0",
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4",
-        "Item5",
-        "Item9"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ]
-    },
-    "ProcEmi": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item0",
-        "Item1",
-        "Item2",
-        "Item3"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3
-      ]
-    },
-    "TNFeInfNFeIdeNFref": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "itemElementName"
-      ],
-      "properties": {
-        "item": {},
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType1"
-        }
-      }
-    },
-    "ItemChoiceType1": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "refCTe",
-        "refECF",
-        "refNF",
-        "refNFP",
-        "refNFe"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ]
-    },
-    "Emit": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "itemElementName",
-        "crt"
-      ],
-      "properties": {
-        "item": {
-          "type": "string"
-        },
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType2"
-        },
-        "xNome": {
-          "type": "string"
-        },
-        "xFant": {
-          "type": "string"
-        },
-        "enderEmit": {
-          "$ref": "#/definitions/EnderEmit"
-        },
-        "ie": {
-          "type": "string"
-        },
-        "iest": {
-          "type": "string"
-        },
-        "im": {
-          "type": "string"
-        },
-        "cnae": {
-          "type": "string"
-        },
-        "crt": {
-          "$ref": "#/definitions/CRT"
-        }
-      }
-    },
-    "ItemChoiceType2": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "CNPJ",
-        "CPF"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "EnderEmit": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "uf",
-        "cPais",
-        "cPaisSpecified",
-        "xPais",
-        "xPaisSpecified"
-      ],
-      "properties": {
-        "xLgr": {
-          "type": "string"
-        },
-        "nro": {
-          "type": "string"
-        },
-        "xCpl": {
-          "type": "string"
-        },
-        "xBairro": {
-          "type": "string"
-        },
-        "cMun": {
-          "type": "string"
-        },
-        "xMun": {
-          "type": "string"
-        },
-        "uf": {
-          "$ref": "#/definitions/UF"
-        },
-        "cep": {
-          "type": "string"
-        },
-        "cPais": {
-          "$ref": "#/definitions/TEnderEmiCPais"
-        },
-        "cPaisSpecified": {
-          "type": "boolean"
-        },
-        "xPais": {
-          "$ref": "#/definitions/TEnderEmiXPais"
-        },
-        "xPaisSpecified": {
-          "type": "boolean"
-        },
-        "fone": {
-          "type": "string"
-        }
-      }
-    },
-    "TEnderEmiCPais": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1058"
-      ],
-      "enum": [
-        0
-      ]
-    },
-    "TEnderEmiXPais": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Brasil",
-        "BRASIL"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "CRT": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3"
-      ],
-      "enum": [
-        0,
-        1,
-        2
-      ]
-    },
-    "Avulsa": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "uf"
-      ],
-      "properties": {
-        "cnpj": {
-          "type": "string"
-        },
-        "xOrgao": {
-          "type": "string"
-        },
-        "matr": {
-          "type": "string"
-        },
-        "xAgente": {
-          "type": "string"
-        },
-        "fone": {
-          "type": "string"
-        },
-        "uf": {
-          "$ref": "#/definitions/UF"
-        },
-        "nDAR": {
-          "type": "string"
-        },
-        "dEmi": {
-          "type": "string"
-        },
-        "vDAR": {
-          "type": "string"
-        },
-        "repEmi": {
-          "type": "string"
-        },
-        "dPag": {
-          "type": "string"
-        }
-      }
-    },
-    "Dest": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "itemElementName",
-        "indIEDest"
-      ],
-      "properties": {
-        "item": {
-          "type": "string"
-        },
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType3"
-        },
-        "xNome": {
-          "type": "string"
-        },
-        "enderDest": {
-          "$ref": "#/definitions/EnderDest"
-        },
-        "indIEDest": {
-          "$ref": "#/definitions/IndIEDest"
-        },
-        "ie": {
-          "type": "string"
-        },
-        "isuf": {
-          "type": "string"
-        },
-        "im": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        }
-      }
-    },
-    "ItemChoiceType3": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "CNPJ",
-        "CPF",
-        "idEstrangeiro"
-      ],
-      "enum": [
-        0,
-        1,
-        2
-      ]
-    },
-    "EnderDest": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "uf"
-      ],
-      "properties": {
-        "xLgr": {
-          "type": "string"
-        },
-        "nro": {
-          "type": "string"
-        },
-        "xCpl": {
-          "type": "string"
-        },
-        "xBairro": {
-          "type": "string"
-        },
-        "cMun": {
-          "type": "string"
-        },
-        "xMun": {
-          "type": "string"
-        },
-        "uf": {
-          "$ref": "#/definitions/UF"
-        },
-        "cep": {
-          "type": "string"
-        },
-        "cPais": {
-          "type": "string"
-        },
-        "xPais": {
-          "type": "string"
-        },
-        "fone": {
-          "type": "string"
-        }
-      }
-    },
-    "IndIEDest": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item9"
-      ],
-      "enum": [
-        0,
-        1,
-        2
-      ]
-    },
-    "TLocal": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "itemElementName",
-        "uf"
-      ],
-      "properties": {
-        "item": {
-          "type": "string"
-        },
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType4"
-        },
-        "xNome": {
-          "type": "string"
-        },
-        "xLgr": {
-          "type": "string"
-        },
-        "nro": {
-          "type": "string"
-        },
-        "xCpl": {
-          "type": "string"
-        },
-        "xBairro": {
-          "type": "string"
-        },
-        "cMun": {
-          "type": "string"
-        },
-        "xMun": {
-          "type": "string"
-        },
-        "uf": {
-          "$ref": "#/definitions/UF"
-        },
-        "cep": {
-          "type": "string"
-        },
-        "cPais": {
-          "type": "string"
-        },
-        "xPais": {
-          "type": "string"
-        },
-        "fone": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "ie": {
-          "type": "string"
-        }
-      }
-    },
-    "ItemChoiceType4": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "CNPJ",
-        "CPF"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "AutXML": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "itemElementName"
-      ],
-      "properties": {
-        "item": {
-          "type": "string"
-        },
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType5"
-        }
-      }
-    },
-    "ItemChoiceType5": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "CNPJ",
-        "CPF"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "Det": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "prod": {
-          "$ref": "#/definitions/Prod"
-        },
-        "imposto": {
-          "$ref": "#/definitions/Imposto"
-        },
-        "impostoDevol": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoDevol"
-        },
-        "infAdProd": {
-          "type": "string"
-        },
-        "nItem": {
-          "type": "string"
-        }
-      }
-    },
-    "Prod": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "indEscala",
-        "indEscalaSpecified",
-        "indTot"
-      ],
-      "properties": {
-        "cProd": {
-          "type": "string"
-        },
-        "cEAN": {
-          "type": "string"
-        },
-        "xProd": {
-          "type": "string"
-        },
-        "ncm": {
-          "type": "string"
-        },
-        "nve": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "cest": {
-          "type": "string"
-        },
-        "indEscala": {
-          "$ref": "#/definitions/TNFeInfNFeDetProdIndEscala"
-        },
-        "indEscalaSpecified": {
-          "type": "boolean"
-        },
-        "cnpjFab": {
-          "type": "string"
-        },
-        "cBenef": {
-          "type": "string"
-        },
-        "extipi": {
-          "type": "string"
-        },
-        "cfop": {
-          "type": "string"
-        },
-        "uCom": {
-          "type": "string"
-        },
-        "qCom": {
-          "type": "string"
-        },
-        "vUnCom": {
-          "type": "string"
-        },
-        "vProd": {
-          "type": "string"
-        },
-        "cEANTrib": {
-          "type": "string"
-        },
-        "uTrib": {
-          "type": "string"
-        },
-        "qTrib": {
-          "type": "string"
-        },
-        "vUnTrib": {
-          "type": "string"
-        },
-        "vFrete": {
-          "type": "string"
-        },
-        "vSeg": {
-          "type": "string"
-        },
-        "vDesc": {
-          "type": "string"
-        },
-        "vOutro": {
-          "type": "string"
-        },
-        "indTot": {
-          "$ref": "#/definitions/TNFeInfNFeDetProdIndTot"
-        },
-        "di": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DI"
-          }
-        },
-        "detExport": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TNFeInfNFeDetProdDetExport"
-          }
-        },
-        "xPed": {
-          "type": "string"
-        },
-        "nItemPed": {
-          "type": "string"
-        },
-        "nFCI": {
-          "type": "string"
-        },
-        "rastro": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TNFeInfNFeDetProdRastro"
-          }
-        },
-        "items": {
-          "type": "array",
-          "items": {}
-        }
-      }
-    },
-    "TNFeInfNFeDetProdIndEscala": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "S",
-        "N"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "TNFeInfNFeDetProdIndTot": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item0",
-        "Item1"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "DI": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "ufDesemb",
-        "tpViaTransp",
-        "tpIntermedio",
-        "ufTerceiro",
-        "ufTerceiroSpecified"
-      ],
-      "properties": {
-        "nDI": {
-          "type": "string"
-        },
-        "dDI": {
-          "type": "string"
-        },
-        "xLocDesemb": {
-          "type": "string"
-        },
-        "ufDesemb": {
-          "$ref": "#/definitions/UF"
-        },
-        "dDesemb": {
-          "type": "string"
-        },
-        "tpViaTransp": {
-          "$ref": "#/definitions/TpViaTransp"
-        },
-        "vAFRMM": {
-          "type": "string"
-        },
-        "tpIntermedio": {
-          "$ref": "#/definitions/TpIntermedio"
-        },
-        "cnpj": {
-          "type": "string"
-        },
-        "ufTerceiro": {
-          "$ref": "#/definitions/UF"
-        },
-        "ufTerceiroSpecified": {
-          "type": "boolean"
-        },
-        "cExportador": {
-          "type": "string"
-        },
-        "adi": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Adi"
+      },
+      "UF": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "RO",
+          "AC",
+          "AM",
+          "RR",
+          "PA",
+          "AP",
+          "TO",
+          "MA",
+          "PI",
+          "CE",
+          "RN",
+          "PB",
+          "PE",
+          "AL",
+          "SE",
+          "BA",
+          "MG",
+          "ES",
+          "RJ",
+          "SP",
+          "PR",
+          "SC",
+          "RS",
+          "MS",
+          "MT",
+          "GO",
+          "DF",
+          "AN",
+          "EX"
+        ],
+        "enum": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          31,
+          32,
+          33,
+          35,
+          41,
+          42,
+          43,
+          50,
+          51,
+          52,
+          53,
+          91,
+          99
+        ]
+      },
+      "Mod": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item55",
+          "Item65"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "TpNF": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item0",
+          "Item1"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "IdDest": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2",
+          "Item3"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "TpImp": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item0",
+          "Item1",
+          "Item2",
+          "Item3",
+          "Item4",
+          "Item5"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "TpEmis": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2",
+          "Item3",
+          "Item4",
+          "Item5",
+          "Item6",
+          "Item7",
+          "Item9"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "TpAmb": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "FinNFe": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2",
+          "Item3",
+          "Item4"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "IndFinal": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item0",
+          "Item1"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "IndPres": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item0",
+          "Item1",
+          "Item2",
+          "Item3",
+          "Item4",
+          "Item5",
+          "Item9"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "ProcEmi": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item0",
+          "Item1",
+          "Item2",
+          "Item3"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "TNFeInfNFeIdeNFref": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "nullable": true
+          },
+          "itemElementName": {
+            "$ref": "#/components/schemas/ItemChoiceType1"
           }
         }
-      }
-    },
-    "TpViaTransp": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4",
-        "Item5",
-        "Item6",
-        "Item7",
-        "Item8",
-        "Item9",
-        "Item10",
-        "Item11",
-        "Item12"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
-      ]
-    },
-    "TpIntermedio": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3"
-      ],
-      "enum": [
-        0,
-        1,
-        2
-      ]
-    },
-    "Adi": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "nAdicao": {
-          "type": "string"
-        },
-        "nSeqAdic": {
-          "type": "string"
-        },
-        "cFabricante": {
-          "type": "string"
-        },
-        "vDescDI": {
-          "type": "string"
-        },
-        "nDraw": {
-          "type": "string"
-        }
-      }
-    },
-    "TNFeInfNFeDetProdDetExport": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "nDraw": {
-          "type": "string"
-        },
-        "exportInd": {
-          "$ref": "#/definitions/TNFeInfNFeDetProdDetExportExportInd"
-        }
-      }
-    },
-    "TNFeInfNFeDetProdDetExportExportInd": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "nRE": {
-          "type": "string"
-        },
-        "chNFe": {
-          "type": "string"
-        },
-        "qExport": {
-          "type": "string"
-        }
-      }
-    },
-    "TNFeInfNFeDetProdRastro": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "nLote": {
-          "type": "string"
-        },
-        "qLote": {
-          "type": "string"
-        },
-        "dFab": {
-          "type": "string"
-        },
-        "dVal": {
-          "type": "string"
-        },
-        "cAgreg": {
-          "type": "string"
-        }
-      }
-    },
-    "Imposto": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "vTotTrib": {
-          "type": "string"
-        },
-        "items": {
-          "type": "array",
-          "items": {}
-        },
-        "pis": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoPIS"
-        },
-        "pisst": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoPISST"
-        },
-        "cofins": {
-          "$ref": "#/definitions/COFINS"
-        },
-        "cofinsst": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINSST"
-        },
-        "icmsufDest": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSUFDest"
-        }
-      }
-    },
-    "TNFeInfNFeDetImpostoPIS": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "item": {}
-      }
-    },
-    "TNFeInfNFeDetImpostoPISST": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "itemsElementName": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ItemsChoiceType2"
-          }
-        },
-        "vPIS": {
-          "type": "string"
-        }
-      }
-    },
-    "ItemsChoiceType2": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "pPIS",
-        "qBCProd",
-        "vAliqProd",
-        "vBC"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3
-      ]
-    },
-    "COFINS": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "item": {}
-      }
-    },
-    "TNFeInfNFeDetImpostoCOFINSST": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "itemsElementName": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ItemsChoiceType4"
-          }
-        },
-        "vCOFINS": {
-          "type": "string"
-        }
-      }
-    },
-    "ItemsChoiceType4": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "pCOFINS",
-        "qBCProd",
-        "vAliqProd",
-        "vBC"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3
-      ]
-    },
-    "TNFeInfNFeDetImpostoICMSUFDest": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "pICMSInter"
-      ],
-      "properties": {
-        "vBCUFDest": {
-          "type": "string"
-        },
-        "vBCFCPUFDest": {
-          "type": "string"
-        },
-        "pFCPUFDest": {
-          "type": "string"
-        },
-        "pICMSUFDest": {
-          "type": "string"
-        },
-        "pICMSInter": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSUFDestPICMSInter"
-        },
-        "pICMSInterPart": {
-          "type": "string"
-        },
-        "vFCPUFDest": {
-          "type": "string"
-        },
-        "vICMSUFDest": {
-          "type": "string"
-        },
-        "vICMSUFRemet": {
-          "type": "string"
-        }
-      }
-    },
-    "TNFeInfNFeDetImpostoICMSUFDestPICMSInter": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item400",
-        "Item700",
-        "Item1200"
-      ],
-      "enum": [
-        0,
-        1,
-        2
-      ]
-    },
-    "TNFeInfNFeDetImpostoDevol": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "pDevol": {
-          "type": "string"
-        },
-        "ipi": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoDevolIPI"
-        }
-      }
-    },
-    "TNFeInfNFeDetImpostoDevolIPI": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "vIPIDevol": {
-          "type": "string"
-        }
-      }
-    },
-    "Total": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "icmsTot": {
-          "$ref": "#/definitions/ICMSTot"
-        },
-        "issqNtot": {
-          "$ref": "#/definitions/ISSQNtot"
-        },
-        "retTrib": {
-          "$ref": "#/definitions/RetTrib"
-        }
-      }
-    },
-    "ICMSTot": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "vBC": {
-          "type": "string"
-        },
-        "vICMS": {
-          "type": "string"
-        },
-        "vICMSDeson": {
-          "type": "string"
-        },
-        "vFCPUFDest": {
-          "type": "string"
-        },
-        "vICMSUFDest": {
-          "type": "string"
-        },
-        "vICMSUFRemet": {
-          "type": "string"
-        },
-        "vFCP": {
-          "type": "string"
-        },
-        "vBCST": {
-          "type": "string"
-        },
-        "vST": {
-          "type": "string"
-        },
-        "vFCPST": {
-          "type": "string"
-        },
-        "vFCPSTRet": {
-          "type": "string"
-        },
-        "vProd": {
-          "type": "string"
-        },
-        "vFrete": {
-          "type": "string"
-        },
-        "vSeg": {
-          "type": "string"
-        },
-        "vDesc": {
-          "type": "string"
-        },
-        "vII": {
-          "type": "string"
-        },
-        "vIPI": {
-          "type": "string"
-        },
-        "vIPIDevol": {
-          "type": "string"
-        },
-        "vPIS": {
-          "type": "string"
-        },
-        "vCOFINS": {
-          "type": "string"
-        },
-        "vOutro": {
-          "type": "string"
-        },
-        "vNF": {
-          "type": "string"
-        },
-        "vTotTrib": {
-          "type": "string"
-        }
-      }
-    },
-    "ISSQNtot": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "cRegTrib",
-        "cRegTribSpecified"
-      ],
-      "properties": {
-        "vServ": {
-          "type": "string"
-        },
-        "vBC": {
-          "type": "string"
-        },
-        "vISS": {
-          "type": "string"
-        },
-        "vPIS": {
-          "type": "string"
-        },
-        "vCOFINS": {
-          "type": "string"
-        },
-        "dCompet": {
-          "type": "string"
-        },
-        "vDeducao": {
-          "type": "string"
-        },
-        "vOutro": {
-          "type": "string"
-        },
-        "vDescIncond": {
-          "type": "string"
-        },
-        "vDescCond": {
-          "type": "string"
-        },
-        "vISSRet": {
-          "type": "string"
-        },
-        "cRegTrib": {
-          "$ref": "#/definitions/TNFeInfNFeTotalISSQNtotCRegTrib"
-        },
-        "cRegTribSpecified": {
-          "type": "boolean"
-        }
-      }
-    },
-    "TNFeInfNFeTotalISSQNtotCRegTrib": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4",
-        "Item5",
-        "Item6"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ]
-    },
-    "RetTrib": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "vRetPIS": {
-          "type": "string"
-        },
-        "vRetCOFINS": {
-          "type": "string"
-        },
-        "vRetCSLL": {
-          "type": "string"
-        },
-        "vBCIRRF": {
-          "type": "string"
-        },
-        "vIRRF": {
-          "type": "string"
-        },
-        "vBCRetPrev": {
-          "type": "string"
-        },
-        "vRetPrev": {
-          "type": "string"
-        }
-      }
-    },
-    "Transp": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "modFrete"
-      ],
-      "properties": {
-        "modFrete": {
-          "$ref": "#/definitions/TNFeInfNFeTranspModFrete"
-        },
-        "transporta": {
-          "$ref": "#/definitions/TNFeInfNFeTranspTransporta"
-        },
-        "retTransp": {
-          "$ref": "#/definitions/TNFeInfNFeTranspRetTransp"
-        },
-        "items": {
-          "type": "array",
-          "items": {}
-        },
-        "itemsElementName": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ItemsChoiceType5"
-          }
-        },
-        "vol": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TNFeInfNFeTranspVol"
+      },
+      "ItemChoiceType1": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "refCTe",
+          "refECF",
+          "refNF",
+          "refNFP",
+          "refNFe"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "Emit": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemElementName": {
+            "$ref": "#/components/schemas/ItemChoiceType2"
+          },
+          "xNome": {
+            "type": "string",
+            "nullable": true
+          },
+          "xFant": {
+            "type": "string",
+            "nullable": true
+          },
+          "enderEmit": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnderEmit"
+              }
+            ]
+          },
+          "ie": {
+            "type": "string",
+            "nullable": true
+          },
+          "iest": {
+            "type": "string",
+            "nullable": true
+          },
+          "im": {
+            "type": "string",
+            "nullable": true
+          },
+          "cnae": {
+            "type": "string",
+            "nullable": true
+          },
+          "crt": {
+            "$ref": "#/components/schemas/CRT"
           }
         }
-      }
-    },
-    "TNFeInfNFeTranspModFrete": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item0",
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4",
-        "Item9"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
-      ]
-    },
-    "TNFeInfNFeTranspTransporta": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "itemElementName",
-        "uf",
-        "ufSpecified"
-      ],
-      "properties": {
-        "item": {
-          "type": "string"
-        },
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType6"
-        },
-        "xNome": {
-          "type": "string"
-        },
-        "ie": {
-          "type": "string"
-        },
-        "xEnder": {
-          "type": "string"
-        },
-        "xMun": {
-          "type": "string"
-        },
-        "uf": {
-          "$ref": "#/definitions/UF"
-        },
-        "ufSpecified": {
-          "type": "boolean"
-        }
-      }
-    },
-    "ItemChoiceType6": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "CNPJ",
-        "CPF"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "TNFeInfNFeTranspRetTransp": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "vServ": {
-          "type": "string"
-        },
-        "vBCRet": {
-          "type": "string"
-        },
-        "pICMSRet": {
-          "type": "string"
-        },
-        "vICMSRet": {
-          "type": "string"
-        },
-        "cfop": {
-          "type": "string"
-        },
-        "cMunFG": {
-          "type": "string"
-        }
-      }
-    },
-    "ItemsChoiceType5": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "balsa",
-        "reboque",
-        "vagao",
-        "veicTransp"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3
-      ]
-    },
-    "TNFeInfNFeTranspVol": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "qVol": {
-          "type": "string"
-        },
-        "esp": {
-          "type": "string"
-        },
-        "marca": {
-          "type": "string"
-        },
-        "nVol": {
-          "type": "string"
-        },
-        "pesoL": {
-          "type": "string"
-        },
-        "pesoB": {
-          "type": "string"
-        },
-        "lacres": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Lacres"
+      },
+      "ItemChoiceType2": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "CNPJ",
+          "CPF"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "EnderEmit": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "xLgr": {
+            "type": "string",
+            "nullable": true
+          },
+          "nro": {
+            "type": "string",
+            "nullable": true
+          },
+          "xCpl": {
+            "type": "string",
+            "nullable": true
+          },
+          "xBairro": {
+            "type": "string",
+            "nullable": true
+          },
+          "cMun": {
+            "type": "string",
+            "nullable": true
+          },
+          "xMun": {
+            "type": "string",
+            "nullable": true
+          },
+          "uf": {
+            "$ref": "#/components/schemas/UF"
+          },
+          "cep": {
+            "type": "string",
+            "nullable": true
+          },
+          "cPais": {
+            "$ref": "#/components/schemas/TEnderEmiCPais"
+          },
+          "cPaisSpecified": {
+            "type": "boolean"
+          },
+          "xPais": {
+            "$ref": "#/components/schemas/TEnderEmiXPais"
+          },
+          "xPaisSpecified": {
+            "type": "boolean"
+          },
+          "fone": {
+            "type": "string",
+            "nullable": true
           }
         }
-      }
-    },
-    "Lacres": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "nLacre": {
-          "type": "string"
-        }
-      }
-    },
-    "Cobr": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "fat": {
-          "$ref": "#/definitions/Fat"
-        },
-        "dup": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Dup"
+      },
+      "TEnderEmiCPais": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1058"
+        ],
+        "enum": [
+          0
+        ]
+      },
+      "TEnderEmiXPais": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Brasil",
+          "BRASIL"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "CRT": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2",
+          "Item3"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "Avulsa": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "cnpj": {
+            "type": "string",
+            "nullable": true
+          },
+          "xOrgao": {
+            "type": "string",
+            "nullable": true
+          },
+          "matr": {
+            "type": "string",
+            "nullable": true
+          },
+          "xAgente": {
+            "type": "string",
+            "nullable": true
+          },
+          "fone": {
+            "type": "string",
+            "nullable": true
+          },
+          "uf": {
+            "$ref": "#/components/schemas/UF"
+          },
+          "nDAR": {
+            "type": "string",
+            "nullable": true
+          },
+          "dEmi": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDAR": {
+            "type": "string",
+            "nullable": true
+          },
+          "repEmi": {
+            "type": "string",
+            "nullable": true
+          },
+          "dPag": {
+            "type": "string",
+            "nullable": true
           }
         }
-      }
-    },
-    "Fat": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "nFat": {
-          "type": "string"
-        },
-        "vOrig": {
-          "type": "string"
-        },
-        "vDesc": {
-          "type": "string"
-        },
-        "vLiq": {
-          "type": "string"
-        }
-      }
-    },
-    "Dup": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "nDup": {
-          "type": "string"
-        },
-        "dVenc": {
-          "type": "string"
-        },
-        "vDup": {
-          "type": "string"
-        }
-      }
-    },
-    "Pag": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "detPag": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TNFeInfNFePagDetPag"
-          }
-        },
-        "vTroco": {
-          "type": "string"
-        }
-      }
-    },
-    "TNFeInfNFePagDetPag": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "indPag",
-        "indPagSpecified",
-        "tPag"
-      ],
-      "properties": {
-        "indPag": {
-          "$ref": "#/definitions/TNFeInfNFePagDetPagIndPag"
-        },
-        "indPagSpecified": {
-          "type": "boolean"
-        },
-        "tPag": {
-          "$ref": "#/definitions/TNFeInfNFePagDetPagTPag"
-        },
-        "vPag": {
-          "type": "string"
-        },
-        "card": {
-          "$ref": "#/definitions/TNFeInfNFePagDetPagCard"
-        }
-      }
-    },
-    "TNFeInfNFePagDetPagIndPag": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item0",
-        "Item1"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "TNFeInfNFePagDetPagTPag": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item01",
-        "Item02",
-        "Item03",
-        "Item04",
-        "Item05",
-        "Item10",
-        "Item11",
-        "Item12",
-        "Item13",
-        "Item14",
-        "Item15",
-        "Item90",
-        "Item99"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ]
-    },
-    "TNFeInfNFePagDetPagCard": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "tpIntegra",
-        "tBand",
-        "tBandSpecified"
-      ],
-      "properties": {
-        "tpIntegra": {
-          "$ref": "#/definitions/TNFeInfNFePagDetPagCardTpIntegra"
-        },
-        "cnpj": {
-          "type": "string"
-        },
-        "tBand": {
-          "$ref": "#/definitions/TNFeInfNFePagDetPagCardTBand"
-        },
-        "tBandSpecified": {
-          "type": "boolean"
-        },
-        "cAut": {
-          "type": "string"
-        }
-      }
-    },
-    "TNFeInfNFePagDetPagCardTpIntegra": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item1",
-        "Item2"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "TNFeInfNFePagDetPagCardTBand": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item01",
-        "Item02",
-        "Item03",
-        "Item04",
-        "Item05",
-        "Item06",
-        "Item07",
-        "Item08",
-        "Item09",
-        "Item99"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
-      ]
-    },
-    "InfAdic": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "infAdFisco": {
-          "type": "string"
-        },
-        "infCpl": {
-          "type": "string"
-        },
-        "obsCont": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TNFeInfNFeInfAdicObsCont"
-          }
-        },
-        "obsFisco": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TNFeInfNFeInfAdicObsFisco"
-          }
-        },
-        "procRef": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TNFeInfNFeInfAdicProcRef"
+      },
+      "Dest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemElementName": {
+            "$ref": "#/components/schemas/ItemChoiceType3"
+          },
+          "xNome": {
+            "type": "string",
+            "nullable": true
+          },
+          "enderDest": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnderDest"
+              }
+            ]
+          },
+          "indIEDest": {
+            "$ref": "#/components/schemas/IndIEDest"
+          },
+          "ie": {
+            "type": "string",
+            "nullable": true
+          },
+          "isuf": {
+            "type": "string",
+            "nullable": true
+          },
+          "im": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
           }
         }
-      }
-    },
-    "TNFeInfNFeInfAdicObsCont": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "xTexto": {
-          "type": "string"
-        },
-        "xCampo": {
-          "type": "string"
-        }
-      }
-    },
-    "TNFeInfNFeInfAdicObsFisco": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "xTexto": {
-          "type": "string"
-        },
-        "xCampo": {
-          "type": "string"
-        }
-      }
-    },
-    "TNFeInfNFeInfAdicProcRef": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "indProc"
-      ],
-      "properties": {
-        "nProc": {
-          "type": "string"
-        },
-        "indProc": {
-          "$ref": "#/definitions/TNFeInfNFeInfAdicProcRefIndProc"
-        }
-      }
-    },
-    "TNFeInfNFeInfAdicProcRefIndProc": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "Item0",
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item9"
-      ],
-      "enum": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ]
-    },
-    "Exporta": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "ufSaidaPais"
-      ],
-      "properties": {
-        "ufSaidaPais": {
-          "$ref": "#/definitions/UF"
-        },
-        "xLocExporta": {
-          "type": "string"
-        },
-        "xLocDespacho": {
-          "type": "string"
-        }
-      }
-    },
-    "Compra": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "xNEmp": {
-          "type": "string"
-        },
-        "xPed": {
-          "type": "string"
-        },
-        "xCont": {
-          "type": "string"
-        }
-      }
-    },
-    "Cana": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "safra": {
-          "type": "string"
-        },
-        "ref": {
-          "type": "string"
-        },
-        "forDia": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ForDia"
+      },
+      "ItemChoiceType3": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "CNPJ",
+          "CPF",
+          "idEstrangeiro"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "EnderDest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "xLgr": {
+            "type": "string",
+            "nullable": true
+          },
+          "nro": {
+            "type": "string",
+            "nullable": true
+          },
+          "xCpl": {
+            "type": "string",
+            "nullable": true
+          },
+          "xBairro": {
+            "type": "string",
+            "nullable": true
+          },
+          "cMun": {
+            "type": "string",
+            "nullable": true
+          },
+          "xMun": {
+            "type": "string",
+            "nullable": true
+          },
+          "uf": {
+            "$ref": "#/components/schemas/UF"
+          },
+          "cep": {
+            "type": "string",
+            "nullable": true
+          },
+          "cPais": {
+            "type": "string",
+            "nullable": true
+          },
+          "xPais": {
+            "type": "string",
+            "nullable": true
+          },
+          "fone": {
+            "type": "string",
+            "nullable": true
           }
-        },
-        "qTotMes": {
-          "type": "string"
-        },
-        "qTotAnt": {
-          "type": "string"
-        },
-        "qTotGer": {
-          "type": "string"
-        },
-        "deduc": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Deduc"
+        }
+      },
+      "IndIEDest": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2",
+          "Item9"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "TLocal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemElementName": {
+            "$ref": "#/components/schemas/ItemChoiceType4"
+          },
+          "xNome": {
+            "type": "string",
+            "nullable": true
+          },
+          "xLgr": {
+            "type": "string",
+            "nullable": true
+          },
+          "nro": {
+            "type": "string",
+            "nullable": true
+          },
+          "xCpl": {
+            "type": "string",
+            "nullable": true
+          },
+          "xBairro": {
+            "type": "string",
+            "nullable": true
+          },
+          "cMun": {
+            "type": "string",
+            "nullable": true
+          },
+          "xMun": {
+            "type": "string",
+            "nullable": true
+          },
+          "uf": {
+            "$ref": "#/components/schemas/UF"
+          },
+          "cep": {
+            "type": "string",
+            "nullable": true
+          },
+          "cPais": {
+            "type": "string",
+            "nullable": true
+          },
+          "xPais": {
+            "type": "string",
+            "nullable": true
+          },
+          "fone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "ie": {
+            "type": "string",
+            "nullable": true
           }
-        },
-        "vFor": {
-          "type": "string"
-        },
-        "vTotDed": {
-          "type": "string"
-        },
-        "vLiqFor": {
-          "type": "string"
         }
-      }
-    },
-    "ForDia": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "qtde": {
-          "type": "string"
-        },
-        "dia": {
-          "type": "string"
-        }
-      }
-    },
-    "Deduc": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "xDed": {
-          "type": "string"
-        },
-        "vDed": {
-          "type": "string"
-        }
-      }
-    },
-    "InfRespTec": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "cnpj": {
-          "type": "string"
-        },
-        "xContato": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "fone": {
-          "type": "string"
-        },
-        "idCSRT": {
-          "type": "string"
-        },
-        "hashCSRT": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "InfNFeSupl": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "qrCode": {
-          "type": "string"
-        },
-        "urlChave": {
-          "type": "string"
-        }
-      }
-    },
-    "Signature": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "signedInfo": {
-          "$ref": "#/definitions/SignedInfoType"
-        },
-        "signatureValue": {
-          "$ref": "#/definitions/SignatureValueType"
-        },
-        "keyInfo": {
-          "$ref": "#/definitions/KeyInfoType"
-        },
-        "id": {
-          "type": "string"
-        }
-      }
-    },
-    "SignedInfoType": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "canonicalizationMethod": {
-          "$ref": "#/definitions/CanonicalizationMethod"
-        },
-        "signatureMethod": {
-          "$ref": "#/definitions/SignatureMethod"
-        },
-        "reference": {
-          "$ref": "#/definitions/ReferenceType"
-        },
-        "id": {
-          "type": "string"
-        }
-      }
-    },
-    "CanonicalizationMethod": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "algorithmLocal": {
-          "type": "string"
-        }
-      }
-    },
-    "SignatureMethod": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "algorithmLocal": {
-          "type": "string"
-        }
-      }
-    },
-    "ReferenceType": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "transforms": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Transform"
+      },
+      "ItemChoiceType4": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "CNPJ",
+          "CPF"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "AutXML": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemElementName": {
+            "$ref": "#/components/schemas/ItemChoiceType5"
           }
-        },
-        "digestMethod": {
-          "$ref": "#/definitions/DigestMethod"
-        },
-        "digestValue": {
-          "type": "string",
-          "format": "byte"
-        },
-        "id": {
-          "type": "string"
-        },
-        "uri": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
         }
-      }
-    },
-    "Transform": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "algorithm"
-      ],
-      "properties": {
-        "xPath": {
-          "type": "array",
-          "items": {
-            "type": "string"
+      },
+      "ItemChoiceType5": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "CNPJ",
+          "CPF"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "Det": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "prod": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Prod"
+              }
+            ]
+          },
+          "imposto": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Imposto"
+              }
+            ]
+          },
+          "impostoDevol": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFeDetImpostoDevol"
+              }
+            ]
+          },
+          "infAdProd": {
+            "type": "string",
+            "nullable": true
+          },
+          "nItem": {
+            "type": "string",
+            "nullable": true
           }
-        },
-        "algorithm": {
-          "$ref": "#/definitions/Algorithm"
         }
-      }
-    },
-    "Algorithm": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "httpwwww3org200009xmldsigenvelopedsignature",
-        "httpwwww3orgTR2001RECxmlc14n20010315"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
-    "DigestMethod": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "algorithmLocal": {
-          "type": "string"
+      },
+      "Prod": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "cProd": {
+            "type": "string",
+            "nullable": true
+          },
+          "cEAN": {
+            "type": "string",
+            "nullable": true
+          },
+          "xProd": {
+            "type": "string",
+            "nullable": true
+          },
+          "ncm": {
+            "type": "string",
+            "nullable": true
+          },
+          "nve": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "cest": {
+            "type": "string",
+            "nullable": true
+          },
+          "indEscala": {
+            "$ref": "#/components/schemas/TNFeInfNFeDetProdIndEscala"
+          },
+          "indEscalaSpecified": {
+            "type": "boolean"
+          },
+          "cnpjFab": {
+            "type": "string",
+            "nullable": true
+          },
+          "cBenef": {
+            "type": "string",
+            "nullable": true
+          },
+          "extipi": {
+            "type": "string",
+            "nullable": true
+          },
+          "cfop": {
+            "type": "string",
+            "nullable": true
+          },
+          "uCom": {
+            "type": "string",
+            "nullable": true
+          },
+          "qCom": {
+            "type": "string",
+            "nullable": true
+          },
+          "vUnCom": {
+            "type": "string",
+            "nullable": true
+          },
+          "vProd": {
+            "type": "string",
+            "nullable": true
+          },
+          "cEANTrib": {
+            "type": "string",
+            "nullable": true
+          },
+          "uTrib": {
+            "type": "string",
+            "nullable": true
+          },
+          "qTrib": {
+            "type": "string",
+            "nullable": true
+          },
+          "vUnTrib": {
+            "type": "string",
+            "nullable": true
+          },
+          "vFrete": {
+            "type": "string",
+            "nullable": true
+          },
+          "vSeg": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "vOutro": {
+            "type": "string",
+            "nullable": true
+          },
+          "indTot": {
+            "$ref": "#/components/schemas/TNFeInfNFeDetProdIndTot"
+          },
+          "di": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/DI"
+            }
+          },
+          "detExport": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/TNFeInfNFeDetProdDetExport"
+            }
+          },
+          "xPed": {
+            "type": "string",
+            "nullable": true
+          },
+          "nItemPed": {
+            "type": "string",
+            "nullable": true
+          },
+          "nFCI": {
+            "type": "string",
+            "nullable": true
+          },
+          "rastro": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/TNFeInfNFeDetProdRastro"
+            }
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {}
+          }
         }
-      }
-    },
-    "SignatureValueType": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
+      },
+      "TNFeInfNFeDetProdIndEscala": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "S",
+          "N"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "TNFeInfNFeDetProdIndTot": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item0",
+          "Item1"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "DI": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nDI": {
+            "type": "string",
+            "nullable": true
+          },
+          "dDI": {
+            "type": "string",
+            "nullable": true
+          },
+          "xLocDesemb": {
+            "type": "string",
+            "nullable": true
+          },
+          "ufDesemb": {
+            "$ref": "#/components/schemas/UF"
+          },
+          "dDesemb": {
+            "type": "string",
+            "nullable": true
+          },
+          "tpViaTransp": {
+            "$ref": "#/components/schemas/TpViaTransp"
+          },
+          "vAFRMM": {
+            "type": "string",
+            "nullable": true
+          },
+          "tpIntermedio": {
+            "$ref": "#/components/schemas/TpIntermedio"
+          },
+          "cnpj": {
+            "type": "string",
+            "nullable": true
+          },
+          "ufTerceiro": {
+            "$ref": "#/components/schemas/UF"
+          },
+          "ufTerceiroSpecified": {
+            "type": "boolean"
+          },
+          "cExportador": {
+            "type": "string",
+            "nullable": true
+          },
+          "adi": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Adi"
+            }
+          }
         }
-      }
-    },
-    "KeyInfoType": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "x509Data": {
-          "$ref": "#/definitions/X509Data"
-        },
-        "id": {
-          "type": "string"
+      },
+      "TpViaTransp": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2",
+          "Item3",
+          "Item4",
+          "Item5",
+          "Item6",
+          "Item7",
+          "Item8",
+          "Item9",
+          "Item10",
+          "Item11",
+          "Item12"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "TpIntermedio": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2",
+          "Item3"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "Adi": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nAdicao": {
+            "type": "string",
+            "nullable": true
+          },
+          "nSeqAdic": {
+            "type": "string",
+            "nullable": true
+          },
+          "cFabricante": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDescDI": {
+            "type": "string",
+            "nullable": true
+          },
+          "nDraw": {
+            "type": "string",
+            "nullable": true
+          }
         }
-      }
-    },
-    "X509Data": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "x509Certificate": {
-          "type": "string",
-          "format": "byte"
+      },
+      "TNFeInfNFeDetProdDetExport": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nDraw": {
+            "type": "string",
+            "nullable": true
+          },
+          "exportInd": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFeDetProdDetExportExportInd"
+              }
+            ]
+          }
+        }
+      },
+      "TNFeInfNFeDetProdDetExportExportInd": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nRE": {
+            "type": "string",
+            "nullable": true
+          },
+          "chNFe": {
+            "type": "string",
+            "nullable": true
+          },
+          "qExport": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TNFeInfNFeDetProdRastro": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nLote": {
+            "type": "string",
+            "nullable": true
+          },
+          "qLote": {
+            "type": "string",
+            "nullable": true
+          },
+          "dFab": {
+            "type": "string",
+            "nullable": true
+          },
+          "dVal": {
+            "type": "string",
+            "nullable": true
+          },
+          "cAgreg": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Imposto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vTotTrib": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {}
+          },
+          "pis": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFeDetImpostoPIS"
+              }
+            ]
+          },
+          "pisst": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFeDetImpostoPISST"
+              }
+            ]
+          },
+          "cofins": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/COFINS"
+              }
+            ]
+          },
+          "cofinsst": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFeDetImpostoCOFINSST"
+              }
+            ]
+          },
+          "icmsufDest": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFeDetImpostoICMSUFDest"
+              }
+            ]
+          }
+        }
+      },
+      "TNFeInfNFeDetImpostoPIS": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "nullable": true
+          }
+        }
+      },
+      "TNFeInfNFeDetImpostoPISST": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "itemsElementName": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/ItemsChoiceType2"
+            }
+          },
+          "vPIS": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ItemsChoiceType2": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "pPIS",
+          "qBCProd",
+          "vAliqProd",
+          "vBC"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "COFINS": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "nullable": true
+          }
+        }
+      },
+      "TNFeInfNFeDetImpostoCOFINSST": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "itemsElementName": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/ItemsChoiceType4"
+            }
+          },
+          "vCOFINS": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ItemsChoiceType4": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "pCOFINS",
+          "qBCProd",
+          "vAliqProd",
+          "vBC"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "TNFeInfNFeDetImpostoICMSUFDest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vBCUFDest": {
+            "type": "string",
+            "nullable": true
+          },
+          "vBCFCPUFDest": {
+            "type": "string",
+            "nullable": true
+          },
+          "pFCPUFDest": {
+            "type": "string",
+            "nullable": true
+          },
+          "pICMSUFDest": {
+            "type": "string",
+            "nullable": true
+          },
+          "pICMSInter": {
+            "$ref": "#/components/schemas/TNFeInfNFeDetImpostoICMSUFDestPICMSInter"
+          },
+          "pICMSInterPart": {
+            "type": "string",
+            "nullable": true
+          },
+          "vFCPUFDest": {
+            "type": "string",
+            "nullable": true
+          },
+          "vICMSUFDest": {
+            "type": "string",
+            "nullable": true
+          },
+          "vICMSUFRemet": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TNFeInfNFeDetImpostoICMSUFDestPICMSInter": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item400",
+          "Item700",
+          "Item1200"
+        ],
+        "enum": [
+          0,
+          1,
+          2
+        ]
+      },
+      "TNFeInfNFeDetImpostoDevol": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "pDevol": {
+            "type": "string",
+            "nullable": true
+          },
+          "ipi": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFeDetImpostoDevolIPI"
+              }
+            ]
+          }
+        }
+      },
+      "TNFeInfNFeDetImpostoDevolIPI": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vIPIDevol": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Total": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "icmsTot": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ICMSTot"
+              }
+            ]
+          },
+          "issqNtot": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ISSQNtot"
+              }
+            ]
+          },
+          "retTrib": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/RetTrib"
+              }
+            ]
+          }
+        }
+      },
+      "ICMSTot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vBC": {
+            "type": "string",
+            "nullable": true
+          },
+          "vICMS": {
+            "type": "string",
+            "nullable": true
+          },
+          "vICMSDeson": {
+            "type": "string",
+            "nullable": true
+          },
+          "vFCPUFDest": {
+            "type": "string",
+            "nullable": true
+          },
+          "vICMSUFDest": {
+            "type": "string",
+            "nullable": true
+          },
+          "vICMSUFRemet": {
+            "type": "string",
+            "nullable": true
+          },
+          "vFCP": {
+            "type": "string",
+            "nullable": true
+          },
+          "vBCST": {
+            "type": "string",
+            "nullable": true
+          },
+          "vST": {
+            "type": "string",
+            "nullable": true
+          },
+          "vFCPST": {
+            "type": "string",
+            "nullable": true
+          },
+          "vFCPSTRet": {
+            "type": "string",
+            "nullable": true
+          },
+          "vProd": {
+            "type": "string",
+            "nullable": true
+          },
+          "vFrete": {
+            "type": "string",
+            "nullable": true
+          },
+          "vSeg": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "vII": {
+            "type": "string",
+            "nullable": true
+          },
+          "vIPI": {
+            "type": "string",
+            "nullable": true
+          },
+          "vIPIDevol": {
+            "type": "string",
+            "nullable": true
+          },
+          "vPIS": {
+            "type": "string",
+            "nullable": true
+          },
+          "vCOFINS": {
+            "type": "string",
+            "nullable": true
+          },
+          "vOutro": {
+            "type": "string",
+            "nullable": true
+          },
+          "vNF": {
+            "type": "string",
+            "nullable": true
+          },
+          "vTotTrib": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ISSQNtot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vServ": {
+            "type": "string",
+            "nullable": true
+          },
+          "vBC": {
+            "type": "string",
+            "nullable": true
+          },
+          "vISS": {
+            "type": "string",
+            "nullable": true
+          },
+          "vPIS": {
+            "type": "string",
+            "nullable": true
+          },
+          "vCOFINS": {
+            "type": "string",
+            "nullable": true
+          },
+          "dCompet": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDeducao": {
+            "type": "string",
+            "nullable": true
+          },
+          "vOutro": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDescIncond": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDescCond": {
+            "type": "string",
+            "nullable": true
+          },
+          "vISSRet": {
+            "type": "string",
+            "nullable": true
+          },
+          "cRegTrib": {
+            "$ref": "#/components/schemas/TNFeInfNFeTotalISSQNtotCRegTrib"
+          },
+          "cRegTribSpecified": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TNFeInfNFeTotalISSQNtotCRegTrib": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2",
+          "Item3",
+          "Item4",
+          "Item5",
+          "Item6"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "RetTrib": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vRetPIS": {
+            "type": "string",
+            "nullable": true
+          },
+          "vRetCOFINS": {
+            "type": "string",
+            "nullable": true
+          },
+          "vRetCSLL": {
+            "type": "string",
+            "nullable": true
+          },
+          "vBCIRRF": {
+            "type": "string",
+            "nullable": true
+          },
+          "vIRRF": {
+            "type": "string",
+            "nullable": true
+          },
+          "vBCRetPrev": {
+            "type": "string",
+            "nullable": true
+          },
+          "vRetPrev": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Transp": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "modFrete": {
+            "$ref": "#/components/schemas/TNFeInfNFeTranspModFrete"
+          },
+          "transporta": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFeTranspTransporta"
+              }
+            ]
+          },
+          "retTransp": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFeTranspRetTransp"
+              }
+            ]
+          },
+          "items": {
+            "type": "array",
+            "nullable": true,
+            "items": {}
+          },
+          "itemsElementName": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/ItemsChoiceType5"
+            }
+          },
+          "vol": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/TNFeInfNFeTranspVol"
+            }
+          }
+        }
+      },
+      "TNFeInfNFeTranspModFrete": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item0",
+          "Item1",
+          "Item2",
+          "Item3",
+          "Item4",
+          "Item9"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "TNFeInfNFeTranspTransporta": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemElementName": {
+            "$ref": "#/components/schemas/ItemChoiceType6"
+          },
+          "xNome": {
+            "type": "string",
+            "nullable": true
+          },
+          "ie": {
+            "type": "string",
+            "nullable": true
+          },
+          "xEnder": {
+            "type": "string",
+            "nullable": true
+          },
+          "xMun": {
+            "type": "string",
+            "nullable": true
+          },
+          "uf": {
+            "$ref": "#/components/schemas/UF"
+          },
+          "ufSpecified": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ItemChoiceType6": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "CNPJ",
+          "CPF"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "TNFeInfNFeTranspRetTransp": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "vServ": {
+            "type": "string",
+            "nullable": true
+          },
+          "vBCRet": {
+            "type": "string",
+            "nullable": true
+          },
+          "pICMSRet": {
+            "type": "string",
+            "nullable": true
+          },
+          "vICMSRet": {
+            "type": "string",
+            "nullable": true
+          },
+          "cfop": {
+            "type": "string",
+            "nullable": true
+          },
+          "cMunFG": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ItemsChoiceType5": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "balsa",
+          "reboque",
+          "vagao",
+          "veicTransp"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "TNFeInfNFeTranspVol": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "qVol": {
+            "type": "string",
+            "nullable": true
+          },
+          "esp": {
+            "type": "string",
+            "nullable": true
+          },
+          "marca": {
+            "type": "string",
+            "nullable": true
+          },
+          "nVol": {
+            "type": "string",
+            "nullable": true
+          },
+          "pesoL": {
+            "type": "string",
+            "nullable": true
+          },
+          "pesoB": {
+            "type": "string",
+            "nullable": true
+          },
+          "lacres": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Lacres"
+            }
+          }
+        }
+      },
+      "Lacres": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nLacre": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Cobr": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fat": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Fat"
+              }
+            ]
+          },
+          "dup": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Dup"
+            }
+          }
+        }
+      },
+      "Fat": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nFat": {
+            "type": "string",
+            "nullable": true
+          },
+          "vOrig": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDesc": {
+            "type": "string",
+            "nullable": true
+          },
+          "vLiq": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Dup": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nDup": {
+            "type": "string",
+            "nullable": true
+          },
+          "dVenc": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDup": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Pag": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "detPag": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/TNFeInfNFePagDetPag"
+            }
+          },
+          "vTroco": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TNFeInfNFePagDetPag": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "indPag": {
+            "$ref": "#/components/schemas/TNFeInfNFePagDetPagIndPag"
+          },
+          "indPagSpecified": {
+            "type": "boolean"
+          },
+          "tPag": {
+            "$ref": "#/components/schemas/TNFeInfNFePagDetPagTPag"
+          },
+          "vPag": {
+            "type": "string",
+            "nullable": true
+          },
+          "card": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TNFeInfNFePagDetPagCard"
+              }
+            ]
+          }
+        }
+      },
+      "TNFeInfNFePagDetPagIndPag": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item0",
+          "Item1"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "TNFeInfNFePagDetPagTPag": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item01",
+          "Item02",
+          "Item03",
+          "Item04",
+          "Item05",
+          "Item10",
+          "Item11",
+          "Item12",
+          "Item13",
+          "Item14",
+          "Item15",
+          "Item90",
+          "Item99"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "TNFeInfNFePagDetPagCard": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tpIntegra": {
+            "$ref": "#/components/schemas/TNFeInfNFePagDetPagCardTpIntegra"
+          },
+          "cnpj": {
+            "type": "string",
+            "nullable": true
+          },
+          "tBand": {
+            "$ref": "#/components/schemas/TNFeInfNFePagDetPagCardTBand"
+          },
+          "tBandSpecified": {
+            "type": "boolean"
+          },
+          "cAut": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TNFeInfNFePagDetPagCardTpIntegra": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item1",
+          "Item2"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "TNFeInfNFePagDetPagCardTBand": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item01",
+          "Item02",
+          "Item03",
+          "Item04",
+          "Item05",
+          "Item06",
+          "Item07",
+          "Item08",
+          "Item09",
+          "Item99"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "InfAdic": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "infAdFisco": {
+            "type": "string",
+            "nullable": true
+          },
+          "infCpl": {
+            "type": "string",
+            "nullable": true
+          },
+          "obsCont": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/TNFeInfNFeInfAdicObsCont"
+            }
+          },
+          "obsFisco": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/TNFeInfNFeInfAdicObsFisco"
+            }
+          },
+          "procRef": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/TNFeInfNFeInfAdicProcRef"
+            }
+          }
+        }
+      },
+      "TNFeInfNFeInfAdicObsCont": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "xTexto": {
+            "type": "string",
+            "nullable": true
+          },
+          "xCampo": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TNFeInfNFeInfAdicObsFisco": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "xTexto": {
+            "type": "string",
+            "nullable": true
+          },
+          "xCampo": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TNFeInfNFeInfAdicProcRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nProc": {
+            "type": "string",
+            "nullable": true
+          },
+          "indProc": {
+            "$ref": "#/components/schemas/TNFeInfNFeInfAdicProcRefIndProc"
+          }
+        }
+      },
+      "TNFeInfNFeInfAdicProcRefIndProc": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "Item0",
+          "Item1",
+          "Item2",
+          "Item3",
+          "Item9"
+        ],
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "Exporta": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ufSaidaPais": {
+            "$ref": "#/components/schemas/UF"
+          },
+          "xLocExporta": {
+            "type": "string",
+            "nullable": true
+          },
+          "xLocDespacho": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Compra": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "xNEmp": {
+            "type": "string",
+            "nullable": true
+          },
+          "xPed": {
+            "type": "string",
+            "nullable": true
+          },
+          "xCont": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Cana": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "safra": {
+            "type": "string",
+            "nullable": true
+          },
+          "ref": {
+            "type": "string",
+            "nullable": true
+          },
+          "forDia": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/ForDia"
+            }
+          },
+          "qTotMes": {
+            "type": "string",
+            "nullable": true
+          },
+          "qTotAnt": {
+            "type": "string",
+            "nullable": true
+          },
+          "qTotGer": {
+            "type": "string",
+            "nullable": true
+          },
+          "deduc": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Deduc"
+            }
+          },
+          "vFor": {
+            "type": "string",
+            "nullable": true
+          },
+          "vTotDed": {
+            "type": "string",
+            "nullable": true
+          },
+          "vLiqFor": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ForDia": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "qtde": {
+            "type": "string",
+            "nullable": true
+          },
+          "dia": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Deduc": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "xDed": {
+            "type": "string",
+            "nullable": true
+          },
+          "vDed": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "InfRespTec": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "cnpj": {
+            "type": "string",
+            "nullable": true
+          },
+          "xContato": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "fone": {
+            "type": "string",
+            "nullable": true
+          },
+          "idCSRT": {
+            "type": "string",
+            "nullable": true
+          },
+          "hashCSRT": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        }
+      },
+      "InfNFeSupl": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "qrCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlChave": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Signature": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "signedInfo": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SignedInfoType"
+              }
+            ]
+          },
+          "signatureValue": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SignatureValueType"
+              }
+            ]
+          },
+          "keyInfo": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/KeyInfoType"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SignedInfoType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "canonicalizationMethod": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CanonicalizationMethod"
+              }
+            ]
+          },
+          "signatureMethod": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SignatureMethod"
+              }
+            ]
+          },
+          "reference": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceType"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CanonicalizationMethod": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "algorithmLocal": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SignatureMethod": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "algorithmLocal": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ReferenceType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "transforms": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "$ref": "#/components/schemas/Transform"
+            }
+          },
+          "digestMethod": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DigestMethod"
+              }
+            ]
+          },
+          "digestValue": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "uri": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Transform": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "xPath": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "algorithm": {
+            "$ref": "#/components/schemas/Algorithm"
+          }
+        }
+      },
+      "Algorithm": {
+        "type": "integer",
+        "description": "",
+        "x-enumNames": [
+          "httpwwww3org200009xmldsigenvelopedsignature",
+          "httpwwww3orgTR2001RECxmlc14n20010315"
+        ],
+        "enum": [
+          0,
+          1
+        ]
+      },
+      "DigestMethod": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "algorithmLocal": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "SignatureValueType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
+        }
+      },
+      "KeyInfoType": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "x509Data": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/X509Data"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "X509Data": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "x509Certificate": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          }
         }
       }
     }
