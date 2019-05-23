@@ -1143,7 +1143,7 @@
     },
     "Mod": {
       "type": "integer",
-      "description": "Código do modelo do Documento Fiscal \n55 = NF-e \n65 = NFC-e",
+      "description": "Código do modelo do Documento Fiscal<br />55 = NF-e<br />65 = NFC-e",
       "x-enumNames": [
         "NFe",
         "NFCe"
@@ -1155,7 +1155,7 @@
     },
     "TpNF": {
       "type": "integer",
-      "description": "Tipo do Documento Fiscal (0 - entrada; 1 - saída)\n ",
+      "description": "Tipo do Documento Fiscal (0 - entrada; 1 - saída)<br /> ",
       "x-enumNames": [
         "Entrada",
         "Saida"
@@ -1181,7 +1181,7 @@
     },
     "TpImp": {
       "type": "integer",
-      "description": "Formato de impressão do DANFE:\n0-sem DANFE;\n1-DANFe Retrato; \n2-DANFe Paisagem;\n3-DANFe Simplificado; \n4-DANFe NFC-e;\n5-DANFe NFC-e em mensagem eletrônica\n            ",
+      "description": "Formato de impressão do DANFE:<br />0-sem DANFE;<br />1-DANFe Retrato;<br />2-DANFe Paisagem;<br />3-DANFe Simplificado;<br />4-DANFe NFC-e;<br />5-DANFe NFC-e em mensagem eletrônica<br />            ",
       "x-enumNames": [
         "Sem_DANFE",
         "DANFe_Retrato",
@@ -1201,7 +1201,7 @@
     },
     "TpEmis": {
       "type": "integer",
-      "description": " Forma de emissão da NF-e\n 1 - Normal;\n 2 - Contingência FS\n 3 - Contingência SCAN\n 4 - Contingência DPEC\n 5 - Contingência FSDA\n 6 - Contingência SVC - AN\n 7 - Contingência SVC - RS\n 9 - Contingência off-line NFC-e\n ",
+      "description": " Forma de emissão da NF-e<br /> 1 - Normal;<br /> 2 - Contingência FS<br /> 3 - Contingência SCAN<br /> 4 - Contingência DPEC<br /> 5 - Contingência FSDA<br /> 6 - Contingência SVC - AN<br /> 7 - Contingência SVC - RS<br /> 9 - Contingência off-line NFC-e<br /> ",
       "x-enumNames": [
         "Normal",
         "Contingencia_FS",
@@ -1225,7 +1225,7 @@
     },
     "TpAmb": {
       "type": "integer",
-      "description": "Identificação do Ambiente\n1 - Produção\n2 - Homologação\n            ",
+      "description": "Identificação do Ambiente<br />1 - Produção<br />2 - Homologação<br />            ",
       "x-enumNames": [
         "Producao",
         "Homologacao"
@@ -1237,7 +1237,7 @@
     },
     "FinNFe": {
       "type": "integer",
-      "description": "Finalidade da emissão da NF-e:\n1 - NFe normal;\n2 - NFe complementar;\n3 - NFe de ajuste;\n4 - Devolução/Retorno;\n            ",
+      "description": "Finalidade da emissão da NF-e:<br />1 - NFe normal;<br />2 - NFe complementar;<br />3 - NFe de ajuste;<br />4 - Devolução/Retorno;<br />            ",
       "x-enumNames": [
         "NFe_Normal",
         "NFe_Complementar",
