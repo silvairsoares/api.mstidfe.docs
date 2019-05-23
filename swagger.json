@@ -1143,7 +1143,7 @@
     },
     "Mod": {
       "type": "integer",
-      "description": "Código do modelo do Documento Fiscal <br />55 = NF-e <br />65 = NFC-e",
+      "description": "Código do modelo do Documento Fiscal \n55 = NF-e \n65 = NFC-e",
       "x-enumNames": [
         "NFe",
         "NFCe"
@@ -1181,7 +1181,7 @@
     },
     "TpImp": {
       "type": "integer",
-      "description": "Formato de impressão do DANFE:\n0-sem DANFE;\n1-DANFe Retrato;<br />2-DANFe Paisagem;\n3-DANFe Simplificado;<br />4-DANFe NFC-e;\n5-DANFe NFC-e em mensagem eletrônica\n            ",
+      "description": "Formato de impressão do DANFE:\n0-sem DANFE;\n1-DANFe Retrato; \n2-DANFe Paisagem;\n3-DANFe Simplificado; \n4-DANFe NFC-e;\n5-DANFe NFC-e em mensagem eletrônica\n            ",
       "x-enumNames": [
         "Sem_DANFE",
         "DANFe_Retrato",
