@@ -1203,24 +1203,24 @@
       "type": "integer",
       "description": "",
       "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4",
-        "Item5",
-        "Item6",
-        "Item7",
-        "Item9"
+        "Normal",
+        "Contingencia_FS",
+        "Contingencia_SCAN",
+        "Contingencia_DPEC",
+        "Contingencia_FSDA",
+        "Contingencia_SVC_AN",
+        "Contingencia_SVC_RS",
+        "Contingencia_OffLine_NFCe"
       ],
       "enum": [
-        0,
         1,
         2,
         3,
         4,
         5,
         6,
-        7
+        7,
+        9
       ]
     },
     "TpAmb": {
