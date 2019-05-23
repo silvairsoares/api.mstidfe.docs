@@ -1143,7 +1143,7 @@
     },
     "Mod": {
       "type": "integer",
-      "description": "",
+      "description": "Código do modelo do Documento Fiscal\n55 = NF-e; \n65 = NFC-e.",
       "x-enumNames": [
         "NFe",
         "NFCe"
@@ -1155,7 +1155,7 @@
     },
     "TpNF": {
       "type": "integer",
-      "description": "",
+      "description": "Tipo do Documento Fiscal (0 - entrada; 1 - saída)\n ",
       "x-enumNames": [
         "Entrada",
         "Saida"
@@ -1167,7 +1167,7 @@
     },
     "IdDest": {
       "type": "integer",
-      "description": "",
+      "description": "Identificador de Local de destino da operação (1-Interna;2-Interestadual;3-Exterior)",
       "x-enumNames": [
         "Interna",
         "Interestadual",
@@ -1181,7 +1181,7 @@
     },
     "TpImp": {
       "type": "integer",
-      "description": "",
+      "description": "Formato de impressão do DANFE:\n0-sem DANFE;\n1-DANFe Retrato; \n2-DANFe Paisagem;\n3-DANFe Simplificado; \n4-DANFe NFC-e;\n5-DANFe NFC-e em mensagem eletrônica\n            ",
       "x-enumNames": [
         "Sem_DANFE",
         "DANFe_Retrato",
@@ -1201,7 +1201,7 @@
     },
     "TpEmis": {
       "type": "integer",
-      "description": "",
+      "description": "Forma de emissão da NF-e\n1 - Normal;\n2 - Contingência FS\n3 - Contingência SCAN\n4 - Contingência DPEC\n5 - Contingência FSDA\n6 - Contingência SVC - AN\n7 - Contingência SVC - RS\n9 - Contingência off-line NFC-e\n            ",
       "x-enumNames": [
         "Normal",
         "Contingencia_FS",
@@ -1225,30 +1225,30 @@
     },
     "TpAmb": {
       "type": "integer",
-      "description": "",
+      "description": "Identificação do Ambiente\n1 - Produção\n2 - Homologação\n            ",
       "x-enumNames": [
-        "Item1",
-        "Item2"
+        "Producao",
+        "Homologacao"
       ],
       "enum": [
-        0,
-        1
+        1,
+        2
       ]
     },
     "FinNFe": {
       "type": "integer",
-      "description": "",
+      "description": "Finalidade da emissão da NF-e:\n1 - NFe normal\n2 - NFe complementar\n3 - NFe de ajuste\n4 - Devolução/Retorno\n            ",
       "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4"
+        "NFe_Normal",
+        "NFe_Complementar",
+        "NFe_de_ajuste",
+        "Devolucao_Retorno"
       ],
       "enum": [
-        0,
         1,
         2,
-        3
+        3,
+        4
       ]
     },
     "IndFinal": {
