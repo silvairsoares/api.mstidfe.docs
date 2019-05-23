@@ -1077,7 +1077,7 @@
     },
     "UF": {
       "type": "integer",
-      "description": "",
+      "description": "Acre",
       "x-enumNames": [
         "RO",
         "AC",
