@@ -1077,7 +1077,7 @@
     },
     "UF": {
       "type": "integer",
-      "description": "Acre",
+      "description": "Acre - AC - 12<br />Alagoas - AL - 27<br />Amapá - AP - 16<br />Amazonas - AM - 13<br />Bahia - BA - 29<br />Ceará - CE - 23<br />Distrito Federal - DF - 53<br />Espírito Santo - ES - 32<br />Goiás - GO - 52<br />Maranhão - MA - 21<br />Mato Grosso - MT - 51<br />Mato Grosso do Sul - MS - 50<br />Minas Gerais - MG - 31<br />Pará - PA - 15<br />Paraíba - PB - 25<br />Paraná - PR - 41<br />Pernambuco - PE - 26<br />Piauí - PI - 22<br />Rio de Janeiro - RJ - 33<br />Rio Grande do Norte - RN - 24<br />Rio Grande do Sul - RS - 43<br />Rondônia - RO - 11<br />Roraima - RR - 14<br />Santa Catarina - SC - 42<br />São Paulo - SP - 35<br />Sergipe - SE - 28<br />Tocantins - TO - 17<br />Ambiente nacional - AN - 91<br />Exterior - EX - 99",
       "x-enumNames": [
         "RO",
         "AC",
@@ -1143,7 +1143,7 @@
     },
     "Mod": {
       "type": "integer",
-      "description": "Código do modelo do Documento Fiscal<br />55 = NF-e<br />65 = NFC-e",
+      "description": "Código do modelo do Documento Fiscal<br />55 = NF-e<br />65 = NFC-e<br />            ",
       "x-enumNames": [
         "NFe",
         "NFCe"
@@ -1155,7 +1155,7 @@
     },
     "TpNF": {
       "type": "integer",
-      "description": "Tipo do Documento Fiscal (0 - entrada; 1 - saída)<br /> ",
+      "description": "Tipo do Documento Fiscal<br />0 - entrada;<br />1 - saída",
       "x-enumNames": [
         "Entrada",
         "Saida"
@@ -1181,7 +1181,7 @@
     },
     "TpImp": {
       "type": "integer",
-      "description": "Formato de impressão do DANFE:<br />0-sem DANFE;<br />1-DANFe Retrato;<br />2-DANFe Paisagem;<br />3-DANFe Simplificado;<br />4-DANFe NFC-e;<br />5-DANFe NFC-e em mensagem eletrônica<br />            ",
+      "description": "Formato de impressão do DANFE:<br />0-sem DANFE;<br />1-DANFe Retrato; <br />2-DANFe Paisagem;<br />3-DANFe Simplificado; <br />4-DANFe NFC-e;<br />5-DANFe NFC-e em mensagem eletrônica<br />            ",
       "x-enumNames": [
         "Sem_DANFE",
         "DANFe_Retrato",
