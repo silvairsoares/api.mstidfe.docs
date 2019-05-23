@@ -1201,7 +1201,7 @@
     },
     "TpEmis": {
       "type": "integer",
-      "description": "Forma de emissão da NF-e\n1 - Normal;\n2 - Contingência FS\n3 - Contingência SCAN\n4 - Contingência DPEC\n5 - Contingência FSDA\n6 - Contingência SVC - AN\n7 - Contingência SVC - RS\n9 - Contingência off-line NFC-e\n            ",
+      "description": " Forma de emissão da NF-e\n 1 - Normal;\n 2 - Contingência FS\n 3 - Contingência SCAN\n 4 - Contingência DPEC\n 5 - Contingência FSDA\n 6 - Contingência SVC - AN\n 7 - Contingência SVC - RS\n 9 - Contingência off-line NFC-e\n ",
       "x-enumNames": [
         "Normal",
         "Contingencia_FS",
