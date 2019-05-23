@@ -1143,7 +1143,7 @@
     },
     "Mod": {
       "type": "integer",
-      "description": "Código do modelo do Documento Fiscal\\n\\n\n55 = NF-e\\n\\n\n65 = NFC-e\\n\\n",
+      "description": "Código do modelo do Documento Fiscal\n\n  '55 = NF-e\\n\\n\n65 = NFC-e\\n\\n",
       "x-enumNames": [
         "NFe",
         "NFCe"
