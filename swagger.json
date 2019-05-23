@@ -1237,7 +1237,7 @@
     },
     "FinNFe": {
       "type": "integer",
-      "description": "Finalidade da emissão da NF-e:\n1 - NFe normal\n2 - NFe complementar\n3 - NFe de ajuste\n4 - Devolução/Retorno\n            ",
+      "description": "Finalidade da emissão da NF-e:\n1 - NFe normal;\n2 - NFe complementar;\n3 - NFe de ajuste;\n4 - Devolução/Retorno;\n            ",
       "x-enumNames": [
         "NFe_Normal",
         "NFe_Complementar",
