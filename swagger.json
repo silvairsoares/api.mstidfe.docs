@@ -215,7 +215,8 @@
         "tags": [
           "NFe"
         ],
-        "summary": "Pesquisa todas as revendas",
+        "summary": "Pesquisa todas as NF-e",
+        "description": "Exemplo:\n            \n    POST /Todo\n    {\n       \"id\": 1,\n       \"name\": \"Item1\",\n       \"iscomplete\": true\n    }\n            ",
         "operationId": "NFe_GetNFEs",
         "parameters": [
           {
@@ -917,6 +918,7 @@
     },
     "InfNFe": {
       "type": "object",
+      "description": "           Informações da Nota Fiscal eletrônica \n           ",
       "additionalProperties": false,
       "properties": {
         "ide": {
@@ -932,10 +934,20 @@
           "$ref": "#/definitions/Dest"
         },
         "retirada": {
-          "$ref": "#/definitions/TLocal"
+          "description": "           Identificação do Local de Retirada \n           Informar apenas quando for diferente do endereço do remetente \n           ",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TLocal"
+            }
+          ]
         },
         "entrega": {
-          "$ref": "#/definitions/TLocal"
+          "description": "           Identificação do Local de Entrega \n           Informar apenas quando for diferente do endereço do destinatário \n           ",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TLocal"
+            }
+          ]
         },
         "autXML": {
           "type": "array",
@@ -986,6 +998,7 @@
     },
     "Ide": {
       "type": "object",
+      "description": "           Identificação da NF-e\n           ",
       "additionalProperties": false,
       "required": [
         "cUF",
@@ -1002,28 +1015,34 @@
       ],
       "properties": {
         "cUF": {
-          "$ref": "#/definitions/UF"
+          "$ref": "#/definitions/UFSemExterior"
         },
         "cNF": {
-          "type": "string"
+          "type": "string",
+          "description": "           Código numérico que compõe a Chave de Acesso. \n           Número aleatório gerado pelo emitente para cada NF-e. \n           "
         },
         "natOp": {
-          "type": "string"
+          "type": "string",
+          "description": "           Descrição da Natureza da Operação \n           "
         },
         "mod": {
           "$ref": "#/definitions/Mod"
         },
         "serie": {
-          "type": "string"
+          "type": "string",
+          "description": "           Série do Documento Fiscal \n           Série normal 0-889 \n           Avulsa Fisco 890-899 \n           SCAN 900-999 \n           "
         },
         "nNF": {
-          "type": "string"
+          "type": "string",
+          "description": "           Número do Documento Fiscal \n           "
         },
         "dhEmi": {
-          "type": "string"
+          "type": "string",
+          "description": "           Data e Hora de emissão do Documento Fiscal (AAAA-MM-DDThh:mm:ssTZD) \n           ex.: 2012-09-01T13:00:00-03:00 \n           "
         },
         "dhSaiEnt": {
-          "type": "string"
+          "type": "string",
+          "description": "           Data e Hora da saída ou de entrada da mercadoria / produto (AAAA-MM-DDTHH:mm:ssTZD) \n           "
         },
         "tpNF": {
           "$ref": "#/definitions/TpNF"
@@ -1032,7 +1051,8 @@
           "$ref": "#/definitions/IdDest"
         },
         "cMunFG": {
-          "type": "string"
+          "type": "string",
+          "description": "           Código do Município de Ocorrência do Fato Gerador \n           Utilizar a tabela do IBGE \n           "
         },
         "tpImp": {
           "$ref": "#/definitions/TpImp"
@@ -1041,7 +1061,8 @@
           "$ref": "#/definitions/TpEmis"
         },
         "cDV": {
-          "type": "string"
+          "type": "string",
+          "description": "           Digito Verificador da Chave de Acesso da NF-e \n           "
         },
         "tpAmb": {
           "$ref": "#/definitions/TpAmb"
@@ -1059,13 +1080,16 @@
           "$ref": "#/definitions/ProcEmi"
         },
         "verProc": {
-          "type": "string"
+          "type": "string",
+          "description": "           Versão do aplicativo utilizado no processo de emissão \n           "
         },
         "dhCont": {
-          "type": "string"
+          "type": "string",
+          "description": "           Informar a data e hora de entrada em contingência contingência \n           no formato  (AAAA-MM-DDThh:mm:ssTZD) \n           ex.: 2012-09-01T13:00:00-03:00. \n           "
         },
         "xJust": {
-          "type": "string"
+          "type": "string",
+          "description": "           Informar a Justificativa da entrada em contingência  \n           "
         },
         "nFref": {
           "type": "array",
@@ -1075,9 +1099,9 @@
         }
       }
     },
-    "UF": {
+    "UFSemExterior": {
       "type": "integer",
-      "description": "Acre - AC - 12<br />Alagoas - AL - 27<br />Amapá - AP - 16<br />Amazonas - AM - 13<br />Bahia - BA - 29<br />Ceará - CE - 23<br />Distrito Federal - DF - 53<br />Espírito Santo - ES - 32<br />Goiás - GO - 52<br />Maranhão - MA - 21<br />Mato Grosso - MT - 51<br />Mato Grosso do Sul - MS - 50<br />Minas Gerais - MG - 31<br />Pará - PA - 15<br />Paraíba - PB - 25<br />Paraná - PR - 41<br />Pernambuco - PE - 26<br />Piauí - PI - 22<br />Rio de Janeiro - RJ - 33<br />Rio Grande do Norte - RN - 24<br />Rio Grande do Sul - RS - 43<br />Rondônia - RO - 11<br />Roraima - RR - 14<br />Santa Catarina - SC - 42<br />São Paulo - SP - 35<br />Sergipe - SE - 28<br />Tocantins - TO - 17<br />Ambiente nacional - AN - 91<br />Exterior - EX - 99",
+      "description": "           Código da UF da tabela do IBGE\n           \n           11 - Rondônia/RO \n           12 - Acre/AC \n           13 - Amazonas/AM \n           14 - Roraima/RR \n           15 - Pará/PA \n           16 - Amapá/AP \n           17 - Tocantins/TO \n           21 - Maranhão/MA \n           22 - Piauí/PI \n           23 - Ceará/CE \n           24 - Rio Grande do Norte/RN \n           25 - Paraíba/PB \n           26 - Pernambuco/PE \n           27 - Alagoas/AL \n           28 - Sergipe/SE \n           29 - Bahia/BA \n           31 - Minas Gerais/MG \n           32 - Espírito Santo/ES \n           33 - Rio de Janeiro/RJ \n           35 - São Paulo/SP \n           41 - Paraná/PR \n           42 - Santa Catarina/SC \n           43 - Rio Grande do Sul/RS \n           50 - Mato Grosso do Sul/MS \n           51 - Mato Grosso/MT \n           52 - Goiás/GO \n           53 - Distrito Federal/DF \n           ",
       "x-enumNames": [
         "RO",
         "AC",
@@ -1105,9 +1129,7 @@
         "MS",
         "MT",
         "GO",
-        "DF",
-        "AN",
-        "EX"
+        "DF"
       ],
       "enum": [
         11,
@@ -1136,14 +1158,12 @@
         50,
         51,
         52,
-        53,
-        91,
-        99
+        53
       ]
     },
     "Mod": {
       "type": "integer",
-      "description": "Código do modelo do Documento Fiscal<br />55 = NF-e<br />65 = NFC-e<br />            ",
+      "description": "           Código do modelo do Documento Fiscal\n           \n           55 - NF-e \n           65 - NFC-e \n           ",
       "x-enumNames": [
         "NFe",
         "NFCe"
@@ -1155,7 +1175,7 @@
     },
     "TpNF": {
       "type": "integer",
-      "description": "Tipo do Documento Fiscal<br />0 - entrada;<br />1 - saída",
+      "description": "           Tipo do Documento Fiscal\n           \n           0 - entrada; \n           1 - saída \n           ",
       "x-enumNames": [
         "Entrada",
         "Saida"
@@ -1167,7 +1187,7 @@
     },
     "IdDest": {
       "type": "integer",
-      "description": "Identificador de Local de destino da operação (1-Interna;2-Interestadual;3-Exterior)",
+      "description": "           Identificador de Local de destino da operação\n           \n           1 - Interna \n           2 - Interestadual \n           3 - Exterior \n           ",
       "x-enumNames": [
         "Interna",
         "Interestadual",
@@ -1181,7 +1201,7 @@
     },
     "TpImp": {
       "type": "integer",
-      "description": "Formato de impressão do DANFE:<br />0-sem DANFE;<br />1-DANFe Retrato; <br />2-DANFe Paisagem;<br />3-DANFe Simplificado; <br />4-DANFe NFC-e;<br />5-DANFe NFC-e em mensagem eletrônica<br />            ",
+      "description": "           Formato de impressão do DANFE\n           \n           0 - Sem DANFE \n           1 - DANFe Retrato \n           2 - DANFe Paisagem \n           3 - DANFe Simplificado \n           4 - DANFe NFC-e \n           5 - DANFe NFC-e em mensagem eletrônica \n           ",
       "x-enumNames": [
         "Sem_DANFE",
         "DANFe_Retrato",
@@ -1201,7 +1221,7 @@
     },
     "TpEmis": {
       "type": "integer",
-      "description": " Forma de emissão da NF-e<br /> 1 - Normal;<br /> 2 - Contingência FS<br /> 3 - Contingência SCAN<br /> 4 - Contingência DPEC<br /> 5 - Contingência FSDA<br /> 6 - Contingência SVC - AN<br /> 7 - Contingência SVC - RS<br /> 9 - Contingência off-line NFC-e<br /> ",
+      "description": "           Forma de emissão da NF-e\n           \n           1 - Normal \n           2 - Contingência FS \n           3 - Contingência SCAN \n           4 - Contingência DPEC \n           5 - Contingência FSDA \n           6 - Contingência SVC - AN \n           7 - Contingência SVC - RS \n           9 - Contingência off-line NFC-e \n           ",
       "x-enumNames": [
         "Normal",
         "Contingencia_FS",
@@ -1225,7 +1245,7 @@
     },
     "TpAmb": {
       "type": "integer",
-      "description": "Identificação do Ambiente<br />1 - Produção<br />2 - Homologação<br />            ",
+      "description": "            Identificação do Ambiente\n            \n            1 - Produção \n            2 - Homologação \n           ",
       "x-enumNames": [
         "Producao",
         "Homologacao"
@@ -1237,7 +1257,7 @@
     },
     "FinNFe": {
       "type": "integer",
-      "description": "Finalidade da emissão da NF-e:<br />1 - NFe normal;<br />2 - NFe complementar;<br />3 - NFe de ajuste;<br />4 - Devolução/Retorno;<br />            ",
+      "description": "           Finalidade da emissão da NF-e\n           \n           1 - NFe normal \n           2 - NFe complementar \n           3 - NFe de ajuste \n           4 - Devolução/Retorno \n           ",
       "x-enumNames": [
         "NFe_Normal",
         "NFe_Complementar",
@@ -1253,10 +1273,10 @@
     },
     "IndFinal": {
       "type": "integer",
-      "description": "",
+      "description": "           Indica operação com consumidor final\n           \n           0 - Não \n           1 - Consumidor Final \n           ",
       "x-enumNames": [
-        "Item0",
-        "Item1"
+        "Nao",
+        "Sim"
       ],
       "enum": [
         0,
@@ -1265,15 +1285,15 @@
     },
     "IndPres": {
       "type": "integer",
-      "description": "",
+      "description": "           Indicador de presença do comprador no estabelecimento comercial no momento da operação\n           \n           0 - Não se aplica (ex.: Nota Fiscal complementar ou de ajuste \n           1 - Operação presencial \n           2 - Não presencial, internet \n           3 - Não presencial, teleatendimento \n           4 - NFC-e entrega em domicílio \n           5 - Operação presencial, fora do estabelecimento \n           9 - Não presencial, outros \n           ",
       "x-enumNames": [
-        "Item0",
-        "Item1",
-        "Item2",
-        "Item3",
-        "Item4",
-        "Item5",
-        "Item9"
+        "NaoSeAplica",
+        "OperacaoPresencial",
+        "NaoPresencialInternet",
+        "NaoPresencialTeleatendimento",
+        "NFCeEntregaEmDomicilio",
+        "PresencialForaEstabelecimento",
+        "NaoPresencialOutros"
       ],
       "enum": [
         0,
@@ -1282,17 +1302,17 @@
         3,
         4,
         5,
-        6
+        9
       ]
     },
     "ProcEmi": {
       "type": "integer",
-      "description": "",
+      "description": "           Processo de emissão utilizado com a seguinte codificação\n           \n           0 - Emissão de NF-e com aplicativo do contribuinte \n           1 - Emissão de NF-e avulsa pelo Fisco \n           2 - Emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, \n           através do site do Fisco \n           3 - Emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco \n           ",
       "x-enumNames": [
-        "Item0",
-        "Item1",
-        "Item2",
-        "Item3"
+        "AplicativoContribuinte",
+        "AvulsaFisco",
+        "AvulsaContribuinte",
+        "AplicativoFisco"
       ],
       "enum": [
         0,
@@ -1303,6 +1323,7 @@
     },
     "TNFeInfNFeIdeNFref": {
       "type": "object",
+      "description": "           Grupo de infromações da NF referenciada \n           ",
       "additionalProperties": false,
       "required": [
         "itemElementName"
@@ -1310,7 +1331,12 @@
       "properties": {
         "item": {},
         "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType1"
+          "description": "           Grupo de informações da NF referenciada. Pode conter os seguintes tipos de documentos: \n           CTe - Conhecimento de transporte eletrônico \n           ECF - Cupom fiscal \n           NF  - Nota fiscal modelo 1/1A ou Nota fiscal modelo 2 \n           NFP - Nota fiscal do produtor \n           NFe - Nota fiscal eletrônica \n           ",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ItemChoiceType1"
+            }
+          ]
         }
       }
     },
@@ -1334,58 +1360,65 @@
     },
     "Emit": {
       "type": "object",
+      "description": "           Identificação do emitente\n           ",
       "additionalProperties": false,
       "required": [
-        "itemElementName",
         "crt"
       ],
       "properties": {
-        "item": {
-          "type": "string"
-        },
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType2"
+        "cpF_CNPJ": {
+          "$ref": "#/definitions/CPF_CNPJ"
         },
         "xNome": {
-          "type": "string"
+          "type": "string",
+          "description": "           Razão Social ou Nome do emitente \n           "
         },
         "xFant": {
-          "type": "string"
+          "type": "string",
+          "description": "           Nome fantasia \n           "
         },
         "enderEmit": {
           "$ref": "#/definitions/EnderEmit"
         },
         "ie": {
-          "type": "string"
+          "type": "string",
+          "description": "            \n           "
         },
         "iest": {
-          "type": "string"
+          "type": "string",
+          "description": "            \n           "
         },
         "im": {
-          "type": "string"
+          "type": "string",
+          "description": "            \n           "
         },
         "cnae": {
-          "type": "string"
+          "type": "string",
+          "description": "            \n           "
         },
         "crt": {
           "$ref": "#/definitions/CRT"
         }
       }
     },
-    "ItemChoiceType2": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "CNPJ",
-        "CPF"
-      ],
-      "enum": [
-        0,
-        1
-      ]
+    "CPF_CNPJ": {
+      "type": "object",
+      "description": "           Informar o CPF ou o CNPJ \n           ",
+      "additionalProperties": false,
+      "properties": {
+        "cnpj": {
+          "type": "string",
+          "description": "            CNPJ \n           "
+        },
+        "cpf": {
+          "type": "string",
+          "description": "            CPF \n           "
+        }
+      }
     },
     "EnderEmit": {
       "type": "object",
+      "description": "           Tipo Dados do Endereço do Emitente \n           ",
       "additionalProperties": false,
       "required": [
         "uf",
@@ -1396,49 +1429,64 @@
       ],
       "properties": {
         "xLgr": {
-          "type": "string"
+          "type": "string",
+          "description": "           Logradouro \n           "
         },
         "nro": {
-          "type": "string"
+          "type": "string",
+          "description": "           Número \n           "
         },
         "xCpl": {
-          "type": "string"
+          "type": "string",
+          "description": "           Complemento \n           "
         },
         "xBairro": {
-          "type": "string"
+          "type": "string",
+          "description": "           Bairro \n           "
         },
         "cMun": {
-          "type": "string"
+          "type": "string",
+          "description": "           Código do município \n           "
         },
         "xMun": {
-          "type": "string"
+          "type": "string",
+          "description": "           Nome do município \n           "
         },
         "uf": {
-          "$ref": "#/definitions/UF"
+          "$ref": "#/definitions/UFSemExterior"
         },
         "cep": {
-          "type": "string"
+          "type": "string",
+          "description": "           CEP \n           "
         },
         "cPais": {
           "$ref": "#/definitions/CodigoPais"
         },
         "cPaisSpecified": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "            \n           "
         },
         "xPais": {
-          "$ref": "#/definitions/TEnderEmiXPais"
+          "description": "            \n           ",
+          "allOf": [
+            {
+              "$ref": "#/definitions/TEnderEmiXPais"
+            }
+          ]
         },
         "xPaisSpecified": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "            \n           "
         },
         "fone": {
-          "type": "string"
+          "type": "string",
+          "description": "           Preencher com Código DDD + número do telefone \n           "
         }
       }
     },
     "CodigoPais": {
       "type": "integer",
-      "description": "",
+      "description": "           Código do país\n           \n           1058 - Brasil \n           ",
       "x-enumNames": [
         "Brasil"
       ],
@@ -1460,20 +1508,21 @@
     },
     "CRT": {
       "type": "integer",
-      "description": "",
+      "description": "           Código do Regime Tributário\n           \n           1 – Simples Nacional \n           2 – Simples Nacional – excesso de sublimite de receita bruta \n           3 – Regime Normal \n           ",
       "x-enumNames": [
-        "Item1",
-        "Item2",
-        "Item3"
+        "SimplesNacional",
+        "SimplesNacionalExcessoSublimite",
+        "RegimeNormal"
       ],
       "enum": [
-        0,
         1,
-        2
+        2,
+        3
       ]
     },
     "Avulsa": {
       "type": "object",
+      "description": "           Emissão NF-e avulsa, informar os dados do Fisco emitente\n           ",
       "additionalProperties": false,
       "required": [
         "uf"
@@ -1495,7 +1544,7 @@
           "type": "string"
         },
         "uf": {
-          "$ref": "#/definitions/UF"
+          "$ref": "#/definitions/UFSemExterior"
         },
         "nDAR": {
           "type": "string"
@@ -1516,6 +1565,7 @@
     },
     "Dest": {
       "type": "object",
+      "description": "           Identificação do Destinatário\n           ",
       "additionalProperties": false,
       "required": [
         "itemElementName",
@@ -1591,7 +1641,7 @@
           "type": "string"
         },
         "uf": {
-          "$ref": "#/definitions/UF"
+          "$ref": "#/definitions/UFComExterior"
         },
         "cep": {
           "type": "string"
@@ -1606,6 +1656,70 @@
           "type": "string"
         }
       }
+    },
+    "UFComExterior": {
+      "type": "integer",
+      "description": "           Código da UF da tabela do IBGE\n           \n           11 - Rondônia/RO \n           12 - Acre/AC \n           13 - Amazonas/AM \n           14 - Roraima/RR \n           15 - Pará/PA \n           16 - Amapá/AP \n           17 - Tocantins/TO \n           21 - Maranhão/MA \n           22 - Piauí/PI \n           23 - Ceará/CE \n           24 - Rio Grande do Norte/RN \n           25 - Paraíba/PB \n           26 - Pernambuco/PE \n           27 - Alagoas/AL \n           28 - Sergipe/SE \n           29 - Bahia/BA \n           31 - Minas Gerais/MG \n           32 - Espírito Santo/ES \n           33 - Rio de Janeiro/RJ \n           35 - São Paulo/SP \n           41 - Paraná/PR \n           42 - Santa Catarina/SC \n           43 - Rio Grande do Sul/RS \n           50 - Mato Grosso do Sul/MS \n           51 - Mato Grosso/MT \n           52 - Goiás/GO \n           53 - Distrito Federal/DF \n           99 - Exterior/EX \n           ",
+      "x-enumNames": [
+        "RO",
+        "AC",
+        "AM",
+        "RR",
+        "PA",
+        "AP",
+        "TO",
+        "MA",
+        "PI",
+        "CE",
+        "RN",
+        "PB",
+        "PE",
+        "AL",
+        "SE",
+        "BA",
+        "MG",
+        "ES",
+        "RJ",
+        "SP",
+        "PR",
+        "SC",
+        "RS",
+        "MS",
+        "MT",
+        "GO",
+        "DF",
+        "EX"
+      ],
+      "enum": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        31,
+        32,
+        33,
+        35,
+        41,
+        42,
+        43,
+        50,
+        51,
+        52,
+        53,
+        99
+      ]
     },
     "IndIEDest": {
       "type": "integer",
@@ -1625,16 +1739,9 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "itemElementName",
         "uf"
       ],
       "properties": {
-        "item": {
-          "type": "string"
-        },
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType4"
-        },
         "xNome": {
           "type": "string"
         },
@@ -1657,7 +1764,7 @@
           "type": "string"
         },
         "uf": {
-          "$ref": "#/definitions/UF"
+          "$ref": "#/definitions/UFSemExterior"
         },
         "cep": {
           "type": "string"
@@ -1679,20 +1786,9 @@
         }
       }
     },
-    "ItemChoiceType4": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "CNPJ",
-        "CPF"
-      ],
-      "enum": [
-        0,
-        1
-      ]
-    },
     "AutXML": {
       "type": "object",
+      "description": "           Pessoas autorizadas para o download do XML da NF-e \n           ",
       "additionalProperties": false,
       "required": [
         "itemElementName"
@@ -1720,6 +1816,7 @@
     },
     "Det": {
       "type": "object",
+      "description": "           Dados dos detalhes da NF-e\n           ",
       "additionalProperties": false,
       "properties": {
         "prod": {
@@ -1741,6 +1838,7 @@
     },
     "Prod": {
       "type": "object",
+      "description": "           Dados dos detalhes da NF-e\n           ",
       "additionalProperties": false,
       "required": [
         "indEscala",
@@ -1904,7 +2002,7 @@
           "type": "string"
         },
         "ufDesemb": {
-          "$ref": "#/definitions/UF"
+          "$ref": "#/definitions/UFSemExterior"
         },
         "dDesemb": {
           "type": "string"
@@ -1922,7 +2020,7 @@
           "type": "string"
         },
         "ufTerceiro": {
-          "$ref": "#/definitions/UF"
+          "$ref": "#/definitions/UFSemExterior"
         },
         "ufTerceiroSpecified": {
           "type": "boolean"
@@ -2055,6 +2153,7 @@
     },
     "Imposto": {
       "type": "object",
+      "description": "           Tributos incidentes nos produtos ou serviços da NF-e \n           ",
       "additionalProperties": false,
       "properties": {
         "vTotTrib": {
@@ -2242,6 +2341,7 @@
     },
     "Total": {
       "type": "object",
+      "description": "           Dados dos totais da NF-e \n           ",
       "additionalProperties": false,
       "properties": {
         "icmsTot": {
@@ -2428,6 +2528,7 @@
     },
     "Transp": {
       "type": "object",
+      "description": "           Dados dos transportes da NF-e \n           ",
       "additionalProperties": false,
       "required": [
         "modFrete"
@@ -2508,7 +2609,7 @@
           "type": "string"
         },
         "uf": {
-          "$ref": "#/definitions/UF"
+          "$ref": "#/definitions/UFSemExterior"
         },
         "ufSpecified": {
           "type": "boolean"
@@ -2608,6 +2709,7 @@
     },
     "Cobr": {
       "type": "object",
+      "description": "           Dados da cobrança da NF-e \n           ",
       "additionalProperties": false,
       "properties": {
         "fat": {
@@ -2656,6 +2758,7 @@
     },
     "Pag": {
       "type": "object",
+      "description": "           Dados de Pagamento. Obrigatório apenas para (NFC-e) NT 2012/004 \n           ",
       "additionalProperties": false,
       "properties": {
         "detPag": {
@@ -2809,6 +2912,7 @@
     },
     "InfAdic": {
       "type": "object",
+      "description": "           Informações adicionais da NF-e \n           ",
       "additionalProperties": false,
       "properties": {
         "infAdFisco": {
@@ -2896,13 +3000,14 @@
     },
     "Exporta": {
       "type": "object",
+      "description": "           Informações de exportação \n           ",
       "additionalProperties": false,
       "required": [
         "ufSaidaPais"
       ],
       "properties": {
         "ufSaidaPais": {
-          "$ref": "#/definitions/UF"
+          "$ref": "#/definitions/UFExterior"
         },
         "xLocExporta": {
           "type": "string"
@@ -2912,8 +3017,19 @@
         }
       }
     },
+    "UFExterior": {
+      "type": "integer",
+      "description": "           Sigla de estado para o exterior\n           \n           99 - Exterior/EX \n           ",
+      "x-enumNames": [
+        "EX"
+      ],
+      "enum": [
+        99
+      ]
+    },
     "Compra": {
       "type": "object",
+      "description": "           Informações de compras (Nota de Empenho, Pedido e Contrato) \n           ",
       "additionalProperties": false,
       "properties": {
         "xNEmp": {
@@ -2929,6 +3045,7 @@
     },
     "Cana": {
       "type": "object",
+      "description": "           Informações de registro aquisições de cana \n           ",
       "additionalProperties": false,
       "properties": {
         "safra": {
@@ -2995,6 +3112,7 @@
     },
     "InfRespTec": {
       "type": "object",
+      "description": "           Informações do Responsável Técnico pela emissão do DF-e \n           ",
       "additionalProperties": false,
       "properties": {
         "cnpj": {
@@ -3016,18 +3134,22 @@
     },
     "InfNFeSupl": {
       "type": "object",
+      "description": "           Informações suplementares Nota Fiscal \n           ",
       "additionalProperties": false,
       "properties": {
         "qrCode": {
-          "type": "string"
+          "type": "string",
+          "description": "           Texto com o QR-Code impresso no DANFE NFC-e \n           "
         },
         "urlChave": {
-          "type": "string"
+          "type": "string",
+          "description": "           Informar a URL da Consulta por chave de acesso da NFC-e \n           A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso. \n           "
         }
       }
     },
     "Signature": {
       "type": "object",
+      "description": "           Assinatura digital da NF-e \n           ",
       "additionalProperties": false,
       "properties": {
         "signedInfo": {
