@@ -29,7 +29,7 @@
     "/api/revenda": {
       "get": {
         "tags": [
-          "Revenda"
+          "Revendas"
         ],
         "summary": "Pesquisa todas as revendas",
         "operationId": "Revenda_GetRevendas",
@@ -37,11 +37,11 @@
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -57,7 +57,7 @@
       },
       "post": {
         "tags": [
-          "Revenda"
+          "Revendas"
         ],
         "summary": "Inclui uma nova revenda",
         "operationId": "Revenda_Post",
@@ -72,6 +72,7 @@
             "name": "RevendaView",
             "in": "body",
             "required": true,
+            "description": "Informações da revenda a ser incluida",
             "schema": {
               "$ref": "#/definitions/RevendaViewModel"
             },
@@ -80,11 +81,11 @@
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -99,7 +100,7 @@
       },
       "put": {
         "tags": [
-          "Revenda"
+          "Revendas"
         ],
         "summary": "Atualiza uma revenda específica",
         "operationId": "Revenda_Put",
@@ -114,6 +115,7 @@
             "name": "RevendaView",
             "in": "body",
             "required": true,
+            "description": "Informações da revenda a ser atualizada",
             "schema": {
               "$ref": "#/definitions/RevendaViewModel"
             },
@@ -122,11 +124,11 @@
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -143,7 +145,7 @@
     "/api/revenda/{Id}": {
       "get": {
         "tags": [
-          "Revenda"
+          "Revendas"
         ],
         "summary": "Pesquisa uma revenda específica",
         "operationId": "Revenda_GetRevenda",
@@ -153,16 +155,17 @@
             "name": "Id",
             "in": "path",
             "required": true,
+            "description": "Id da revenda a ser pesquisada",
             "x-nullable": true
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -170,14 +173,14 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IEntidade"
+              "$ref": "#/definitions/RevendaViewModel"
             }
           }
         }
       },
       "delete": {
         "tags": [
-          "Revenda"
+          "Revendas"
         ],
         "summary": "Apaga uma revenda específica",
         "operationId": "Revenda_Delete",
@@ -187,16 +190,17 @@
             "name": "Id",
             "in": "path",
             "required": true,
+            "description": "Id da revenda a ser excluída",
             "x-nullable": true
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -213,7 +217,7 @@
     "/api/nfe": {
       "get": {
         "tags": [
-          "NFe"
+          "NF-e (Nota Fiscal Eletrônica)"
         ],
         "summary": "Pesquisa todas as NF-e",
         "description": "Exemplo:\n            \n    POST /Todo\n    {\n       \"id\": 1,\n       \"name\": \"Item1\",\n       \"iscomplete\": true\n    }\n            ",
@@ -222,11 +226,11 @@
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -241,7 +245,7 @@
       },
       "post": {
         "tags": [
-          "NFe"
+          "NF-e (Nota Fiscal Eletrônica)"
         ],
         "summary": "Gerar uma nova NF-e",
         "operationId": "NFe_Incluir",
@@ -264,11 +268,109 @@
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/nfe/{id}": {
+      "get": {
+        "tags": [
+          "NF-e (Nota Fiscal Eletrônica)"
+        ],
+        "summary": "Pesquisa o status do processamento de uma NF-e",
+        "operationId": "NFe_GetNFE",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-nullable": true
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API",
+            "schema": {
+              "type": "string"
+            },
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultViewModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}/certificado": {
+      "post": {
+        "tags": [
+          "Certificados Digitais"
+        ],
+        "summary": "Inclui ou atualiza o certificado digital do cliente",
+        "operationId": "RevendaClienteCertificado_AdicionarRevendaClienteToken",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "RevendaId",
+            "in": "path",
+            "required": true,
+            "description": "Id da revenda do cliente",
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "ClienteCodigo",
+            "in": "path",
+            "required": true,
+            "description": "Código do cliente da API",
+            "x-nullable": true
+          },
+          {
+            "type": "string",
+            "name": "senha",
+            "in": "query",
+            "description": "Senha do certificado digital",
+            "x-nullable": true
+          },
+          {
+            "type": "file",
+            "name": "CertificadoDigital",
+            "in": "formData",
+            "description": "Arquivo .pfx do certificado",
+            "x-nullable": true
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API",
+            "schema": {
+              "type": "string"
+            },
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -285,7 +387,7 @@
     "/api/revenda/{RevendaId}/cliente": {
       "get": {
         "tags": [
-          "RevendaCliente"
+          "Clientes da API"
         ],
         "summary": "Pesquisa clientes pelo id da revenda",
         "operationId": "RevendaCliente_GetClientes",
@@ -295,22 +397,23 @@
             "name": "RevendaId",
             "in": "path",
             "required": true,
+            "description": "Id da revenda",
             "x-nullable": true
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
           "200": {
             "x-nullable": true,
-            "description": "",
+            "description": "Retorna todos os clientes da revenda passada no parâmetro \"RevendaId\"",
             "schema": {
               "type": "array",
               "items": {}
@@ -320,7 +423,7 @@
       },
       "post": {
         "tags": [
-          "RevendaCliente"
+          "Clientes da API"
         ],
         "summary": "Inclui um novo cliente na carteria de uma revenda específica",
         "operationId": "RevendaCliente_AdicionarRevendaCliente",
@@ -336,25 +439,27 @@
             "name": "RevendaId",
             "in": "path",
             "required": true,
+            "description": "Id da revenda do cliente",
             "x-nullable": true
           },
           {
             "name": "RevendaCliente",
             "in": "body",
             "required": true,
+            "description": "Informações do cliente da API",
             "schema": {
-              "$ref": "#/definitions/RevendaClienteViewModel"
+              "$ref": "#/definitions/RevendaClienteVM"
             },
             "x-nullable": false
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -369,7 +474,7 @@
       },
       "put": {
         "tags": [
-          "RevendaCliente"
+          "Clientes da API"
         ],
         "summary": "Atualiza um cliente específico de uma revenda",
         "operationId": "RevendaCliente_AtualizarRevendaCliente",
@@ -385,25 +490,27 @@
             "name": "RevendaId",
             "in": "path",
             "required": true,
+            "description": "Id da revenda do cliente",
             "x-nullable": true
           },
           {
             "name": "RevendaCliente",
             "in": "body",
             "required": true,
+            "description": "Informações do cliente da API",
             "schema": {
-              "$ref": "#/definitions/RevendaClienteViewModel"
+              "$ref": "#/definitions/RevendaClienteVM"
             },
             "x-nullable": false
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -420,7 +527,7 @@
     "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}": {
       "get": {
         "tags": [
-          "RevendaCliente"
+          "Clientes da API"
         ],
         "summary": "Localiza um cliente específico de uma revenda",
         "operationId": "RevendaCliente_GetCliente",
@@ -430,6 +537,7 @@
             "name": "RevendaId",
             "in": "path",
             "required": true,
+            "description": "Id da revenda do cliente",
             "x-nullable": true
           },
           {
@@ -437,16 +545,17 @@
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
+            "description": "Código do cliente da API",
             "x-nullable": true
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -454,14 +563,14 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IEntidade"
+              "$ref": "#/definitions/IViewModel"
             }
           }
         }
       },
       "delete": {
         "tags": [
-          "RevendaCliente"
+          "Clientes da API"
         ],
         "summary": "Apaga um cliente específico de uma revenda",
         "operationId": "RevendaCliente_DeletarRevendaCliente",
@@ -471,6 +580,7 @@
             "name": "RevendaId",
             "in": "path",
             "required": true,
+            "description": "Id da revenda do cliente",
             "x-nullable": true
           },
           {
@@ -478,16 +588,17 @@
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
+            "description": "Código do cliente a ser excluido",
             "x-nullable": true
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -502,7 +613,7 @@
       },
       "post": {
         "tags": [
-          "RevendaClienteToken"
+          "Tokens"
         ],
         "summary": "Inclui um novo token no cadastro de um cliente",
         "operationId": "RevendaClienteToken_AdicionarRevendaClienteToken",
@@ -512,6 +623,7 @@
             "name": "RevendaId",
             "in": "path",
             "required": true,
+            "description": "Id da revenda do cliente",
             "x-nullable": true
           },
           {
@@ -519,16 +631,17 @@
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
+            "description": "Código do cliente da API",
             "x-nullable": true
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -542,10 +655,47 @@
         }
       }
     },
-    "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}/Token": {
+    "/api/revenda/cliente/{Token}": {
       "get": {
         "tags": [
-          "RevendaClienteToken"
+          "Clientes da API"
+        ],
+        "summary": "Localiza um cliente através do token passado",
+        "operationId": "RevendaCliente_GetClienteByToken",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Token",
+            "in": "path",
+            "required": true,
+            "description": "Token do cliente da API",
+            "x-nullable": true
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API",
+            "schema": {
+              "type": "string"
+            },
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IViewModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}/Tokens": {
+      "get": {
+        "tags": [
+          "Tokens"
         ],
         "summary": "Pesquisa tokens pelo id do cliente e da revenda",
         "operationId": "RevendaClienteToken_GetClientes",
@@ -555,6 +705,7 @@
             "name": "RevendaId",
             "in": "path",
             "required": true,
+            "description": "Id da revenda do cliente",
             "x-nullable": true
           },
           {
@@ -562,16 +713,17 @@
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
+            "description": "Código do cliente da API",
             "x-nullable": true
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -586,60 +738,10 @@
         }
       }
     },
-    "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}/token/{Token}": {
-      "get": {
-        "tags": [
-          "RevendaClienteToken"
-        ],
-        "summary": "Localiza um token específico de um cliente",
-        "operationId": "RevendaClienteToken_GetCliente",
-        "parameters": [
-          {
-            "type": "string",
-            "name": "RevendaId",
-            "in": "path",
-            "required": true,
-            "x-nullable": true
-          },
-          {
-            "type": "string",
-            "name": "ClienteCodigo",
-            "in": "path",
-            "required": true,
-            "x-nullable": true
-          },
-          {
-            "type": "string",
-            "name": "Token",
-            "in": "path",
-            "required": true,
-            "x-nullable": true
-          },
-          {
-            "name": "token",
-            "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
-            "schema": {
-              "type": "string"
-            },
-            "default": "msti"
-          }
-        ],
-        "responses": {
-          "200": {
-            "x-nullable": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/IEntidade"
-            }
-          }
-        }
-      }
-    },
     "/api/revenda/{RevendaId}/cliente/{ClienteCodigo}/{Token}": {
       "put": {
         "tags": [
-          "RevendaClienteToken"
+          "Tokens"
         ],
         "summary": "Revoga um token específico de um cliente",
         "operationId": "RevendaClienteToken_RevogarRevendaClienteToken",
@@ -649,6 +751,7 @@
             "name": "RevendaId",
             "in": "path",
             "required": true,
+            "description": "Id da revenda do cliente",
             "x-nullable": true
           },
           {
@@ -656,6 +759,7 @@
             "name": "ClienteCodigo",
             "in": "path",
             "required": true,
+            "description": "Código do cliente da API",
             "x-nullable": true
           },
           {
@@ -663,16 +767,17 @@
             "name": "Token",
             "in": "path",
             "required": true,
+            "description": "Token a ser revogado",
             "x-nullable": true
           },
           {
             "name": "token",
             "in": "header",
-            "description": "Chave de acesso à API, fornecida pela Revenda",
+            "description": "Chave de acesso à API",
             "schema": {
               "type": "string"
             },
-            "default": "msti"
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
           }
         ],
         "responses": {
@@ -688,26 +793,245 @@
     }
   },
   "definitions": {
-    "IEntidade": {
+    "RevendaViewModel": {
       "type": "object",
-      "x-abstract": true,
-      "additionalProperties": false
+      "additionalProperties": false,
+      "required": [
+        "Codigo"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "Codigo": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "Nome": {
+          "type": "string"
+        },
+        "CPF": {
+          "type": "string"
+        },
+        "CNPJ": {
+          "type": "string"
+        },
+        "Clientes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RevendaClienteVM"
+          }
+        }
+      }
+    },
+    "RevendaClienteVM": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "Codigo": {
+          "type": "string"
+        },
+        "Nome": {
+          "type": "string"
+        },
+        "RazaoSocial": {
+          "type": "string"
+        },
+        "Endereco": {
+          "$ref": "#/definitions/EnderecoVM"
+        },
+        "CPF": {
+          "type": "string"
+        },
+        "CNPJ": {
+          "type": "string",
+          "example": "01.078.133/0001-43"
+        },
+        "IE": {
+          "type": "string"
+        },
+        "EMail": {
+          "type": "string"
+        },
+        "Tokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RevendaClienteTokenVM"
+          }
+        },
+        "Certificado": {
+          "$ref": "#/definitions/RevendaClienteCertificadoVM"
+        },
+        "DFe": {
+          "$ref": "#/definitions/DFeViewModel"
+        },
+        "configBD": {
+          "$ref": "#/definitions/ConfigBDVM"
+        }
+      }
+    },
+    "EnderecoVM": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Logradouro": {
+          "type": "string"
+        },
+        "Numero": {
+          "type": "string"
+        },
+        "Complemento": {
+          "type": "string"
+        },
+        "Bairro": {
+          "type": "string"
+        },
+        "CodigoIBGEMunicipio": {
+          "type": "string"
+        },
+        "Municipio": {
+          "type": "string"
+        },
+        "UF": {
+          "type": "string"
+        },
+        "CEP": {
+          "type": "string"
+        },
+        "CodigoPais": {
+          "type": "string"
+        },
+        "Pais": {
+          "type": "string"
+        },
+        "Telefone": {
+          "type": "string"
+        }
+      }
+    },
+    "RevendaClienteTokenVM": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Geracao",
+        "Revogacao"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "Token": {
+          "type": "string"
+        },
+        "Geracao": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Revogacao": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "RevendaClienteCertificadoVM": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "CertificadoBase64": {
+          "type": "string"
+        },
+        "CertificadoDigital": {
+          "type": "file"
+        },
+        "Nome": {
+          "type": "string",
+          "description": "Nome do certificado digital"
+        },
+        "Senha": {
+          "type": "string",
+          "description": "Senha do certificado digital"
+        },
+        "Validade": {
+          "type": "string",
+          "description": "Data de validade do certificado digital "
+        }
+      }
+    },
+    "DFeViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "NFe": {
+          "$ref": "#/definitions/ConfigDFeViewModel"
+        },
+        "NFCe": {
+          "$ref": "#/definitions/ConfigDFeViewModel"
+        },
+        "NFSe": {
+          "$ref": "#/definitions/ConfigDFeViewModel"
+        },
+        "CTe": {
+          "$ref": "#/definitions/ConfigDFeViewModel"
+        },
+        "MDFe": {
+          "$ref": "#/definitions/ConfigDFeViewModel"
+        }
+      }
+    },
+    "ConfigDFeViewModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ProximoLote",
+        "ProximoNumero"
+      ],
+      "properties": {
+        "SerieAtual": {
+          "type": "string"
+        },
+        "ProximoLote": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ProximoNumero": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ConfigBDVM": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "type": "string"
+        },
+        "porta": {
+          "type": "string"
+        },
+        "nome": {
+          "type": "string"
+        }
+      }
     },
     "IResultViewModel": {
       "type": "object",
       "x-abstract": true,
       "additionalProperties": false,
       "required": [
-        "httpStatusCode"
+        "HttpStatusCode"
       ],
       "properties": {
-        "httpStatusCode": {
+        "HttpStatusCode": {
           "$ref": "#/definitions/EHttpStatusCode"
         },
-        "messages": {
+        "Messages": {
           "type": "string"
         },
-        "data": {
+        "Data": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/IViewModel"
@@ -716,186 +1040,22 @@
       }
     },
     "EHttpStatusCode": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "OK",
-        "BadGateway",
         "NotFound",
-        "MethodNotAllowed"
+        "MethodNotAllowed",
+        "BadGateway"
       ],
       "enum": [
-        200,
-        400,
-        404,
-        405
+        "200",
+        "404",
+        "405",
+        "500"
       ]
     },
     "IViewModel": {
-      "type": "object",
-      "x-abstract": true,
-      "additionalProperties": false
-    },
-    "RevendaViewModel": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/Notificavel"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "codigo"
-          ],
-          "properties": {
-            "id": {
-              "type": "string"
-            },
-            "codigo": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "nome": {
-              "type": "string"
-            },
-            "cpf": {
-              "type": "string"
-            },
-            "cnpj": {
-              "type": "string"
-            },
-            "clientes": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/RevendaClienteViewModel"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "RevendaClienteViewModel": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/Notificavel"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "codigo": {
-              "type": "string"
-            },
-            "nome": {
-              "type": "string"
-            },
-            "razaoSocial": {
-              "type": "string"
-            },
-            "endereco": {
-              "$ref": "#/definitions/EnderecoViewModel"
-            },
-            "cpf": {
-              "type": "string"
-            },
-            "cnpj": {
-              "type": "string"
-            },
-            "ie": {
-              "type": "string"
-            },
-            "eMail": {
-              "type": "string"
-            },
-            "tokens": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/RevendaClienteTokenViewModel"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "EnderecoViewModel": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "logradouro": {
-          "type": "string"
-        },
-        "numero": {
-          "type": "string"
-        },
-        "complemento": {
-          "type": "string"
-        },
-        "bairro": {
-          "type": "string"
-        },
-        "codigoIBGEMunicipio": {
-          "type": "string"
-        },
-        "municipio": {
-          "type": "string"
-        },
-        "uf": {
-          "type": "string"
-        },
-        "cep": {
-          "type": "string"
-        },
-        "codigoPais": {
-          "type": "string"
-        },
-        "pais": {
-          "type": "string"
-        },
-        "telefone": {
-          "type": "string"
-        }
-      }
-    },
-    "RevendaClienteTokenViewModel": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/Notificavel"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "required": [
-            "geracao",
-            "revogacao"
-          ],
-          "properties": {
-            "token": {
-              "type": "string"
-            },
-            "geracao": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "revogacao": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        }
-      ]
-    },
-    "Notificavel": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/Notifiable"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false
-        }
-      ]
-    },
-    "Notifiable": {
       "type": "object",
       "x-abstract": true,
       "additionalProperties": false
@@ -911,7 +1071,7 @@
         "infNFeSupl": {
           "$ref": "#/definitions/InfNFeSupl"
         },
-        "signature": {
+        "Signature": {
           "$ref": "#/definitions/Signature"
         }
       }
@@ -951,6 +1111,7 @@
         },
         "autXML": {
           "type": "array",
+          "description": "           Pessoas autorizadas para o download do XML da NF-e \n           ",
           "items": {
             "$ref": "#/definitions/AutXML"
           }
@@ -987,12 +1148,6 @@
         },
         "infRespTec": {
           "$ref": "#/definitions/InfRespTec"
-        },
-        "versao": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
         }
       }
     },
@@ -1023,26 +1178,31 @@
         },
         "natOp": {
           "type": "string",
-          "description": "           Descrição da Natureza da Operação \n           "
+          "description": "           Descrição da Natureza da Operação \n           ",
+          "example": "Texto da natureza da Operação"
         },
         "mod": {
           "$ref": "#/definitions/Mod"
         },
         "serie": {
           "type": "string",
-          "description": "           Série do Documento Fiscal \n           Série normal 0-889 \n           Avulsa Fisco 890-899 \n           SCAN 900-999 \n           "
+          "description": "           Série do Documento Fiscal \n           Série normal 0-889 \n           Avulsa Fisco 890-899 \n           SCAN 900-999 \n           ",
+          "example": "1"
         },
         "nNF": {
           "type": "string",
-          "description": "           Número do Documento Fiscal \n           "
+          "description": "           Número do Documento Fiscal \n           ",
+          "example": "100"
         },
         "dhEmi": {
           "type": "string",
-          "description": "           Data e Hora de emissão do Documento Fiscal (AAAA-MM-DDThh:mm:ssTZD) \n           ex.: 2012-09-01T13:00:00-03:00 \n           "
+          "description": "           Data e Hora de emissão do Documento Fiscal (AAAA-MM-DDThh:mm:ssTZD) \n           ex.: 2012-09-01T13:00:00-03:00 \n           ",
+          "example": "2019-09-11T09:45:00-03:00"
         },
         "dhSaiEnt": {
           "type": "string",
-          "description": "           Data e Hora da saída ou de entrada da mercadoria / produto (AAAA-MM-DDTHH:mm:ssTZD) \n           "
+          "description": "           Data e Hora da saída ou de entrada da mercadoria / produto (AAAA-MM-DDTHH:mm:ssTZD) \n           ",
+          "example": "2019-09-11T09:45:00-03:00"
         },
         "tpNF": {
           "$ref": "#/definitions/TpNF"
@@ -1091,7 +1251,7 @@
           "type": "string",
           "description": "           Informar a Justificativa da entrada em contingência  \n           "
         },
-        "nFref": {
+        "NFref": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/TNFeInfNFeIdeNFref"
@@ -1100,7 +1260,7 @@
       }
     },
     "UFSemExterior": {
-      "type": "integer",
+      "type": "string",
       "description": "           Código da UF da tabela do IBGE\n           \n           11 - Rondônia/RO \n           12 - Acre/AC \n           13 - Amazonas/AM \n           14 - Roraima/RR \n           15 - Pará/PA \n           16 - Amapá/AP \n           17 - Tocantins/TO \n           21 - Maranhão/MA \n           22 - Piauí/PI \n           23 - Ceará/CE \n           24 - Rio Grande do Norte/RN \n           25 - Paraíba/PB \n           26 - Pernambuco/PE \n           27 - Alagoas/AL \n           28 - Sergipe/SE \n           29 - Bahia/BA \n           31 - Minas Gerais/MG \n           32 - Espírito Santo/ES \n           33 - Rio de Janeiro/RJ \n           35 - São Paulo/SP \n           41 - Paraná/PR \n           42 - Santa Catarina/SC \n           43 - Rio Grande do Sul/RS \n           50 - Mato Grosso do Sul/MS \n           51 - Mato Grosso/MT \n           52 - Goiás/GO \n           53 - Distrito Federal/DF \n           ",
       "x-enumNames": [
         "RO",
@@ -1132,61 +1292,62 @@
         "DF"
       ],
       "enum": [
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        31,
-        32,
-        33,
-        35,
-        41,
-        42,
-        43,
-        50,
-        51,
-        52,
-        53
+        "RO",
+        "AC",
+        "AM",
+        "RR",
+        "PA",
+        "AP",
+        "TO",
+        "MA",
+        "PI",
+        "CE",
+        "RN",
+        "PB",
+        "PE",
+        "AL",
+        "SE",
+        "BA",
+        "MG",
+        "ES",
+        "RJ",
+        "SP",
+        "PR",
+        "SC",
+        "RS",
+        "MS",
+        "MT",
+        "GO",
+        "DF"
       ]
     },
     "Mod": {
-      "type": "integer",
+      "type": "string",
       "description": "           Código do modelo do Documento Fiscal\n           \n           55 - NF-e \n           65 - NFC-e \n           ",
       "x-enumNames": [
         "NFe",
         "NFCe"
       ],
       "enum": [
-        55,
-        65
+        "NFe",
+        "NFCe"
       ]
     },
     "TpNF": {
-      "type": "integer",
+      "type": "string",
       "description": "           Tipo do Documento Fiscal\n           \n           0 - entrada; \n           1 - saída \n           ",
       "x-enumNames": [
         "Entrada",
         "Saida"
       ],
       "enum": [
-        0,
-        1
-      ]
+        "Entrada",
+        "Saida"
+      ],
+      "example": "Saida"
     },
     "IdDest": {
-      "type": "integer",
+      "type": "string",
       "description": "           Identificador de Local de destino da operação\n           \n           1 - Interna \n           2 - Interestadual \n           3 - Exterior \n           ",
       "x-enumNames": [
         "Interna",
@@ -1194,13 +1355,14 @@
         "Exterior"
       ],
       "enum": [
-        1,
-        2,
-        3
-      ]
+        "Interna",
+        "Interestadual",
+        "Exterior"
+      ],
+      "example": "1"
     },
     "TpImp": {
-      "type": "integer",
+      "type": "string",
       "description": "           Formato de impressão do DANFE\n           \n           0 - Sem DANFE \n           1 - DANFe Retrato \n           2 - DANFe Paisagem \n           3 - DANFe Simplificado \n           4 - DANFe NFC-e \n           5 - DANFe NFC-e em mensagem eletrônica \n           ",
       "x-enumNames": [
         "Sem_DANFE",
@@ -1211,16 +1373,16 @@
         "DANFe_NFC_eEletronico"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
+        "Sem_DANFE",
+        "DANFe_Retrato",
+        "DANFe_Paisagem",
+        "DANFeSimplificado",
+        "DANFe_NFCe",
+        "DANFe_NFC_eEletronico"
       ]
     },
     "TpEmis": {
-      "type": "integer",
+      "type": "string",
       "description": "           Forma de emissão da NF-e\n           \n           1 - Normal \n           2 - Contingência FS \n           3 - Contingência SCAN \n           4 - Contingência DPEC \n           5 - Contingência FSDA \n           6 - Contingência SVC - AN \n           7 - Contingência SVC - RS \n           9 - Contingência off-line NFC-e \n           ",
       "x-enumNames": [
         "Normal",
@@ -1233,30 +1395,30 @@
         "Contingencia_OffLine_NFCe"
       ],
       "enum": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        9
+        "Normal",
+        "Contingencia_FS",
+        "Contingencia_SCAN",
+        "Contingencia_DPEC",
+        "Contingencia_FSDA",
+        "Contingencia_SVC_AN",
+        "Contingencia_SVC_RS",
+        "Contingencia_OffLine_NFCe"
       ]
     },
     "TpAmb": {
-      "type": "integer",
+      "type": "string",
       "description": "            Identificação do Ambiente\n            \n            1 - Produção \n            2 - Homologação \n           ",
       "x-enumNames": [
         "Producao",
         "Homologacao"
       ],
       "enum": [
-        1,
-        2
+        "Producao",
+        "Homologacao"
       ]
     },
     "FinNFe": {
-      "type": "integer",
+      "type": "string",
       "description": "           Finalidade da emissão da NF-e\n           \n           1 - NFe normal \n           2 - NFe complementar \n           3 - NFe de ajuste \n           4 - Devolução/Retorno \n           ",
       "x-enumNames": [
         "NFe_Normal",
@@ -1265,26 +1427,26 @@
         "Devolucao_Retorno"
       ],
       "enum": [
-        1,
-        2,
-        3,
-        4
+        "NFe_Normal",
+        "NFe_Complementar",
+        "NFe_de_ajuste",
+        "Devolucao_Retorno"
       ]
     },
     "IndFinal": {
-      "type": "integer",
+      "type": "string",
       "description": "           Indica operação com consumidor final\n           \n           0 - Não \n           1 - Consumidor Final \n           ",
       "x-enumNames": [
         "Nao",
         "Sim"
       ],
       "enum": [
-        0,
-        1
+        "Nao",
+        "Sim"
       ]
     },
     "IndPres": {
-      "type": "integer",
+      "type": "string",
       "description": "           Indicador de presença do comprador no estabelecimento comercial no momento da operação\n           \n           0 - Não se aplica (ex.: Nota Fiscal complementar ou de ajuste \n           1 - Operação presencial \n           2 - Não presencial, internet \n           3 - Não presencial, teleatendimento \n           4 - NFC-e entrega em domicílio \n           5 - Operação presencial, fora do estabelecimento \n           9 - Não presencial, outros \n           ",
       "x-enumNames": [
         "NaoSeAplica",
@@ -1296,17 +1458,17 @@
         "NaoPresencialOutros"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        9
+        "NaoSeAplica",
+        "OperacaoPresencial",
+        "NaoPresencialInternet",
+        "NaoPresencialTeleatendimento",
+        "NFCeEntregaEmDomicilio",
+        "PresencialForaEstabelecimento",
+        "NaoPresencialOutros"
       ]
     },
     "ProcEmi": {
-      "type": "integer",
+      "type": "string",
       "description": "           Processo de emissão utilizado com a seguinte codificação\n           \n           0 - Emissão de NF-e com aplicativo do contribuinte \n           1 - Emissão de NF-e avulsa pelo Fisco \n           2 - Emissão de NF-e avulsa, pelo contribuinte com seu certificado digital, \n           através do site do Fisco \n           3 - Emissão de NF-e pelo contribuinte com aplicativo fornecido pelo Fisco \n           ",
       "x-enumNames": [
         "AplicativoContribuinte",
@@ -1315,10 +1477,10 @@
         "AplicativoFisco"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3
+        "AplicativoContribuinte",
+        "AvulsaFisco",
+        "AvulsaContribuinte",
+        "AplicativoFisco"
       ]
     },
     "TNFeInfNFeIdeNFref": {
@@ -1326,11 +1488,11 @@
       "description": "           Grupo de infromações da NF referenciada \n           ",
       "additionalProperties": false,
       "required": [
-        "itemElementName"
+        "ItemElementName"
       ],
       "properties": {
-        "item": {},
-        "itemElementName": {
+        "Item": {},
+        "ItemElementName": {
           "description": "           Grupo de informações da NF referenciada. Pode conter os seguintes tipos de documentos: \n           CTe - Conhecimento de transporte eletrônico \n           ECF - Cupom fiscal \n           NF  - Nota fiscal modelo 1/1A ou Nota fiscal modelo 2 \n           NFP - Nota fiscal do produtor \n           NFe - Nota fiscal eletrônica \n           ",
           "allOf": [
             {
@@ -1341,7 +1503,7 @@
       }
     },
     "ItemChoiceType1": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "refCTe",
@@ -1351,11 +1513,11 @@
         "refNFe"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4
+        "refCTe",
+        "refECF",
+        "refNF",
+        "refNFP",
+        "refNFe"
       ]
     },
     "Emit": {
@@ -1363,56 +1525,49 @@
       "description": "           Identificação do emitente\n           ",
       "additionalProperties": false,
       "required": [
-        "crt"
+        "CRT"
       ],
       "properties": {
-        "cpF_CNPJ": {
-          "$ref": "#/definitions/CPF_CNPJ"
+        "CNPJ": {
+          "type": "string",
+          "description": "           CNPJ do emitente \n           (Informar somente o CNPJ ou CPF) \n           ",
+          "example": "05.462.662/0001-05"
+        },
+        "CPF": {
+          "type": "string",
+          "description": "           CPF do emitente \n           (Informar somente o CNPJ ou CPF) \n           "
         },
         "xNome": {
           "type": "string",
-          "description": "           Razão Social ou Nome do emitente \n           "
+          "description": "           Razão Social ou Nome do emitente \n           ",
+          "example": "MICROSUM TECNOLOGIA DA INFORMAÇÃO LTDA"
         },
         "xFant": {
           "type": "string",
-          "description": "           Nome fantasia \n           "
+          "description": "           Nome fantasia \n           ",
+          "example": "MICROSUM TECNOLOGIA DA INFORMAÇÃO"
         },
         "enderEmit": {
           "$ref": "#/definitions/EnderEmit"
         },
-        "ie": {
+        "IE": {
           "type": "string",
           "description": "            \n           "
         },
-        "iest": {
+        "IEST": {
           "type": "string",
           "description": "            \n           "
         },
-        "im": {
+        "IM": {
           "type": "string",
           "description": "            \n           "
         },
-        "cnae": {
+        "CNAE": {
           "type": "string",
           "description": "            \n           "
         },
-        "crt": {
+        "CRT": {
           "$ref": "#/definitions/CRT"
-        }
-      }
-    },
-    "CPF_CNPJ": {
-      "type": "object",
-      "description": "           Informar o CPF ou o CNPJ \n           ",
-      "additionalProperties": false,
-      "properties": {
-        "cnpj": {
-          "type": "string",
-          "description": "            CNPJ \n           "
-        },
-        "cpf": {
-          "type": "string",
-          "description": "            CPF \n           "
         }
       }
     },
@@ -1421,11 +1576,9 @@
       "description": "           Tipo Dados do Endereço do Emitente \n           ",
       "additionalProperties": false,
       "required": [
-        "uf",
+        "UF",
         "cPais",
-        "cPaisSpecified",
-        "xPais",
-        "xPaisSpecified"
+        "xPais"
       ],
       "properties": {
         "xLgr": {
@@ -1452,19 +1605,15 @@
           "type": "string",
           "description": "           Nome do município \n           "
         },
-        "uf": {
+        "UF": {
           "$ref": "#/definitions/UFSemExterior"
         },
-        "cep": {
+        "CEP": {
           "type": "string",
           "description": "           CEP \n           "
         },
         "cPais": {
           "$ref": "#/definitions/CodigoPais"
-        },
-        "cPaisSpecified": {
-          "type": "boolean",
-          "description": "            \n           "
         },
         "xPais": {
           "description": "            \n           ",
@@ -1474,10 +1623,6 @@
             }
           ]
         },
-        "xPaisSpecified": {
-          "type": "boolean",
-          "description": "            \n           "
-        },
         "fone": {
           "type": "string",
           "description": "           Preencher com Código DDD + número do telefone \n           "
@@ -1485,29 +1630,29 @@
       }
     },
     "CodigoPais": {
-      "type": "integer",
+      "type": "string",
       "description": "           Código do país\n           \n           1058 - Brasil \n           ",
       "x-enumNames": [
         "Brasil"
       ],
       "enum": [
-        1058
+        "Brasil"
       ]
     },
     "TEnderEmiXPais": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Brasil",
         "BRASIL"
       ],
       "enum": [
-        0,
-        1
+        "Brasil",
+        "BRASIL"
       ]
     },
     "CRT": {
-      "type": "integer",
+      "type": "string",
       "description": "           Código do Regime Tributário\n           \n           1 – Simples Nacional \n           2 – Simples Nacional – excesso de sublimite de receita bruta \n           3 – Regime Normal \n           ",
       "x-enumNames": [
         "SimplesNacional",
@@ -1515,9 +1660,9 @@
         "RegimeNormal"
       ],
       "enum": [
-        1,
-        2,
-        3
+        "SimplesNacional",
+        "SimplesNacionalExcessoSublimite",
+        "RegimeNormal"
       ]
     },
     "Avulsa": {
@@ -1525,10 +1670,10 @@
       "description": "           Emissão NF-e avulsa, informar os dados do Fisco emitente\n           ",
       "additionalProperties": false,
       "required": [
-        "uf"
+        "UF"
       ],
       "properties": {
-        "cnpj": {
+        "CNPJ": {
           "type": "string"
         },
         "xOrgao": {
@@ -1543,7 +1688,7 @@
         "fone": {
           "type": "string"
         },
-        "uf": {
+        "UF": {
           "$ref": "#/definitions/UFSemExterior"
         },
         "nDAR": {
@@ -1568,15 +1713,20 @@
       "description": "           Identificação do Destinatário\n           ",
       "additionalProperties": false,
       "required": [
-        "itemElementName",
         "indIEDest"
       ],
       "properties": {
-        "item": {
-          "type": "string"
+        "CNPJ": {
+          "type": "string",
+          "description": "           CNPJ do destinatário\n           (Informar somente o CNPJ, CPF ou idEstrangeiro) \n           "
         },
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType3"
+        "CPF": {
+          "type": "string",
+          "description": "           CPF do destinatário\n           (Informar somente o CNPJ, CPF ou idEstrangeiro) \n           "
+        },
+        "idEstrangeiro": {
+          "type": "string",
+          "description": "           idEstrangeiro do destinatário\n           (Informar somente o CNPJ, CPF ou idEstrangeiro) \n           "
         },
         "xNome": {
           "type": "string"
@@ -1587,13 +1737,13 @@
         "indIEDest": {
           "$ref": "#/definitions/IndIEDest"
         },
-        "ie": {
+        "IE": {
           "type": "string"
         },
-        "isuf": {
+        "ISUF": {
           "type": "string"
         },
-        "im": {
+        "IM": {
           "type": "string"
         },
         "email": {
@@ -1601,25 +1751,11 @@
         }
       }
     },
-    "ItemChoiceType3": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "CNPJ",
-        "CPF",
-        "idEstrangeiro"
-      ],
-      "enum": [
-        0,
-        1,
-        2
-      ]
-    },
     "EnderDest": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "uf"
+        "UF"
       ],
       "properties": {
         "xLgr": {
@@ -1640,10 +1776,10 @@
         "xMun": {
           "type": "string"
         },
-        "uf": {
+        "UF": {
           "$ref": "#/definitions/UFComExterior"
         },
-        "cep": {
+        "CEP": {
           "type": "string"
         },
         "cPais": {
@@ -1658,7 +1794,7 @@
       }
     },
     "UFComExterior": {
-      "type": "integer",
+      "type": "string",
       "description": "           Código da UF da tabela do IBGE\n           \n           11 - Rondônia/RO \n           12 - Acre/AC \n           13 - Amazonas/AM \n           14 - Roraima/RR \n           15 - Pará/PA \n           16 - Amapá/AP \n           17 - Tocantins/TO \n           21 - Maranhão/MA \n           22 - Piauí/PI \n           23 - Ceará/CE \n           24 - Rio Grande do Norte/RN \n           25 - Paraíba/PB \n           26 - Pernambuco/PE \n           27 - Alagoas/AL \n           28 - Sergipe/SE \n           29 - Bahia/BA \n           31 - Minas Gerais/MG \n           32 - Espírito Santo/ES \n           33 - Rio de Janeiro/RJ \n           35 - São Paulo/SP \n           41 - Paraná/PR \n           42 - Santa Catarina/SC \n           43 - Rio Grande do Sul/RS \n           50 - Mato Grosso do Sul/MS \n           51 - Mato Grosso/MT \n           52 - Goiás/GO \n           53 - Distrito Federal/DF \n           99 - Exterior/EX \n           ",
       "x-enumNames": [
         "RO",
@@ -1691,38 +1827,38 @@
         "EX"
       ],
       "enum": [
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        31,
-        32,
-        33,
-        35,
-        41,
-        42,
-        43,
-        50,
-        51,
-        52,
-        53,
-        99
+        "RO",
+        "AC",
+        "AM",
+        "RR",
+        "PA",
+        "AP",
+        "TO",
+        "MA",
+        "PI",
+        "CE",
+        "RN",
+        "PB",
+        "PE",
+        "AL",
+        "SE",
+        "BA",
+        "MG",
+        "ES",
+        "RJ",
+        "SP",
+        "PR",
+        "SC",
+        "RS",
+        "MS",
+        "MT",
+        "GO",
+        "DF",
+        "EX"
       ]
     },
     "IndIEDest": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item1",
@@ -1730,16 +1866,16 @@
         "Item9"
       ],
       "enum": [
-        0,
-        1,
-        2
+        "Item1",
+        "Item2",
+        "Item9"
       ]
     },
     "TLocal": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "uf"
+        "UF"
       ],
       "properties": {
         "xNome": {
@@ -1763,10 +1899,10 @@
         "xMun": {
           "type": "string"
         },
-        "uf": {
+        "UF": {
           "$ref": "#/definitions/UFSemExterior"
         },
-        "cep": {
+        "CEP": {
           "type": "string"
         },
         "cPais": {
@@ -1781,7 +1917,7 @@
         "email": {
           "type": "string"
         },
-        "ie": {
+        "IE": {
           "type": "string"
         }
       }
@@ -1790,29 +1926,16 @@
       "type": "object",
       "description": "           Pessoas autorizadas para o download do XML da NF-e \n           ",
       "additionalProperties": false,
-      "required": [
-        "itemElementName"
-      ],
       "properties": {
-        "item": {
-          "type": "string"
+        "CNPJ": {
+          "type": "string",
+          "description": "CNPJ Autorizado"
         },
-        "itemElementName": {
-          "$ref": "#/definitions/ItemChoiceType5"
+        "CPF": {
+          "type": "string",
+          "description": "CPF Autorizado"
         }
       }
-    },
-    "ItemChoiceType5": {
-      "type": "integer",
-      "description": "",
-      "x-enumNames": [
-        "CNPJ",
-        "CPF"
-      ],
-      "enum": [
-        0,
-        1
-      ]
     },
     "Det": {
       "type": "object",
@@ -1842,7 +1965,6 @@
       "additionalProperties": false,
       "required": [
         "indEscala",
-        "indEscalaSpecified",
         "indTot"
       ],
       "properties": {
@@ -1855,34 +1977,31 @@
         "xProd": {
           "type": "string"
         },
-        "ncm": {
+        "NCM": {
           "type": "string"
         },
-        "nve": {
+        "NVE": {
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "cest": {
+        "CEST": {
           "type": "string"
         },
         "indEscala": {
           "$ref": "#/definitions/TNFeInfNFeDetProdIndEscala"
         },
-        "indEscalaSpecified": {
-          "type": "boolean"
-        },
-        "cnpjFab": {
+        "CNPJFab": {
           "type": "string"
         },
         "cBenef": {
           "type": "string"
         },
-        "extipi": {
+        "EXTIPI": {
           "type": "string"
         },
-        "cfop": {
+        "CFOP": {
           "type": "string"
         },
         "uCom": {
@@ -1924,7 +2043,7 @@
         "indTot": {
           "$ref": "#/definitions/TNFeInfNFeDetProdIndTot"
         },
-        "di": {
+        "DI": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/TNFeInfNFeDetProdDI"
@@ -1951,45 +2070,44 @@
             "$ref": "#/definitions/TNFeInfNFeDetProdRastro"
           }
         },
-        "items": {
+        "Items": {
           "type": "array",
           "items": {}
         }
       }
     },
     "TNFeInfNFeDetProdIndEscala": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "S",
         "N"
       ],
       "enum": [
-        0,
-        1
+        "S",
+        "N"
       ]
     },
     "TNFeInfNFeDetProdIndTot": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item0",
         "Item1"
       ],
       "enum": [
-        0,
-        1
+        "Item0",
+        "Item1"
       ]
     },
     "TNFeInfNFeDetProdDI": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "ufDesemb",
+        "UFDesemb",
         "tpViaTransp",
         "tpIntermedio",
-        "ufTerceiro",
-        "ufTerceiroSpecified"
+        "UFTerceiro"
       ],
       "properties": {
         "nDI": {
@@ -2001,7 +2119,7 @@
         "xLocDesemb": {
           "type": "string"
         },
-        "ufDesemb": {
+        "UFDesemb": {
           "$ref": "#/definitions/UFSemExterior"
         },
         "dDesemb": {
@@ -2016,14 +2134,11 @@
         "tpIntermedio": {
           "$ref": "#/definitions/TNFeInfNFeDetProdDITpIntermedio"
         },
-        "cnpj": {
+        "CNPJ": {
           "type": "string"
         },
-        "ufTerceiro": {
+        "UFTerceiro": {
           "$ref": "#/definitions/UFSemExterior"
-        },
-        "ufTerceiroSpecified": {
-          "type": "boolean"
         },
         "cExportador": {
           "type": "string"
@@ -2037,7 +2152,7 @@
       }
     },
     "TNFeInfNFeDetProdDITpViaTransp": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item1",
@@ -2054,22 +2169,22 @@
         "Item12"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item6",
+        "Item7",
+        "Item8",
+        "Item9",
+        "Item10",
+        "Item11",
+        "Item12"
       ]
     },
     "TNFeInfNFeDetProdDITpIntermedio": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item1",
@@ -2077,9 +2192,9 @@
         "Item3"
       ],
       "enum": [
-        0,
-        1,
-        2
+        "Item1",
+        "Item2",
+        "Item3"
       ]
     },
     "TNFeInfNFeDetProdDIAdi": {
@@ -2159,23 +2274,23 @@
         "vTotTrib": {
           "type": "string"
         },
-        "items": {
+        "Items": {
           "type": "array",
           "items": {}
         },
-        "pis": {
+        "PIS": {
           "$ref": "#/definitions/TNFeInfNFeDetImpostoPIS"
         },
-        "pisst": {
+        "PISST": {
           "$ref": "#/definitions/TNFeInfNFeDetImpostoPISST"
         },
-        "cofins": {
+        "COFINS": {
           "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINS"
         },
-        "cofinsst": {
+        "COFINSST": {
           "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINSST"
         },
-        "icmsufDest": {
+        "ICMSUFDest": {
           "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSUFDest"
         }
       }
@@ -2184,20 +2299,20 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "item": {}
+        "Item": {}
       }
     },
     "TNFeInfNFeDetImpostoPISST": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "items": {
+        "Items": {
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "itemsElementName": {
+        "ItemsElementName": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/ItemsChoiceType2"
@@ -2209,7 +2324,7 @@
       }
     },
     "ItemsChoiceType2": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "pPIS",
@@ -2218,30 +2333,30 @@
         "vBC"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3
+        "pPIS",
+        "qBCProd",
+        "vAliqProd",
+        "vBC"
       ]
     },
     "TNFeInfNFeDetImpostoCOFINS": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "item": {}
+        "Item": {}
       }
     },
     "TNFeInfNFeDetImpostoCOFINSST": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "items": {
+        "Items": {
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "itemsElementName": {
+        "ItemsElementName": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/ItemsChoiceType4"
@@ -2253,7 +2368,7 @@
       }
     },
     "ItemsChoiceType4": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "pCOFINS",
@@ -2262,10 +2377,10 @@
         "vBC"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3
+        "pCOFINS",
+        "qBCProd",
+        "vAliqProd",
+        "vBC"
       ]
     },
     "TNFeInfNFeDetImpostoICMSUFDest": {
@@ -2305,7 +2420,7 @@
       }
     },
     "TNFeInfNFeDetImpostoICMSUFDestPICMSInter": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item400",
@@ -2313,9 +2428,9 @@
         "Item1200"
       ],
       "enum": [
-        0,
-        1,
-        2
+        "Item400",
+        "Item700",
+        "Item1200"
       ]
     },
     "TNFeInfNFeDetImpostoDevol": {
@@ -2325,7 +2440,7 @@
         "pDevol": {
           "type": "string"
         },
-        "ipi": {
+        "IPI": {
           "$ref": "#/definitions/TNFeInfNFeDetImpostoDevolIPI"
         }
       }
@@ -2344,10 +2459,10 @@
       "description": "           Dados dos totais da NF-e \n           ",
       "additionalProperties": false,
       "properties": {
-        "icmsTot": {
+        "ICMSTot": {
           "$ref": "#/definitions/ICMSTot"
         },
-        "issqNtot": {
+        "ISSQNtot": {
           "$ref": "#/definitions/ISSQNtot"
         },
         "retTrib": {
@@ -2434,8 +2549,7 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "cRegTrib",
-        "cRegTribSpecified"
+        "cRegTrib"
       ],
       "properties": {
         "vServ": {
@@ -2473,14 +2587,11 @@
         },
         "cRegTrib": {
           "$ref": "#/definitions/TNFeInfNFeTotalISSQNtotCRegTrib"
-        },
-        "cRegTribSpecified": {
-          "type": "boolean"
         }
       }
     },
     "TNFeInfNFeTotalISSQNtotCRegTrib": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item1",
@@ -2491,12 +2602,12 @@
         "Item6"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item6"
       ]
     },
     "RetTrib": {
@@ -2543,11 +2654,11 @@
         "retTransp": {
           "$ref": "#/definitions/TNFeInfNFeTranspRetTransp"
         },
-        "items": {
+        "Items": {
           "type": "array",
           "items": {}
         },
-        "itemsElementName": {
+        "ItemsElementName": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/ItemsChoiceType5"
@@ -2562,7 +2673,7 @@
       }
     },
     "TNFeInfNFeTranspModFrete": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item0",
@@ -2573,33 +2684,32 @@
         "Item9"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5
+        "Item0",
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item9"
       ]
     },
     "TNFeInfNFeTranspTransporta": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "itemElementName",
-        "uf",
-        "ufSpecified"
+        "ItemElementName",
+        "UF"
       ],
       "properties": {
-        "item": {
+        "Item": {
           "type": "string"
         },
-        "itemElementName": {
+        "ItemElementName": {
           "$ref": "#/definitions/ItemChoiceType6"
         },
         "xNome": {
           "type": "string"
         },
-        "ie": {
+        "IE": {
           "type": "string"
         },
         "xEnder": {
@@ -2608,24 +2718,21 @@
         "xMun": {
           "type": "string"
         },
-        "uf": {
+        "UF": {
           "$ref": "#/definitions/UFSemExterior"
-        },
-        "ufSpecified": {
-          "type": "boolean"
         }
       }
     },
     "ItemChoiceType6": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "CNPJ",
         "CPF"
       ],
       "enum": [
-        0,
-        1
+        "CNPJ",
+        "CPF"
       ]
     },
     "TNFeInfNFeTranspRetTransp": {
@@ -2644,7 +2751,7 @@
         "vICMSRet": {
           "type": "string"
         },
-        "cfop": {
+        "CFOP": {
           "type": "string"
         },
         "cMunFG": {
@@ -2653,7 +2760,7 @@
       }
     },
     "ItemsChoiceType5": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "balsa",
@@ -2662,10 +2769,10 @@
         "veicTransp"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3
+        "balsa",
+        "reboque",
+        "vagao",
+        "veicTransp"
       ]
     },
     "TNFeInfNFeTranspVol": {
@@ -2777,15 +2884,11 @@
       "additionalProperties": false,
       "required": [
         "indPag",
-        "indPagSpecified",
         "tPag"
       ],
       "properties": {
         "indPag": {
           "$ref": "#/definitions/TNFeInfNFePagDetPagIndPag"
-        },
-        "indPagSpecified": {
-          "type": "boolean"
         },
         "tPag": {
           "$ref": "#/definitions/TNFeInfNFePagDetPagTPag"
@@ -2799,19 +2902,19 @@
       }
     },
     "TNFeInfNFePagDetPagIndPag": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item0",
         "Item1"
       ],
       "enum": [
-        0,
-        1
+        "Item0",
+        "Item1"
       ]
     },
     "TNFeInfNFePagDetPagTPag": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item01",
@@ -2829,19 +2932,19 @@
         "Item99"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
+        "Item01",
+        "Item02",
+        "Item03",
+        "Item04",
+        "Item05",
+        "Item10",
+        "Item11",
+        "Item12",
+        "Item13",
+        "Item14",
+        "Item15",
+        "Item90",
+        "Item99"
       ]
     },
     "TNFeInfNFePagDetPagCard": {
@@ -2849,21 +2952,17 @@
       "additionalProperties": false,
       "required": [
         "tpIntegra",
-        "tBand",
-        "tBandSpecified"
+        "tBand"
       ],
       "properties": {
         "tpIntegra": {
           "$ref": "#/definitions/TNFeInfNFePagDetPagCardTpIntegra"
         },
-        "cnpj": {
+        "CNPJ": {
           "type": "string"
         },
         "tBand": {
           "$ref": "#/definitions/TNFeInfNFePagDetPagCardTBand"
-        },
-        "tBandSpecified": {
-          "type": "boolean"
         },
         "cAut": {
           "type": "string"
@@ -2871,19 +2970,19 @@
       }
     },
     "TNFeInfNFePagDetPagCardTpIntegra": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item1",
         "Item2"
       ],
       "enum": [
-        0,
-        1
+        "Item1",
+        "Item2"
       ]
     },
     "TNFeInfNFePagDetPagCardTBand": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item01",
@@ -2898,16 +2997,16 @@
         "Item99"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
+        "Item01",
+        "Item02",
+        "Item03",
+        "Item04",
+        "Item05",
+        "Item06",
+        "Item07",
+        "Item08",
+        "Item09",
+        "Item99"
       ]
     },
     "InfAdic": {
@@ -2945,10 +3044,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "xTexto": {
+        "xCampo": {
           "type": "string"
         },
-        "xCampo": {
+        "xTexto": {
           "type": "string"
         }
       }
@@ -2957,10 +3056,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "xTexto": {
+        "xCampo": {
           "type": "string"
         },
-        "xCampo": {
+        "xTexto": {
           "type": "string"
         }
       }
@@ -2981,7 +3080,7 @@
       }
     },
     "TNFeInfNFeInfAdicProcRefIndProc": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "Item0",
@@ -2991,11 +3090,11 @@
         "Item9"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4
+        "Item0",
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item9"
       ]
     },
     "Exporta": {
@@ -3003,10 +3102,10 @@
       "description": "           Informações de exportação \n           ",
       "additionalProperties": false,
       "required": [
-        "ufSaidaPais"
+        "UFSaidaPais"
       ],
       "properties": {
-        "ufSaidaPais": {
+        "UFSaidaPais": {
           "$ref": "#/definitions/UFExterior"
         },
         "xLocExporta": {
@@ -3018,13 +3117,13 @@
       }
     },
     "UFExterior": {
-      "type": "integer",
+      "type": "string",
       "description": "           Sigla de estado para o exterior\n           \n           99 - Exterior/EX \n           ",
       "x-enumNames": [
         "EX"
       ],
       "enum": [
-        99
+        "EX"
       ]
     },
     "Compra": {
@@ -3090,10 +3189,11 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "qtde": {
-          "type": "string"
+        "@dia": {
+          "type": "string",
+          "example": "1"
         },
-        "dia": {
+        "qtde": {
           "type": "string"
         }
       }
@@ -3115,7 +3215,7 @@
       "description": "           Informações do Responsável Técnico pela emissão do DF-e \n           ",
       "additionalProperties": false,
       "properties": {
-        "cnpj": {
+        "CNPJ": {
           "type": "string"
         },
         "xContato": {
@@ -3152,16 +3252,16 @@
       "description": "           Assinatura digital da NF-e \n           ",
       "additionalProperties": false,
       "properties": {
-        "signedInfo": {
+        "SignedInfo": {
           "$ref": "#/definitions/SignedInfoType"
         },
-        "signatureValue": {
+        "SignatureValue": {
           "$ref": "#/definitions/SignatureValueType"
         },
-        "keyInfo": {
+        "KeyInfo": {
           "$ref": "#/definitions/KeyInfoType"
         },
-        "id": {
+        "Id": {
           "type": "string"
         }
       }
@@ -3170,16 +3270,16 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "canonicalizationMethod": {
+        "CanonicalizationMethod": {
           "$ref": "#/definitions/SignedInfoTypeCanonicalizationMethod"
         },
-        "signatureMethod": {
+        "SignatureMethod": {
           "$ref": "#/definitions/SignedInfoTypeSignatureMethod"
         },
-        "reference": {
+        "Reference": {
           "$ref": "#/definitions/ReferenceType"
         },
-        "id": {
+        "Id": {
           "type": "string"
         }
       }
@@ -3188,7 +3288,7 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "algorithmLocal": {
+        "AlgorithmLocal": {
           "type": "string"
         }
       }
@@ -3197,7 +3297,7 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "algorithmLocal": {
+        "AlgorithmLocal": {
           "type": "string"
         }
       }
@@ -3206,26 +3306,26 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "transforms": {
+        "Transforms": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/TransformType"
           }
         },
-        "digestMethod": {
+        "DigestMethod": {
           "$ref": "#/definitions/ReferenceTypeDigestMethod"
         },
-        "digestValue": {
+        "DigestValue": {
           "type": "string",
           "format": "byte"
         },
-        "id": {
+        "Id": {
           "type": "string"
         },
-        "uri": {
+        "URI": {
           "type": "string"
         },
-        "type": {
+        "Type": {
           "type": "string"
         }
       }
@@ -3234,37 +3334,37 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "algorithm"
+        "Algorithm"
       ],
       "properties": {
-        "xPath": {
+        "XPath": {
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "algorithm": {
+        "Algorithm": {
           "$ref": "#/definitions/TTransformURI"
         }
       }
     },
     "TTransformURI": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "httpwwww3org200009xmldsigenvelopedsignature",
         "httpwwww3orgTR2001RECxmlc14n20010315"
       ],
       "enum": [
-        0,
-        1
+        "httpwwww3org200009xmldsigenvelopedsignature",
+        "httpwwww3orgTR2001RECxmlc14n20010315"
       ]
     },
     "ReferenceTypeDigestMethod": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "algorithmLocal": {
+        "AlgorithmLocal": {
           "type": "string"
         }
       }
@@ -3273,10 +3373,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "id": {
+        "Id": {
           "type": "string"
         },
-        "value": {
+        "Value": {
           "type": "string",
           "format": "byte"
         }
@@ -3286,10 +3386,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "x509Data": {
+        "X509Data": {
           "$ref": "#/definitions/X509DataType"
         },
-        "id": {
+        "Id": {
           "type": "string"
         }
       }
@@ -3298,11 +3398,28 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "x509Certificate": {
+        "X509Certificate": {
           "type": "string",
           "format": "byte"
         }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Revendas"
+    },
+    {
+      "name": "NF-e (Nota Fiscal Eletrônica)"
+    },
+    {
+      "name": "Certificados Digitais"
+    },
+    {
+      "name": "Clientes da API"
+    },
+    {
+      "name": "Tokens"
+    }
+  ]
 }
