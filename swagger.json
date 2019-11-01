@@ -3,7 +3,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Microsum api.mstiDFE",
-    "description": "API para geração de Documentos Fiscais Eletrônicos (DF-e) do projeto SPED",
+    "description": "**API para geração de Documentos Fiscais Eletrônicos (DF-e) do projeto SPED**</br>*Subtítulo*</br>`Texto em destaque`",
     "termsOfService": "None",
     "contact": {
       "name": "Microsum Tecnologia da Informação Ltda",
@@ -16,7 +16,7 @@
     },
     "version": "v1"
   },
-  "host": "localhost:5001",
+  "host": "localhost:44342",
   "schemes": [
     "https"
   ],
@@ -74,7 +74,7 @@
             "required": true,
             "description": "Informações da revenda a ser incluida",
             "schema": {
-              "$ref": "#/definitions/RevendaViewModel"
+              "$ref": "#/definitions/RevendaVM"
             },
             "x-nullable": false
           },
@@ -93,7 +93,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -117,7 +117,7 @@
             "required": true,
             "description": "Informações da revenda a ser atualizada",
             "schema": {
-              "$ref": "#/definitions/RevendaViewModel"
+              "$ref": "#/definitions/RevendaVM"
             },
             "x-nullable": false
           },
@@ -136,7 +136,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -173,7 +173,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/RevendaViewModel"
+              "$ref": "#/definitions/RevendaVM"
             }
           }
         }
@@ -208,7 +208,81 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
+            }
+          }
+        }
+      }
+    },
+    "/api/nfe/statussefaz/{ambiente}": {
+      "get": {
+        "tags": [
+          "NF-e (Nota Fiscal Eletrônica)"
+        ],
+        "summary": "Testar status do serviço da Sefaz",
+        "operationId": "NFe_GetNFeSituacao",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "ambiente",
+            "in": "path",
+            "required": true,
+            "x-schema": {
+              "$ref": "#/definitions/TpAmb"
+            },
+            "x-nullable": false,
+            "enum": [
+              "Producao",
+              "Homologacao"
+            ]
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API",
+            "schema": {
+              "type": "string"
+            },
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/IResultVM"
+            }
+          }
+        }
+      }
+    },
+    "/api/nfeII": {
+      "get": {
+        "tags": [
+          "NF-e (Nota Fiscal Eletrônica)"
+        ],
+        "summary": "Testes de formação markdown do swagger ui",
+        "description": " # Título\n Atributos de texto _italic_, *italic*, __bold__, **bold**, `monospace`.\n\n`Texto em destaque`\n\n Linha horizontal:\n - - - \n Marcadores:\n * apples\n * oranges\n * pears\n \n Lista numerada:\n 1. apples\n 2. oranges\n 3. pears\n \n Links [link](http://example.com).\n \n Imagens:\n ![Swagger logo](https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/favicon-32x32.png)\n\n Bloco de código:\n ```\n {\n   \"message\": \"Hello, world!\"\n }\n ```\n \n<![CDATA[\n<details>\n <summary>wow</summary>\nme too!\n</details>\n]]>\n Tabelas:\n\n | Column1 | Collumn2 | Collumn3 |\n | ------- | -------- | -------- |\n | cell1   | cell2    | cell3    |",
+        "operationId": "NFe_GetNFE",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Chave de acesso à API",
+            "schema": {
+              "type": "string"
+            },
+            "default": "980fb195fdecc68069deb67f987573837cf67e0e"
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {}
             }
           }
         }
@@ -219,8 +293,8 @@
         "tags": [
           "NF-e (Nota Fiscal Eletrônica)"
         ],
-        "summary": "Pesquisa todas as NF-e",
-        "description": "Exemplo:\n            \n    POST /Todo\n    {\n       \"id\": 1,\n       \"name\": \"Item1\",\n       \"iscomplete\": true\n    }\n            ",
+        "summary": "Retorna todas as NFe emitidas pela empresa",
+        "description": "Linha 1 da descrição\ntext\nLinha 2 da descrição\nACME offers a lot of configuration options...\n     Tip: See the resources available in the portal for more detail.\n     Note: The network includes a firewall that protects your access to the resources...\n       ",
         "operationId": "NFe_GetNFEs",
         "parameters": [
           {
@@ -238,7 +312,8 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/TNFe"
+              "type": "array",
+              "items": {}
             }
           }
         }
@@ -247,7 +322,8 @@
         "tags": [
           "NF-e (Nota Fiscal Eletrônica)"
         ],
-        "summary": "Gerar uma nova NF-e",
+        "summary": "Emite uma nova NF-e",
+        "description": "Modelos de NF-e para o Simples Nacional: \n\n Teste  \n\nNFe de produtos varejo: http://endereconfevarejo.com.br \n\nNFe de produtos e serviços varejo: http://endereconfevarejo.com.br\n\nModelos de NF-e para o Regime Normal: \n\nNFe de produtos varejo: http://endereconfevarejo.com.br \n\nNFe de produtos e serviços varejo: http://endereconfevarejo.com.br",
         "operationId": "NFe_Incluir",
         "consumes": [
           "application/json-patch+json",
@@ -280,7 +356,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -292,13 +368,14 @@
           "NF-e (Nota Fiscal Eletrônica)"
         ],
         "summary": "Pesquisa o status do processamento de uma NF-e",
-        "operationId": "NFe_GetNFE",
+        "operationId": "NFe_GetNFeSituacao2",
         "parameters": [
           {
             "type": "string",
             "name": "id",
             "in": "path",
             "required": true,
+            "description": "Id da NF-e a ser pesquisada",
             "x-nullable": true
           },
           {
@@ -316,7 +393,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -378,7 +455,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -467,7 +544,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -518,7 +595,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -606,7 +683,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -649,7 +726,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -785,7 +862,7 @@
             "x-nullable": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/IResultViewModel"
+              "$ref": "#/definitions/IResultVM"
             }
           }
         }
@@ -793,7 +870,7 @@
     }
   },
   "definitions": {
-    "RevendaViewModel": {
+    "RevendaVM": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -866,7 +943,7 @@
           "$ref": "#/definitions/RevendaClienteCertificadoVM"
         },
         "DFe": {
-          "$ref": "#/definitions/DFeViewModel"
+          "$ref": "#/definitions/DFeVM"
         },
         "configBD": {
           "$ref": "#/definitions/ConfigBDVM"
@@ -960,28 +1037,28 @@
         }
       }
     },
-    "DFeViewModel": {
+    "DFeVM": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "NFe": {
-          "$ref": "#/definitions/ConfigDFeViewModel"
+          "$ref": "#/definitions/ConfigDFeVM"
         },
         "NFCe": {
-          "$ref": "#/definitions/ConfigDFeViewModel"
+          "$ref": "#/definitions/ConfigDFeVM"
         },
         "NFSe": {
-          "$ref": "#/definitions/ConfigDFeViewModel"
+          "$ref": "#/definitions/ConfigDFeVM"
         },
         "CTe": {
-          "$ref": "#/definitions/ConfigDFeViewModel"
+          "$ref": "#/definitions/ConfigDFeVM"
         },
         "MDFe": {
-          "$ref": "#/definitions/ConfigDFeViewModel"
+          "$ref": "#/definitions/ConfigDFeVM"
         }
       }
     },
-    "ConfigDFeViewModel": {
+    "ConfigDFeVM": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -1017,7 +1094,7 @@
         }
       }
     },
-    "IResultViewModel": {
+    "IResultVM": {
       "type": "object",
       "x-abstract": true,
       "additionalProperties": false,
@@ -1060,21 +1137,17 @@
       "x-abstract": true,
       "additionalProperties": false
     },
-    "TNFe": {
-      "type": "object",
-      "description": "Tag raiz da NF-e",
-      "additionalProperties": false,
-      "properties": {
-        "infNFe": {
-          "$ref": "#/definitions/InfNFe"
-        },
-        "infNFeSupl": {
-          "$ref": "#/definitions/InfNFeSupl"
-        },
-        "Signature": {
-          "$ref": "#/definitions/Signature"
-        }
-      }
+    "TpAmb": {
+      "type": "string",
+      "description": "            Identificação do Ambiente\n            \n            1 - Produção \n            2 - Homologação \n           ",
+      "x-enumNames": [
+        "Producao",
+        "Homologacao"
+      ],
+      "enum": [
+        "Producao",
+        "Homologacao"
+      ]
     },
     "InfNFe": {
       "type": "object",
@@ -1405,18 +1478,6 @@
         "Contingencia_OffLine_NFCe"
       ]
     },
-    "TpAmb": {
-      "type": "string",
-      "description": "            Identificação do Ambiente\n            \n            1 - Produção \n            2 - Homologação \n           ",
-      "x-enumNames": [
-        "Producao",
-        "Homologacao"
-      ],
-      "enum": [
-        "Producao",
-        "Homologacao"
-      ]
-    },
     "FinNFe": {
       "type": "string",
       "description": "           Finalidade da emissão da NF-e\n           \n           1 - NFe normal \n           2 - NFe complementar \n           3 - NFe de ajuste \n           4 - Devolução/Retorno \n           ",
@@ -1576,9 +1637,7 @@
       "description": "           Tipo Dados do Endereço do Emitente \n           ",
       "additionalProperties": false,
       "required": [
-        "UF",
-        "cPais",
-        "xPais"
+        "cPais"
       ],
       "properties": {
         "xLgr": {
@@ -1606,7 +1665,8 @@
           "description": "           Nome do município \n           "
         },
         "UF": {
-          "$ref": "#/definitions/UFSemExterior"
+          "type": "string",
+          "description": "Estado do emissor. Ex.: GO, MG, SP, etc"
         },
         "CEP": {
           "type": "string",
@@ -1616,12 +1676,8 @@
           "$ref": "#/definitions/CodigoPais"
         },
         "xPais": {
-          "description": "            \n           ",
-          "allOf": [
-            {
-              "$ref": "#/definitions/TEnderEmiXPais"
-            }
-          ]
+          "type": "string",
+          "description": "            \n           "
         },
         "fone": {
           "type": "string",
@@ -1637,18 +1693,6 @@
       ],
       "enum": [
         "Brasil"
-      ]
-    },
-    "TEnderEmiXPais": {
-      "type": "string",
-      "description": "",
-      "x-enumNames": [
-        "Brasil",
-        "BRASIL"
-      ],
-      "enum": [
-        "Brasil",
-        "BRASIL"
       ]
     },
     "CRT": {
@@ -1754,9 +1798,6 @@
     "EnderDest": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "UF"
-      ],
       "properties": {
         "xLgr": {
           "type": "string"
@@ -1777,7 +1818,8 @@
           "type": "string"
         },
         "UF": {
-          "$ref": "#/definitions/UFComExterior"
+          "type": "string",
+          "description": "Estado do destinatário. Ex.: GO, MG, SP, etc"
         },
         "CEP": {
           "type": "string"
@@ -1792,70 +1834,6 @@
           "type": "string"
         }
       }
-    },
-    "UFComExterior": {
-      "type": "string",
-      "description": "           Código da UF da tabela do IBGE\n           \n           11 - Rondônia/RO \n           12 - Acre/AC \n           13 - Amazonas/AM \n           14 - Roraima/RR \n           15 - Pará/PA \n           16 - Amapá/AP \n           17 - Tocantins/TO \n           21 - Maranhão/MA \n           22 - Piauí/PI \n           23 - Ceará/CE \n           24 - Rio Grande do Norte/RN \n           25 - Paraíba/PB \n           26 - Pernambuco/PE \n           27 - Alagoas/AL \n           28 - Sergipe/SE \n           29 - Bahia/BA \n           31 - Minas Gerais/MG \n           32 - Espírito Santo/ES \n           33 - Rio de Janeiro/RJ \n           35 - São Paulo/SP \n           41 - Paraná/PR \n           42 - Santa Catarina/SC \n           43 - Rio Grande do Sul/RS \n           50 - Mato Grosso do Sul/MS \n           51 - Mato Grosso/MT \n           52 - Goiás/GO \n           53 - Distrito Federal/DF \n           99 - Exterior/EX \n           ",
-      "x-enumNames": [
-        "RO",
-        "AC",
-        "AM",
-        "RR",
-        "PA",
-        "AP",
-        "TO",
-        "MA",
-        "PI",
-        "CE",
-        "RN",
-        "PB",
-        "PE",
-        "AL",
-        "SE",
-        "BA",
-        "MG",
-        "ES",
-        "RJ",
-        "SP",
-        "PR",
-        "SC",
-        "RS",
-        "MS",
-        "MT",
-        "GO",
-        "DF",
-        "EX"
-      ],
-      "enum": [
-        "RO",
-        "AC",
-        "AM",
-        "RR",
-        "PA",
-        "AP",
-        "TO",
-        "MA",
-        "PI",
-        "CE",
-        "RN",
-        "PB",
-        "PE",
-        "AL",
-        "SE",
-        "BA",
-        "MG",
-        "ES",
-        "RJ",
-        "SP",
-        "PR",
-        "SC",
-        "RS",
-        "MS",
-        "MT",
-        "GO",
-        "DF",
-        "EX"
-      ]
     },
     "IndIEDest": {
       "type": "string",
@@ -1941,7 +1919,15 @@
       "type": "object",
       "description": "           Dados dos detalhes da NF-e\n           ",
       "additionalProperties": false,
+      "required": [
+        "@nItem"
+      ],
       "properties": {
+        "@nItem": {
+          "type": "integer",
+          "format": "int32",
+          "example": "1"
+        },
         "prod": {
           "$ref": "#/definitions/Prod"
         },
@@ -1953,9 +1939,6 @@
         },
         "infAdProd": {
           "type": "string"
-        },
-        "nItem": {
-          "type": "string"
         }
       }
     },
@@ -1964,7 +1947,6 @@
       "description": "           Dados dos detalhes da NF-e\n           ",
       "additionalProperties": false,
       "required": [
-        "indEscala",
         "indTot"
       ],
       "properties": {
@@ -1990,7 +1972,7 @@
           "type": "string"
         },
         "indEscala": {
-          "$ref": "#/definitions/TNFeInfNFeDetProdIndEscala"
+          "type": "string"
         },
         "CNPJFab": {
           "type": "string"
@@ -2075,18 +2057,6 @@
           "items": {}
         }
       }
-    },
-    "TNFeInfNFeDetProdIndEscala": {
-      "type": "string",
-      "description": "",
-      "x-enumNames": [
-        "S",
-        "N"
-      ],
-      "enum": [
-        "S",
-        "N"
-      ]
     },
     "TNFeInfNFeDetProdIndTot": {
       "type": "string",
@@ -2272,37 +2242,2044 @@
       "additionalProperties": false,
       "properties": {
         "vTotTrib": {
-          "type": "string"
+          "type": "string",
+          "description": "Valor estimado total de impostos federais, estaduais e municipais"
         },
-        "Items": {
-          "type": "array",
-          "items": {}
+        "ICMS": {
+          "description": "Informação do ICMS para o Regime Normal ou Simples Nacional\n\nDeve ser enviado apenas 1 dos itens abaixo, para cada produto ou serviço da NF-e",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ICMS"
+            }
+          ]
+        },
+        "II": {
+          "description": "Informação do imposto de importação",
+          "allOf": [
+            {
+              "$ref": "#/definitions/II"
+            }
+          ]
+        },
+        "IPI": {
+          "description": "IPI - Imposto sobre Produtos Industrializados",
+          "allOf": [
+            {
+              "$ref": "#/definitions/IPI"
+            }
+          ]
+        },
+        "ISSQN": {
+          "description": "ISSQN - Imposto Sobre Serviço de Qualquer Natureza",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ISSQN"
+            }
+          ]
         },
         "PIS": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoPIS"
+          "description": "Dados do PIS",
+          "allOf": [
+            {
+              "$ref": "#/definitions/PIS"
+            }
+          ]
         },
         "PISST": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoPISST"
+          "description": "Dados do PIS Substituição Tributária",
+          "allOf": [
+            {
+              "$ref": "#/definitions/PISST"
+            }
+          ]
         },
         "COFINS": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINS"
+          "description": "Dados do COFINS",
+          "allOf": [
+            {
+              "$ref": "#/definitions/COFINS"
+            }
+          ]
         },
         "COFINSST": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINSST"
+          "description": "Dados do COFINS da Substituição Tributaria",
+          "allOf": [
+            {
+              "$ref": "#/definitions/COFINSST"
+            }
+          ]
         },
         "ICMSUFDest": {
-          "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSUFDest"
+          "description": "Grupo a ser informado nas vendas interestarduais para consumidor final, não contribuinte de ICMS",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ICMSUFDest"
+            }
+          ]
         }
       }
     },
-    "TNFeInfNFeDetImpostoPIS": {
+    "ICMS": {
+      "type": "object",
+      "description": "           Grupo de tributação do ICMS para o regime normal e simples nacional. \n           Atenção, para cada item, deve se incluir apenas 1 ICMS. \n           Todos estão listados para que você possa escolher qual enviar. \n           ",
+      "additionalProperties": false,
+      "properties": {
+        "ICMS00": {
+          "$ref": "#/definitions/ICMS00"
+        },
+        "ICMS10": {
+          "$ref": "#/definitions/ICMS10"
+        },
+        "ICMS20": {
+          "$ref": "#/definitions/ICMS20"
+        },
+        "ICMS30": {
+          "$ref": "#/definitions/ICMS30"
+        },
+        "ICMS40": {
+          "$ref": "#/definitions/ICMS40"
+        },
+        "ICMS51": {
+          "$ref": "#/definitions/ICMS51"
+        },
+        "ICMS60": {
+          "$ref": "#/definitions/ICMS60"
+        },
+        "ICMS70": {
+          "$ref": "#/definitions/ICMS70"
+        },
+        "ICMS90": {
+          "$ref": "#/definitions/ICMS90"
+        },
+        "ICMSPart": {
+          "$ref": "#/definitions/ICMSPart"
+        },
+        "ICMSSN101": {
+          "$ref": "#/definitions/ICMSSN101"
+        },
+        "ICMSSN102": {
+          "$ref": "#/definitions/ICMSSN102"
+        },
+        "ICMSSN201": {
+          "$ref": "#/definitions/ICMSSN201"
+        },
+        "ICMSSN202": {
+          "$ref": "#/definitions/ICMSSN202"
+        },
+        "ICMSSN500": {
+          "$ref": "#/definitions/ICMSSN500"
+        },
+        "ICMSSN900": {
+          "$ref": "#/definitions/ICMSSN900"
+        },
+        "ICMSST": {
+          "$ref": "#/definitions/ICMSST"
+        }
+      }
+    },
+    "ICMS00": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/ICMS00CST"
+            },
+            "modBC": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS:\n\n0 - Margem Valor Agregado\n\n1 - Pauta (valor)\n\n2 - Preço Tabelado Máximo (valor)\n\n3 - Valor da Operação"
+            },
+            "vBC": {
+              "type": "string"
+            },
+            "pICMS": {
+              "type": "string"
+            },
+            "vICMS": {
+              "type": "string"
+            },
+            "pFCP": {
+              "type": "string"
+            },
+            "vFCP": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "ICMS00CST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item00"
+      ],
+      "enum": [
+        "Item00"
+      ]
+    },
+    "ICMSOrigem": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "orig": {
+          "type": "string",
+          "description": "Código de origem da mercadoria:\n\n0 - Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8\n\n1 - Estrangeira - Importação direta, exceto a indicada no código 6\n\n2 - Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7 \n\n3 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70% \n\n4 - Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes \n\n5 - Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40% \n\n6 - Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural \n\n7 - Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural \n\n8 - Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70% "
+        }
+      }
+    },
+    "ICMS10": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS10CST"
+            },
+            "modBC": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS:\n\n0 - Margem Valor Agregado\n\n1 - Pauta (valor)\n\n2 - Preço Tabelado Máximo (valor)\n\n3 - Valor da Operação"
+            },
+            "vBC": {
+              "type": "string"
+            },
+            "pICMS": {
+              "type": "string"
+            },
+            "vICMS": {
+              "type": "string"
+            },
+            "vBCFCP": {
+              "type": "string"
+            },
+            "pFCP": {
+              "type": "string"
+            },
+            "vFCP": {
+              "type": "string"
+            },
+            "modBCST": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS ST\n\n0 – Preço tabelado ou máximo sugerido\n\n1 - Lista Negativa (valor)\n\n2 - Lista Positiva (valor)\n\n3 - Lista Neutra (valor)\n\n4 - Margem Valor Agregado (%)\n\n5 - Pauta (valor)"
+            },
+            "pMVAST": {
+              "type": "string"
+            },
+            "pRedBCST": {
+              "type": "string"
+            },
+            "vBCST": {
+              "type": "string"
+            },
+            "pICMSST": {
+              "type": "string"
+            },
+            "vICMSST": {
+              "type": "string"
+            },
+            "vBCFCPST": {
+              "type": "string"
+            },
+            "pFCPST": {
+              "type": "string"
+            },
+            "vFCPST": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS10CST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item10"
+      ],
+      "enum": [
+        "Item10"
+      ]
+    },
+    "ICMS20": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST",
+            "motDesICMS"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS20CST"
+            },
+            "modBC": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS:\n\n0 - Margem Valor Agregado\n\n1 - Pauta (valor)\n\n2 - Preço Tabelado Máximo (valor)\n\n3 - Valor da Operação"
+            },
+            "pRedBC": {
+              "type": "string"
+            },
+            "vBC": {
+              "type": "string"
+            },
+            "pICMS": {
+              "type": "string"
+            },
+            "vICMS": {
+              "type": "string"
+            },
+            "vBCFCP": {
+              "type": "string"
+            },
+            "pFCP": {
+              "type": "string"
+            },
+            "vFCP": {
+              "type": "string"
+            },
+            "vICMSDeson": {
+              "type": "string"
+            },
+            "motDesICMS": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS20MotDesICMS"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS20CST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item20"
+      ],
+      "enum": [
+        "Item20"
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS20MotDesICMS": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item3",
+        "Item9",
+        "Item12"
+      ],
+      "enum": [
+        "Item3",
+        "Item9",
+        "Item12"
+      ]
+    },
+    "ICMS30": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST",
+            "motDesICMS"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS30CST"
+            },
+            "modBC": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS ST\n\n0 – Preço tabelado ou máximo sugerido\n\n1 - Lista Negativa (valor)\n\n2 - Lista Positiva (valor)\n\n3 - Lista Neutra (valor)\n\n4 - Margem Valor Agregado (%)\n\n5 - Pauta (valor)"
+            },
+            "pMVAST": {
+              "type": "string"
+            },
+            "pRedBCST": {
+              "type": "string"
+            },
+            "vBCST": {
+              "type": "string"
+            },
+            "pICMSST": {
+              "type": "string"
+            },
+            "vICMSST": {
+              "type": "string"
+            },
+            "vBCFCPST": {
+              "type": "string"
+            },
+            "pFCPST": {
+              "type": "string"
+            },
+            "vFCPST": {
+              "type": "string"
+            },
+            "vICMSDeson": {
+              "type": "string"
+            },
+            "motDesICMS": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS30MotDesICMS"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS30CST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item30"
+      ],
+      "enum": [
+        "Item30"
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS30MotDesICMS": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item6",
+        "Item7",
+        "Item9"
+      ],
+      "enum": [
+        "Item6",
+        "Item7",
+        "Item9"
+      ]
+    },
+    "ICMS40": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST",
+            "motDesICMS"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS40CST"
+            },
+            "vICMSDeson": {
+              "type": "string"
+            },
+            "motDesICMS": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS40MotDesICMS"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS40CST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item40",
+        "Item41",
+        "Item50"
+      ],
+      "enum": [
+        "Item40",
+        "Item41",
+        "Item50"
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS40MotDesICMS": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item6",
+        "Item7",
+        "Item8",
+        "Item9",
+        "Item10",
+        "Item11",
+        "Item16",
+        "Item90"
+      ],
+      "enum": [
+        "Item1",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item6",
+        "Item7",
+        "Item8",
+        "Item9",
+        "Item10",
+        "Item11",
+        "Item16",
+        "Item90"
+      ]
+    },
+    "ICMS51": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS51CST"
+            },
+            "modBC": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS:\n\n0 - Margem Valor Agregado\n\n1 - Pauta (valor)\n\n2 - Preço Tabelado Máximo (valor)\n\n3 - Valor da Operação"
+            },
+            "pRedBC": {
+              "type": "string"
+            },
+            "vBC": {
+              "type": "string"
+            },
+            "pICMS": {
+              "type": "string"
+            },
+            "vICMSOp": {
+              "type": "string"
+            },
+            "pDif": {
+              "type": "string"
+            },
+            "vICMSDif": {
+              "type": "string"
+            },
+            "vICMS": {
+              "type": "string"
+            },
+            "vBCFCP": {
+              "type": "string"
+            },
+            "pFCP": {
+              "type": "string"
+            },
+            "vFCP": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS51CST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item51"
+      ],
+      "enum": [
+        "Item51"
+      ]
+    },
+    "ICMS60": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS60CST"
+            },
+            "vBCSTRet": {
+              "type": "string"
+            },
+            "pST": {
+              "type": "string"
+            },
+            "vICMSSubstituto": {
+              "type": "string"
+            },
+            "vICMSSTRet": {
+              "type": "string"
+            },
+            "vBCFCPSTRet": {
+              "type": "string"
+            },
+            "pFCPSTRet": {
+              "type": "string"
+            },
+            "vFCPSTRet": {
+              "type": "string"
+            },
+            "pRedBCEfet": {
+              "type": "string"
+            },
+            "vBCEfet": {
+              "type": "string"
+            },
+            "pICMSEfet": {
+              "type": "string"
+            },
+            "vICMSEfet": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS60CST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item60"
+      ],
+      "enum": [
+        "Item60"
+      ]
+    },
+    "ICMS70": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST",
+            "motDesICMS"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS70CST"
+            },
+            "modBC": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS:\n\n0 - Margem Valor Agregado\n\n1 - Pauta (valor)\n\n2 - Preço Tabelado Máximo (valor)\n\n3 - Valor da Operação"
+            },
+            "pRedBC": {
+              "type": "string"
+            },
+            "vBC": {
+              "type": "string"
+            },
+            "pICMS": {
+              "type": "string"
+            },
+            "vICMS": {
+              "type": "string"
+            },
+            "vBCFCP": {
+              "type": "string"
+            },
+            "pFCP": {
+              "type": "string"
+            },
+            "vFCP": {
+              "type": "string"
+            },
+            "modBCST": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS ST\n\n0 – Preço tabelado ou máximo sugerido\n\n1 - Lista Negativa (valor)\n\n2 - Lista Positiva (valor)\n\n3 - Lista Neutra (valor)\n\n4 - Margem Valor Agregado (%)\n\n5 - Pauta (valor)"
+            },
+            "pMVAST": {
+              "type": "string"
+            },
+            "pRedBCST": {
+              "type": "string"
+            },
+            "vBCST": {
+              "type": "string"
+            },
+            "pICMSST": {
+              "type": "string"
+            },
+            "vICMSST": {
+              "type": "string"
+            },
+            "vBCFCPST": {
+              "type": "string"
+            },
+            "pFCPST": {
+              "type": "string"
+            },
+            "vFCPST": {
+              "type": "string"
+            },
+            "vICMSDeson": {
+              "type": "string"
+            },
+            "motDesICMS": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS70MotDesICMS"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS70CST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item70"
+      ],
+      "enum": [
+        "Item70"
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS70MotDesICMS": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item3",
+        "Item9",
+        "Item12"
+      ],
+      "enum": [
+        "Item3",
+        "Item9",
+        "Item12"
+      ]
+    },
+    "ICMS90": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST",
+            "motDesICMS"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS90CST"
+            },
+            "modBC": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS:\n\n0 - Margem Valor Agregado\n\n1 - Pauta (valor)\n\n2 - Preço Tabelado Máximo (valor)\n\n3 - Valor da Operação"
+            },
+            "vBC": {
+              "type": "string"
+            },
+            "pRedBC": {
+              "type": "string"
+            },
+            "pICMS": {
+              "type": "string"
+            },
+            "vICMS": {
+              "type": "string"
+            },
+            "vBCFCP": {
+              "type": "string"
+            },
+            "pFCP": {
+              "type": "string"
+            },
+            "vFCP": {
+              "type": "string"
+            },
+            "modBCST": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS ST\n\n0 – Preço tabelado ou máximo sugerido\n\n1 - Lista Negativa (valor)\n\n2 - Lista Positiva (valor)\n\n3 - Lista Neutra (valor)\n\n4 - Margem Valor Agregado (%)\n\n5 - Pauta (valor)"
+            },
+            "pMVAST": {
+              "type": "string"
+            },
+            "pRedBCST": {
+              "type": "string"
+            },
+            "vBCST": {
+              "type": "string"
+            },
+            "pICMSST": {
+              "type": "string"
+            },
+            "vICMSST": {
+              "type": "string"
+            },
+            "vBCFCPST": {
+              "type": "string"
+            },
+            "pFCPST": {
+              "type": "string"
+            },
+            "vFCPST": {
+              "type": "string"
+            },
+            "vICMSDeson": {
+              "type": "string"
+            },
+            "motDesICMS": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMS90MotDesICMS"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS90CST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item90"
+      ],
+      "enum": [
+        "Item90"
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMS90MotDesICMS": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item3",
+        "Item9",
+        "Item12"
+      ],
+      "enum": [
+        "Item3",
+        "Item9",
+        "Item12"
+      ]
+    },
+    "ICMSPart": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST",
+            "UFST"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMSPartCST"
+            },
+            "modBC": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS:\n\n0 - Margem Valor Agregado\n\n1 - Pauta (valor)\n\n2 - Preço Tabelado Máximo (valor)\n\n3 - Valor da Operação"
+            },
+            "vBC": {
+              "type": "string"
+            },
+            "pRedBC": {
+              "type": "string"
+            },
+            "pICMS": {
+              "type": "string"
+            },
+            "vICMS": {
+              "type": "string"
+            },
+            "modBCST": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS ST\n\n0 – Preço tabelado ou máximo sugerido\n\n1 - Lista Negativa (valor)\n\n2 - Lista Positiva (valor)\n\n3 - Lista Neutra (valor)\n\n4 - Margem Valor Agregado (%)\n\n5 - Pauta (valor)"
+            },
+            "pMVAST": {
+              "type": "string"
+            },
+            "pRedBCST": {
+              "type": "string"
+            },
+            "vBCST": {
+              "type": "string"
+            },
+            "pICMSST": {
+              "type": "string"
+            },
+            "vICMSST": {
+              "type": "string"
+            },
+            "pBCOp": {
+              "type": "string"
+            },
+            "UFST": {
+              "$ref": "#/definitions/UFSemExterior"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMSPartCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item10",
+        "Item90"
+      ],
+      "enum": [
+        "Item10",
+        "Item90"
+      ]
+    },
+    "ICMSSN101": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CSOSN"
+          ],
+          "properties": {
+            "CSOSN": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMSSN101CSOSN"
+            },
+            "pCredSN": {
+              "type": "string"
+            },
+            "vCredICMSSN": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMSSN101CSOSN": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item101"
+      ],
+      "enum": [
+        "Item101"
+      ]
+    },
+    "ICMSSN102": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CSOSN"
+          ],
+          "properties": {
+            "CSOSN": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMSSN102CSOSN"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMSSN102CSOSN": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item102",
+        "Item103",
+        "Item300",
+        "Item400"
+      ],
+      "enum": [
+        "Item102",
+        "Item103",
+        "Item300",
+        "Item400"
+      ]
+    },
+    "ICMSSN201": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CSOSN"
+          ],
+          "properties": {
+            "CSOSN": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMSSN201CSOSN"
+            },
+            "modBCST": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS ST\n\n0 – Preço tabelado ou máximo sugerido\n\n1 - Lista Negativa (valor)\n\n2 - Lista Positiva (valor)\n\n3 - Lista Neutra (valor)\n\n4 - Margem Valor Agregado (%)\n\n5 - Pauta (valor)"
+            },
+            "pMVAST": {
+              "type": "string"
+            },
+            "pRedBCST": {
+              "type": "string"
+            },
+            "vBCST": {
+              "type": "string"
+            },
+            "pICMSST": {
+              "type": "string"
+            },
+            "vICMSST": {
+              "type": "string"
+            },
+            "vBCFCPST": {
+              "type": "string"
+            },
+            "pFCPST": {
+              "type": "string"
+            },
+            "vFCPST": {
+              "type": "string"
+            },
+            "pCredSN": {
+              "type": "string"
+            },
+            "vCredICMSSN": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMSSN201CSOSN": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item201"
+      ],
+      "enum": [
+        "Item201"
+      ]
+    },
+    "ICMSSN202": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CSOSN"
+          ],
+          "properties": {
+            "CSOSN": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMSSN202CSOSN"
+            },
+            "modBCST": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS ST\n\n0 – Preço tabelado ou máximo sugerido\n\n1 - Lista Negativa (valor)\n\n2 - Lista Positiva (valor)\n\n3 - Lista Neutra (valor)\n\n4 - Margem Valor Agregado (%)\n\n5 - Pauta (valor)"
+            },
+            "pMVAST": {
+              "type": "string"
+            },
+            "pRedBCST": {
+              "type": "string"
+            },
+            "vBCST": {
+              "type": "string"
+            },
+            "pICMSST": {
+              "type": "string"
+            },
+            "vICMSST": {
+              "type": "string"
+            },
+            "vBCFCPST": {
+              "type": "string"
+            },
+            "pFCPST": {
+              "type": "string"
+            },
+            "vFCPST": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMSSN202CSOSN": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item202",
+        "Item203"
+      ],
+      "enum": [
+        "Item202",
+        "Item203"
+      ]
+    },
+    "ICMSSN500": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CSOSN"
+          ],
+          "properties": {
+            "CSOSN": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMSSN500CSOSN"
+            },
+            "vBCSTRet": {
+              "type": "string"
+            },
+            "pST": {
+              "type": "string"
+            },
+            "vICMSSubstituto": {
+              "type": "string"
+            },
+            "vICMSSTRet": {
+              "type": "string"
+            },
+            "vBCFCPSTRet": {
+              "type": "string"
+            },
+            "pFCPSTRet": {
+              "type": "string"
+            },
+            "vFCPSTRet": {
+              "type": "string"
+            },
+            "pRedBCEfet": {
+              "type": "string"
+            },
+            "vBCEfet": {
+              "type": "string"
+            },
+            "pICMSEfet": {
+              "type": "string"
+            },
+            "vICMSEfet": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMSSN500CSOSN": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item500"
+      ],
+      "enum": [
+        "Item500"
+      ]
+    },
+    "ICMSSN900": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CSOSN"
+          ],
+          "properties": {
+            "CSOSN": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMSSN900CSOSN"
+            },
+            "modBC": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS:\n\n0 - Margem Valor Agregado\n\n1 - Pauta (valor)\n\n2 - Preço Tabelado Máximo (valor)\n\n3 - Valor da Operação"
+            },
+            "vBC": {
+              "type": "string"
+            },
+            "pRedBC": {
+              "type": "string"
+            },
+            "pICMS": {
+              "type": "string"
+            },
+            "vICMS": {
+              "type": "string"
+            },
+            "modBCST": {
+              "type": "string",
+              "description": "Modalidade de determinação da BC do ICMS ST\n\n0 – Preço tabelado ou máximo sugerido\n\n1 - Lista Negativa (valor)\n\n2 - Lista Positiva (valor)\n\n3 - Lista Neutra (valor)\n\n4 - Margem Valor Agregado (%)\n\n5 - Pauta (valor)"
+            },
+            "pMVAST": {
+              "type": "string"
+            },
+            "pRedBCST": {
+              "type": "string"
+            },
+            "vBCST": {
+              "type": "string"
+            },
+            "pICMSST": {
+              "type": "string"
+            },
+            "vICMSST": {
+              "type": "string"
+            },
+            "vBCFCPST": {
+              "type": "string"
+            },
+            "pFCPST": {
+              "type": "string"
+            },
+            "vFCPST": {
+              "type": "string"
+            },
+            "pCredSN": {
+              "type": "string"
+            },
+            "vCredICMSSN": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMSSN900CSOSN": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item900"
+      ],
+      "enum": [
+        "Item900"
+      ]
+    },
+    "ICMSST": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ICMSOrigem"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "CST"
+          ],
+          "properties": {
+            "CST": {
+              "$ref": "#/definitions/TNFeInfNFeDetImpostoICMSICMSSTCST"
+            },
+            "vBCSTRet": {
+              "type": "string"
+            },
+            "pST": {
+              "type": "string"
+            },
+            "vICMSSubstituto": {
+              "type": "string"
+            },
+            "vICMSSTRet": {
+              "type": "string"
+            },
+            "vBCFCPSTRet": {
+              "type": "string"
+            },
+            "pFCPSTRet": {
+              "type": "string"
+            },
+            "vFCPSTRet": {
+              "type": "string"
+            },
+            "vBCSTDest": {
+              "type": "string"
+            },
+            "vICMSSTDest": {
+              "type": "string"
+            },
+            "pRedBCEfet": {
+              "type": "string"
+            },
+            "vBCEfet": {
+              "type": "string"
+            },
+            "pICMSEfet": {
+              "type": "string"
+            },
+            "vICMSEfet": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "TNFeInfNFeDetImpostoICMSICMSSTCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item41",
+        "Item60"
+      ],
+      "enum": [
+        "Item41",
+        "Item60"
+      ]
+    },
+    "II": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vBC": {
+          "type": "string"
+        },
+        "vDespAdu": {
+          "type": "string"
+        },
+        "vII": {
+          "type": "string"
+        },
+        "vIOF": {
+          "type": "string"
+        }
+      }
+    },
+    "IPI": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "CNPJProd": {
+          "type": "string"
+        },
+        "cSelo": {
+          "type": "string"
+        },
+        "qSelo": {
+          "type": "string"
+        },
+        "cEnq": {
+          "type": "string"
+        },
         "Item": {}
       }
     },
-    "TNFeInfNFeDetImpostoPISST": {
+    "ISSQN": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cListServ",
+        "indISS",
+        "indIncentivo"
+      ],
+      "properties": {
+        "vBC": {
+          "type": "string"
+        },
+        "vAliq": {
+          "type": "string"
+        },
+        "vISSQN": {
+          "type": "string"
+        },
+        "cMunFG": {
+          "type": "string"
+        },
+        "cListServ": {
+          "$ref": "#/definitions/CListServ"
+        },
+        "vDeducao": {
+          "type": "string"
+        },
+        "vOutro": {
+          "type": "string"
+        },
+        "vDescIncond": {
+          "type": "string"
+        },
+        "vDescCond": {
+          "type": "string"
+        },
+        "vISSRet": {
+          "type": "string"
+        },
+        "indISS": {
+          "$ref": "#/definitions/IndISS"
+        },
+        "cServico": {
+          "type": "string"
+        },
+        "cMun": {
+          "type": "string"
+        },
+        "cPais": {
+          "type": "string"
+        },
+        "nProcesso": {
+          "type": "string"
+        },
+        "indIncentivo": {
+          "$ref": "#/definitions/IndIncentivo"
+        }
+      }
+    },
+    "CListServ": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item0101",
+        "Item0102",
+        "Item0103",
+        "Item0104",
+        "Item0105",
+        "Item0106",
+        "Item0107",
+        "Item0108",
+        "Item0109",
+        "Item0201",
+        "Item0302",
+        "Item0303",
+        "Item0304",
+        "Item0305",
+        "Item0401",
+        "Item0402",
+        "Item0403",
+        "Item0404",
+        "Item0405",
+        "Item0406",
+        "Item0407",
+        "Item0408",
+        "Item0409",
+        "Item0410",
+        "Item0411",
+        "Item0412",
+        "Item0413",
+        "Item0414",
+        "Item0415",
+        "Item0416",
+        "Item0417",
+        "Item0418",
+        "Item0419",
+        "Item0420",
+        "Item0421",
+        "Item0422",
+        "Item0423",
+        "Item0501",
+        "Item0502",
+        "Item0503",
+        "Item0504",
+        "Item0505",
+        "Item0506",
+        "Item0507",
+        "Item0508",
+        "Item0509",
+        "Item0601",
+        "Item0602",
+        "Item0603",
+        "Item0604",
+        "Item0605",
+        "Item0606",
+        "Item0701",
+        "Item0702",
+        "Item0703",
+        "Item0704",
+        "Item0705",
+        "Item0706",
+        "Item0707",
+        "Item0708",
+        "Item0709",
+        "Item0710",
+        "Item0711",
+        "Item0712",
+        "Item0713",
+        "Item0716",
+        "Item0717",
+        "Item0718",
+        "Item0719",
+        "Item0720",
+        "Item0721",
+        "Item0722",
+        "Item0801",
+        "Item0802",
+        "Item0901",
+        "Item0902",
+        "Item0903",
+        "Item1001",
+        "Item1002",
+        "Item1003",
+        "Item1004",
+        "Item1005",
+        "Item1006",
+        "Item1007",
+        "Item1008",
+        "Item1009",
+        "Item1010",
+        "Item1101",
+        "Item1102",
+        "Item1103",
+        "Item1104",
+        "Item1201",
+        "Item1202",
+        "Item1203",
+        "Item1204",
+        "Item1205",
+        "Item1206",
+        "Item1207",
+        "Item1208",
+        "Item1209",
+        "Item1210",
+        "Item1211",
+        "Item1212",
+        "Item1213",
+        "Item1214",
+        "Item1215",
+        "Item1216",
+        "Item1217",
+        "Item1302",
+        "Item1303",
+        "Item1304",
+        "Item1305",
+        "Item1401",
+        "Item1402",
+        "Item1403",
+        "Item1404",
+        "Item1405",
+        "Item1406",
+        "Item1407",
+        "Item1408",
+        "Item1409",
+        "Item1410",
+        "Item1411",
+        "Item1412",
+        "Item1413",
+        "Item1414",
+        "Item1501",
+        "Item1502",
+        "Item1503",
+        "Item1504",
+        "Item1505",
+        "Item1506",
+        "Item1507",
+        "Item1508",
+        "Item1509",
+        "Item1510",
+        "Item1511",
+        "Item1512",
+        "Item1513",
+        "Item1514",
+        "Item1515",
+        "Item1516",
+        "Item1517",
+        "Item1518",
+        "Item1601",
+        "Item1602",
+        "Item1701",
+        "Item1702",
+        "Item1703",
+        "Item1704",
+        "Item1705",
+        "Item1706",
+        "Item1708",
+        "Item1709",
+        "Item1710",
+        "Item1711",
+        "Item1712",
+        "Item1713",
+        "Item1714",
+        "Item1715",
+        "Item1716",
+        "Item1717",
+        "Item1718",
+        "Item1719",
+        "Item1720",
+        "Item1721",
+        "Item1722",
+        "Item1723",
+        "Item1724",
+        "Item1725",
+        "Item1801",
+        "Item1901",
+        "Item2001",
+        "Item2002",
+        "Item2003",
+        "Item2101",
+        "Item2201",
+        "Item2301",
+        "Item2401",
+        "Item2501",
+        "Item2502",
+        "Item2503",
+        "Item2504",
+        "Item2505",
+        "Item2601",
+        "Item2701",
+        "Item2801",
+        "Item2901",
+        "Item3001",
+        "Item3101",
+        "Item3201",
+        "Item3301",
+        "Item3401",
+        "Item3501",
+        "Item3601",
+        "Item3701",
+        "Item3801",
+        "Item3901",
+        "Item4001"
+      ],
+      "enum": [
+        "Item0101",
+        "Item0102",
+        "Item0103",
+        "Item0104",
+        "Item0105",
+        "Item0106",
+        "Item0107",
+        "Item0108",
+        "Item0109",
+        "Item0201",
+        "Item0302",
+        "Item0303",
+        "Item0304",
+        "Item0305",
+        "Item0401",
+        "Item0402",
+        "Item0403",
+        "Item0404",
+        "Item0405",
+        "Item0406",
+        "Item0407",
+        "Item0408",
+        "Item0409",
+        "Item0410",
+        "Item0411",
+        "Item0412",
+        "Item0413",
+        "Item0414",
+        "Item0415",
+        "Item0416",
+        "Item0417",
+        "Item0418",
+        "Item0419",
+        "Item0420",
+        "Item0421",
+        "Item0422",
+        "Item0423",
+        "Item0501",
+        "Item0502",
+        "Item0503",
+        "Item0504",
+        "Item0505",
+        "Item0506",
+        "Item0507",
+        "Item0508",
+        "Item0509",
+        "Item0601",
+        "Item0602",
+        "Item0603",
+        "Item0604",
+        "Item0605",
+        "Item0606",
+        "Item0701",
+        "Item0702",
+        "Item0703",
+        "Item0704",
+        "Item0705",
+        "Item0706",
+        "Item0707",
+        "Item0708",
+        "Item0709",
+        "Item0710",
+        "Item0711",
+        "Item0712",
+        "Item0713",
+        "Item0716",
+        "Item0717",
+        "Item0718",
+        "Item0719",
+        "Item0720",
+        "Item0721",
+        "Item0722",
+        "Item0801",
+        "Item0802",
+        "Item0901",
+        "Item0902",
+        "Item0903",
+        "Item1001",
+        "Item1002",
+        "Item1003",
+        "Item1004",
+        "Item1005",
+        "Item1006",
+        "Item1007",
+        "Item1008",
+        "Item1009",
+        "Item1010",
+        "Item1101",
+        "Item1102",
+        "Item1103",
+        "Item1104",
+        "Item1201",
+        "Item1202",
+        "Item1203",
+        "Item1204",
+        "Item1205",
+        "Item1206",
+        "Item1207",
+        "Item1208",
+        "Item1209",
+        "Item1210",
+        "Item1211",
+        "Item1212",
+        "Item1213",
+        "Item1214",
+        "Item1215",
+        "Item1216",
+        "Item1217",
+        "Item1302",
+        "Item1303",
+        "Item1304",
+        "Item1305",
+        "Item1401",
+        "Item1402",
+        "Item1403",
+        "Item1404",
+        "Item1405",
+        "Item1406",
+        "Item1407",
+        "Item1408",
+        "Item1409",
+        "Item1410",
+        "Item1411",
+        "Item1412",
+        "Item1413",
+        "Item1414",
+        "Item1501",
+        "Item1502",
+        "Item1503",
+        "Item1504",
+        "Item1505",
+        "Item1506",
+        "Item1507",
+        "Item1508",
+        "Item1509",
+        "Item1510",
+        "Item1511",
+        "Item1512",
+        "Item1513",
+        "Item1514",
+        "Item1515",
+        "Item1516",
+        "Item1517",
+        "Item1518",
+        "Item1601",
+        "Item1602",
+        "Item1701",
+        "Item1702",
+        "Item1703",
+        "Item1704",
+        "Item1705",
+        "Item1706",
+        "Item1708",
+        "Item1709",
+        "Item1710",
+        "Item1711",
+        "Item1712",
+        "Item1713",
+        "Item1714",
+        "Item1715",
+        "Item1716",
+        "Item1717",
+        "Item1718",
+        "Item1719",
+        "Item1720",
+        "Item1721",
+        "Item1722",
+        "Item1723",
+        "Item1724",
+        "Item1725",
+        "Item1801",
+        "Item1901",
+        "Item2001",
+        "Item2002",
+        "Item2003",
+        "Item2101",
+        "Item2201",
+        "Item2301",
+        "Item2401",
+        "Item2501",
+        "Item2502",
+        "Item2503",
+        "Item2504",
+        "Item2505",
+        "Item2601",
+        "Item2701",
+        "Item2801",
+        "Item2901",
+        "Item3001",
+        "Item3101",
+        "Item3201",
+        "Item3301",
+        "Item3401",
+        "Item3501",
+        "Item3601",
+        "Item3701",
+        "Item3801",
+        "Item3901",
+        "Item4001"
+      ]
+    },
+    "IndISS": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item6",
+        "Item7"
+      ],
+      "enum": [
+        "Item1",
+        "Item2",
+        "Item3",
+        "Item4",
+        "Item5",
+        "Item6",
+        "Item7"
+      ]
+    },
+    "IndIncentivo": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item1",
+        "Item2"
+      ],
+      "enum": [
+        "Item1",
+        "Item2"
+      ]
+    },
+    "PIS": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "PISAliq": {
+          "$ref": "#/definitions/PISAliq"
+        },
+        "PISNT": {
+          "$ref": "#/definitions/PISNT"
+        },
+        "PISOutr": {
+          "$ref": "#/definitions/PISOutr"
+        },
+        "PISQtde": {
+          "$ref": "#/definitions/PISQtde"
+        }
+      }
+    },
+    "PISAliq": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "CST"
+      ],
+      "properties": {
+        "CST": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoPISPISAliqCST"
+        },
+        "vBC": {
+          "type": "string"
+        },
+        "pPIS": {
+          "type": "string"
+        },
+        "vPIS": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoPISPISAliqCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item01",
+        "Item02"
+      ],
+      "enum": [
+        "Item01",
+        "Item02"
+      ]
+    },
+    "PISNT": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "CST"
+      ],
+      "properties": {
+        "CST": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoPISPISNTCST"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoPISPISNTCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item04",
+        "Item05",
+        "Item06",
+        "Item07",
+        "Item08",
+        "Item09"
+      ],
+      "enum": [
+        "Item04",
+        "Item05",
+        "Item06",
+        "Item07",
+        "Item08",
+        "Item09"
+      ]
+    },
+    "PISOutr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "CST"
+      ],
+      "properties": {
+        "CST": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoPISPISOutrCST"
+        },
+        "vBC": {
+          "type": "string"
+        },
+        "pPIS": {
+          "type": "string"
+        },
+        "qBCProd": {
+          "type": "string"
+        },
+        "vAliqProd": {
+          "type": "string"
+        },
+        "vPIS": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoPISPISOutrCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item49",
+        "Item50",
+        "Item51",
+        "Item52",
+        "Item53",
+        "Item54",
+        "Item55",
+        "Item56",
+        "Item60",
+        "Item61",
+        "Item62",
+        "Item63",
+        "Item64",
+        "Item65",
+        "Item66",
+        "Item67",
+        "Item70",
+        "Item71",
+        "Item72",
+        "Item73",
+        "Item74",
+        "Item75",
+        "Item98",
+        "Item99"
+      ],
+      "enum": [
+        "Item49",
+        "Item50",
+        "Item51",
+        "Item52",
+        "Item53",
+        "Item54",
+        "Item55",
+        "Item56",
+        "Item60",
+        "Item61",
+        "Item62",
+        "Item63",
+        "Item64",
+        "Item65",
+        "Item66",
+        "Item67",
+        "Item70",
+        "Item71",
+        "Item72",
+        "Item73",
+        "Item74",
+        "Item75",
+        "Item98",
+        "Item99"
+      ]
+    },
+    "PISQtde": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "CST"
+      ],
+      "properties": {
+        "CST": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoPISPISQtdeCST"
+        },
+        "qBCProd": {
+          "type": "string"
+        },
+        "vAliqProd": {
+          "type": "string"
+        },
+        "vPIS": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoPISPISQtdeCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item03"
+      ],
+      "enum": [
+        "Item03"
+      ]
+    },
+    "PISST": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2339,14 +4316,204 @@
         "vBC"
       ]
     },
-    "TNFeInfNFeDetImpostoCOFINS": {
+    "COFINS": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "Item": {}
+        "COFINSAliq": {
+          "$ref": "#/definitions/COFINSAliq"
+        },
+        "COFINSNT": {
+          "$ref": "#/definitions/COFINSNT"
+        },
+        "COFINSOutr": {
+          "$ref": "#/definitions/COFINSOutr"
+        },
+        "COFINSQtde": {
+          "$ref": "#/definitions/COFINSQtde"
+        }
       }
     },
-    "TNFeInfNFeDetImpostoCOFINSST": {
+    "COFINSAliq": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "CST"
+      ],
+      "properties": {
+        "CST": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINSCOFINSAliqCST"
+        },
+        "vBC": {
+          "type": "string"
+        },
+        "pCOFINS": {
+          "type": "string"
+        },
+        "vCOFINS": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoCOFINSCOFINSAliqCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item01",
+        "Item02"
+      ],
+      "enum": [
+        "Item01",
+        "Item02"
+      ]
+    },
+    "COFINSNT": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "CST"
+      ],
+      "properties": {
+        "CST": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINSCOFINSNTCST"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoCOFINSCOFINSNTCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item04",
+        "Item05",
+        "Item06",
+        "Item07",
+        "Item08",
+        "Item09"
+      ],
+      "enum": [
+        "Item04",
+        "Item05",
+        "Item06",
+        "Item07",
+        "Item08",
+        "Item09"
+      ]
+    },
+    "COFINSOutr": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "CST"
+      ],
+      "properties": {
+        "CST": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINSCOFINSOutrCST"
+        },
+        "vBC": {
+          "type": "string"
+        },
+        "pCOFINS": {
+          "type": "string"
+        },
+        "qBCProd": {
+          "type": "string"
+        },
+        "vAliqProd": {
+          "type": "string"
+        },
+        "vCOFINS": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoCOFINSCOFINSOutrCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item49",
+        "Item50",
+        "Item51",
+        "Item52",
+        "Item53",
+        "Item54",
+        "Item55",
+        "Item56",
+        "Item60",
+        "Item61",
+        "Item62",
+        "Item63",
+        "Item64",
+        "Item65",
+        "Item66",
+        "Item67",
+        "Item70",
+        "Item71",
+        "Item72",
+        "Item73",
+        "Item74",
+        "Item75",
+        "Item98",
+        "Item99"
+      ],
+      "enum": [
+        "Item49",
+        "Item50",
+        "Item51",
+        "Item52",
+        "Item53",
+        "Item54",
+        "Item55",
+        "Item56",
+        "Item60",
+        "Item61",
+        "Item62",
+        "Item63",
+        "Item64",
+        "Item65",
+        "Item66",
+        "Item67",
+        "Item70",
+        "Item71",
+        "Item72",
+        "Item73",
+        "Item74",
+        "Item75",
+        "Item98",
+        "Item99"
+      ]
+    },
+    "COFINSQtde": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "CST"
+      ],
+      "properties": {
+        "CST": {
+          "$ref": "#/definitions/TNFeInfNFeDetImpostoCOFINSCOFINSQtdeCST"
+        },
+        "qBCProd": {
+          "type": "string"
+        },
+        "vAliqProd": {
+          "type": "string"
+        },
+        "vCOFINS": {
+          "type": "string"
+        }
+      }
+    },
+    "TNFeInfNFeDetImpostoCOFINSCOFINSQtdeCST": {
+      "type": "string",
+      "description": "",
+      "x-enumNames": [
+        "Item03"
+      ],
+      "enum": [
+        "Item03"
+      ]
+    },
+    "COFINSST": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2383,7 +4550,7 @@
         "vBC"
       ]
     },
-    "TNFeInfNFeDetImpostoICMSUFDest": {
+    "ICMSUFDest": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -2883,15 +5050,16 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "indPag",
-        "tPag"
+        "indPag"
       ],
       "properties": {
         "indPag": {
           "$ref": "#/definitions/TNFeInfNFePagDetPagIndPag"
         },
         "tPag": {
-          "$ref": "#/definitions/TNFeInfNFePagDetPagTPag"
+          "type": "string",
+          "description": "Código da forma de pagamento:\n\n01-Dinheiro\n\n02-Cheque\n\n03-Cartão de Crédito \n\n04-Cartão de Débito \n\n05-Crédito Loja \n\n10-Vale Alimentação \n\n11-Vale Refeição \n\n12-Vale Presente \n\n13-Vale Combustível \n\n14 - Duplicata Mercantil \n\n15 - Boleto Bancario \n\n90 - Sem Pagamento \n\n99 - Outros ",
+          "example": "01"
         },
         "vPag": {
           "type": "string"
@@ -2911,40 +5079,6 @@
       "enum": [
         "Item0",
         "Item1"
-      ]
-    },
-    "TNFeInfNFePagDetPagTPag": {
-      "type": "string",
-      "description": "",
-      "x-enumNames": [
-        "Item01",
-        "Item02",
-        "Item03",
-        "Item04",
-        "Item05",
-        "Item10",
-        "Item11",
-        "Item12",
-        "Item13",
-        "Item14",
-        "Item15",
-        "Item90",
-        "Item99"
-      ],
-      "enum": [
-        "Item01",
-        "Item02",
-        "Item03",
-        "Item04",
-        "Item05",
-        "Item10",
-        "Item11",
-        "Item12",
-        "Item13",
-        "Item14",
-        "Item15",
-        "Item90",
-        "Item99"
       ]
     },
     "TNFeInfNFePagDetPagCard": {
@@ -3229,178 +5363,6 @@
         },
         "idCSRT": {
           "type": "string"
-        }
-      }
-    },
-    "InfNFeSupl": {
-      "type": "object",
-      "description": "           Informações suplementares Nota Fiscal \n           ",
-      "additionalProperties": false,
-      "properties": {
-        "qrCode": {
-          "type": "string",
-          "description": "           Texto com o QR-Code impresso no DANFE NFC-e \n           "
-        },
-        "urlChave": {
-          "type": "string",
-          "description": "           Informar a URL da Consulta por chave de acesso da NFC-e \n           A mesma URL que deve estar informada no DANFE NFC-e para consulta por chave de acesso. \n           "
-        }
-      }
-    },
-    "Signature": {
-      "type": "object",
-      "description": "           Assinatura digital da NF-e \n           ",
-      "additionalProperties": false,
-      "properties": {
-        "SignedInfo": {
-          "$ref": "#/definitions/SignedInfoType"
-        },
-        "SignatureValue": {
-          "$ref": "#/definitions/SignatureValueType"
-        },
-        "KeyInfo": {
-          "$ref": "#/definitions/KeyInfoType"
-        },
-        "Id": {
-          "type": "string"
-        }
-      }
-    },
-    "SignedInfoType": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "CanonicalizationMethod": {
-          "$ref": "#/definitions/SignedInfoTypeCanonicalizationMethod"
-        },
-        "SignatureMethod": {
-          "$ref": "#/definitions/SignedInfoTypeSignatureMethod"
-        },
-        "Reference": {
-          "$ref": "#/definitions/ReferenceType"
-        },
-        "Id": {
-          "type": "string"
-        }
-      }
-    },
-    "SignedInfoTypeCanonicalizationMethod": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "AlgorithmLocal": {
-          "type": "string"
-        }
-      }
-    },
-    "SignedInfoTypeSignatureMethod": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "AlgorithmLocal": {
-          "type": "string"
-        }
-      }
-    },
-    "ReferenceType": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "Transforms": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TransformType"
-          }
-        },
-        "DigestMethod": {
-          "$ref": "#/definitions/ReferenceTypeDigestMethod"
-        },
-        "DigestValue": {
-          "type": "string",
-          "format": "byte"
-        },
-        "Id": {
-          "type": "string"
-        },
-        "URI": {
-          "type": "string"
-        },
-        "Type": {
-          "type": "string"
-        }
-      }
-    },
-    "TransformType": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "Algorithm"
-      ],
-      "properties": {
-        "XPath": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "Algorithm": {
-          "$ref": "#/definitions/TTransformURI"
-        }
-      }
-    },
-    "TTransformURI": {
-      "type": "string",
-      "description": "",
-      "x-enumNames": [
-        "httpwwww3org200009xmldsigenvelopedsignature",
-        "httpwwww3orgTR2001RECxmlc14n20010315"
-      ],
-      "enum": [
-        "httpwwww3org200009xmldsigenvelopedsignature",
-        "httpwwww3orgTR2001RECxmlc14n20010315"
-      ]
-    },
-    "ReferenceTypeDigestMethod": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "AlgorithmLocal": {
-          "type": "string"
-        }
-      }
-    },
-    "SignatureValueType": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "Id": {
-          "type": "string"
-        },
-        "Value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "KeyInfoType": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "X509Data": {
-          "$ref": "#/definitions/X509DataType"
-        },
-        "Id": {
-          "type": "string"
-        }
-      }
-    },
-    "X509DataType": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "X509Certificate": {
-          "type": "string",
-          "format": "byte"
         }
       }
     }
