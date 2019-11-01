@@ -1,0 +1,48 @@
+﻿.topbar-wrapper img {
+    content: url(/images/logo.jpg);
+    width: 80%;
+    height: auto;
+}
+
+.download-url-wrapper {
+    display: none !important;
+}
+
+*#header {
+    background: #222 !important;
+    #select_document {
+    background: #666 !important;
+}
+
+input[name=baseUrl] {
+    display: none !important;
+}
+
+.logo__title {
+    display: none !important;
+}
+
+#api_info a {
+    color: #007bff !important;
+    text-decoration: none !important;
+}
+
+    #api_info a:hover,
+    #api_info a:focus,
+    #api_info a:active {
+        color: #0056b3 !important;
+        text-decoration: underline !important;
+    }
+
+.swagger-ui .topbar {
+    padding: 10px 0 !important;
+    background-color: #0056b3 !important;
+}
+
+.topbar {
+    display: none !important;
+}
+
+.sc-6itmo6-2 .sc-6itmo6-3 .iJUwRU {
+    display: none !important;
+}
