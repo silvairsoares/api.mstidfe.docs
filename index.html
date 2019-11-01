@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+Página de documentação da API, utilizando o ReDoc com o Swagger
+-->
+<html>
+<head>
+    <title>ReDoc</title>
+    <!-- needed for adaptive design -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+
+    <!--
+    <link rel="stylesheet" type="text/css" href="~/swagger-ui/custom.css">
+    -->
+    <!--
+    ReDoc doesn't change outer page styles
+    -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span><a href="swagger">Alternar para documentação Swagger</a></span>
+    </div>
+
+    <img src='~/images/logo.jpg' alt=”some text” width=300 height=100%>
+
+    <!--
+    <redoc spec-url='/swagger/v1/swagger.json' suppress-warnings></redoc>
+    <redoc spec-url='http://192.168.1.162:7575/api.mstiDFE/swagger/v1/swagger.json' suppress-warnings></redoc>
+    -->
+
+    <redoc spec-url='./swagger/v1/swagger.json' suppress-warnings></redoc>
+
+    <script src="~/scripts/redoc.min.js"></script>
+
+    <div>
+        <span><a href="swagger">Alternar para documentação Swagger</a></span>
+    </div>
+</body>
+</html>
